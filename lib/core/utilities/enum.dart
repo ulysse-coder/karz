@@ -1,0 +1,5 @@
+
+enum UserRole {
+  conducteur,
+  gardien
+}
