@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "282323374084",
+    "project_id": "ulysse-app-8496c",
+    "storage_bucket": "ulysse-app-8496c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:282323374084:android:a479b4d0795b6d5f73e551",
+        "android_client_info": {
+          "package_name": "com.example.ulysse_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "282323374084-s5538g7t9dfdjm1qnngg9nrqt03oqgiu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ulysse_app",
+            "certificate_hash": "1718cfb6dbfb80e3d15f380a8460dc712dccfbfb"
+          }
+        },
+        {
+          "client_id": "282323374084-g4q1si409l142slkhehug97l5r889ija.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdZSowFmREAb8o6LVP151BALplHQds71I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "282323374084-g4q1si409l142slkhehug97l5r889ija.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "282323374084-u569b9rver48hng2nh2l39mmc70n4p89.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.ulysseApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
