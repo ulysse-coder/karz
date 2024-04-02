@@ -1,5 +1,6 @@
 
 enum UserRole {
   conducteur,
-  gardien
+  gardien,
+  defaultRole,
 }
