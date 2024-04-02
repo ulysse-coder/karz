@@ -9,7 +9,7 @@ abstract class AuthenticationRepository {
 
   ResultFuture<UserEntity> getCurrentUser(String uid, UserRole role);
 
-  ResultBool checkIfUserExist(String uid);
+  ResultBool checkIfUserExist(String uid, UserRole role);
 
   ResultFuture<UserEntity> siginWithFacebook();
 
