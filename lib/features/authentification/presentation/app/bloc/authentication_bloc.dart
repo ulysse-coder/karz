@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:test/test.dart';
 import 'package:ulysse_app/core/utilities/auth_params.dart';
 import 'package:ulysse_app/core/utilities/enum.dart';
 import 'package:ulysse_app/features/authentification/data/models/user_model.dart';
