@@ -4,3 +4,14 @@ enum UserRole {
   gardien,
   defaultRole,
 }
+
+enum ParkingType {
+  private,
+  public
+}
+
+enum VehiculeType {
+  deuxRoues,
+  voiture,
+  miniBus,
+}
