@@ -530,7 +530,6 @@ packages:
     version: "2.3.1"
   http:
     dependency: "direct main"
-    dependency: transitive
     description:
       name: http
       sha256: a2bbf9d017fcced29139daa8ed2bba4ece450ab222871df93ca9eec6f80c34ba
@@ -635,7 +634,6 @@ packages:
     version: "1.0.5"
   mocktail:
     dependency: "direct dev"
-    dependency: transitive
     description:
       name: mocktail
       sha256: c4b5007d91ca4f67256e720cb1b6d704e79a510183a12fa551021f652577dce6
@@ -929,7 +927,6 @@ packages:
     version: "1.2.1"
   test:
     dependency: "direct main"
-    dependency: transitive
     description:
       name: test
       sha256: a1f7595805820fcc05e5c52e3a231aedd0b72972cb333e8c738a8b1239448b6f
