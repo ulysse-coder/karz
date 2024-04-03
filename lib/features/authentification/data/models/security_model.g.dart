@@ -31,5 +31,5 @@ Map<String, dynamic> _$SecurityModelToJson(SecurityModel instance) =>
 const _$UserRoleEnumMap = {
   UserRole.conducteur: 'conducteur',
   UserRole.gardien: 'gardien',
-  UserRole.defaultRole: 'default'
+  UserRole.defaultRole: 'defaultRole',
 };
