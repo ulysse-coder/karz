@@ -19,4 +19,8 @@ abstract class AuthenticationRepository {
 
   ResultVoid signOut();
 
+  ResultVoid saveCurrentUserToCache(UserEntity user);
+
+  ResultFuture<UserEntity> getCurrentUserFromCache();
+
 }

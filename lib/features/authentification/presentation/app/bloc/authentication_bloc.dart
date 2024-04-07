@@ -7,6 +7,8 @@ import 'package:ulysse_app/features/authentification/domain/entities/user_entity
 import 'package:ulysse_app/features/authentification/domain/usecases/check_if_user_exist.dart';
 import 'package:ulysse_app/features/authentification/domain/usecases/create_user.dart';
 import 'package:ulysse_app/features/authentification/domain/usecases/get_current_user.dart';
+import 'package:ulysse_app/features/authentification/domain/usecases/get_current_user_from_cache.dart';
+import 'package:ulysse_app/features/authentification/domain/usecases/save_current_user_to_cache.dart';
 import 'package:ulysse_app/features/authentification/domain/usecases/sigin_with_email_and_password.dart';
 import 'package:ulysse_app/features/authentification/domain/usecases/sigin_with_facebook.dart';
 import 'package:ulysse_app/features/authentification/domain/usecases/sigin_with_google.dart';
@@ -23,7 +25,9 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
     required SiginWithEmailAndPassword signinWithEmailAndPassword,
     required SigninWithFacebook signinWithFacebook,
     required SiginWithGoogle signinWithGoogle,
-    required SignOut signOut
+    required SignOut signOut,
+    required SaveCurrenUserToCache saveCurrentUserToCache,
+    required GetCurrentUserFromCache getCurrentUserFromCache
   }) : 
   
   _createUser = createUser,
@@ -33,6 +37,8 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
   _signinWithFacebook = signinWithFacebook,
   _signinWithGoogle = signinWithGoogle,
   _signOut = signOut,
+  _saveCurrenUserToCache = saveCurrentUserToCache,
+  _getCurrentUserFromCache = getCurrentUserFromCache,
   super(AuthenticationInitial()) {
     on<CreateUserEvent>((event, emit) async {
       emit(AuthLoadingState());
@@ -47,6 +53,11 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
         (_) => emit(UserCreatedState())
       );
     });
+    on<SaveCurrenUserToCacheEvent>((event, emit) async {
+      final result = await _saveCurrenUserToCache(event.user);
+
+      result.fold((l) => null, (r) => emit(UserCreatedState()));
+    });
     on<GetCurrentUserEvent>((event, emit) async {
       emit(AuthLoadingState());
 
@@ -59,6 +70,13 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
         (l) => null, 
         (user) => emit(UserLoadedState(user: user))
       );
+    });
+    on<GetCurrentUserFromCacheEvent>((event, emit) async {
+      emit(AuthLoadingState());
+
+      final result = await _getCurrentUserFromCache();
+
+      result.fold((l) => null, (user) => emit(UserLoadedState(user: user)));
     });
     on<CheckIfUserExistsEvent>((event, emit) async {
       emit(AuthLoadingState());
@@ -125,4 +143,6 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
   final SigninWithFacebook _signinWithFacebook;
   final SiginWithGoogle _signinWithGoogle;
   final SignOut _signOut;
+  final SaveCurrenUserToCache _saveCurrenUserToCache;
+  final GetCurrentUserFromCache _getCurrentUserFromCache;
 }
