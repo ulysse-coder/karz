@@ -1,6 +1,6 @@
 
-import 'dart:io';
-
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:ulysse_app/features/parking/data/models/parking_model.dart';
 import 'package:ulysse_app/features/parking/domain/entities/parking_entity.dart';
 
@@ -10,8 +10,10 @@ abstract class ParkingRemoteDataSource {
 
   Future<void> addParking(ParkingEntity parkingEntity);
 
-  Future<void> uploadParkingImage(File image);
+  Future<XFile?> selectImageFromGallery();
 
-  Future<List<File>> getParkingImages(String parkingId);
+  Future<void> uploadParkingImage(String parkingId, XFile file);
+
+  Future<List<Reference>?> getParkingImages(String parkingId);
 
 }

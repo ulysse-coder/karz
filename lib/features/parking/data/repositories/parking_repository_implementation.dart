@@ -1,7 +1,7 @@
 
-import 'dart:io';
-
 import 'package:dartz/dartz.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:ulysse_app/core/errors/db_exception.dart';
 import 'package:ulysse_app/core/typedef/typedef.dart';
 import 'package:ulysse_app/features/parking/data/data_sources/remote/parking_remote_data_source.dart';
@@ -34,7 +34,7 @@ class ParkingRepositoryImplemetation extends ParkingRepository {
   }
 
   @override
-  ResultFuture<List<File>> getParkingImages(String parkingId) async {
+  ResultFuture<List<Reference>?> getParkingImages(String parkingId) async {
     try {
       final result = await _remoteDataSource.getParkingImages(parkingId);
       return Right(result);
@@ -44,10 +44,20 @@ class ParkingRepositoryImplemetation extends ParkingRepository {
   }
   
   @override
-  ResultVoid uploadParkingImage(File image) async {
+  ResultVoid uploadParkingImage(String parkingId, XFile file) async {
     try {
-      await _remoteDataSource.uploadParkingImage(image);
+      await _remoteDataSource.uploadParkingImage(parkingId, file);
       return const Right(null);
+    } catch (e) {
+      return Left(DBException(message: e.toString()));
+    }
+  }
+  
+  @override
+  ResultFuture<XFile?> selectImageFromGallery() async {
+    try {
+      final result = await _remoteDataSource.selectImageFromGallery();
+      return Right(result);
     } catch (e) {
       return Left(DBException(message: e.toString()));
     }
