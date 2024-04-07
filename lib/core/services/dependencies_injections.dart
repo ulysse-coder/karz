@@ -4,6 +4,9 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:ulysse_app/features/authentification/data/data_sources/local/authentication_local_data_source.dart';
+import 'package:ulysse_app/features/authentification/data/data_sources/local/authentication_local_data_source_implementation.dart';
 import 'package:ulysse_app/features/authentification/data/data_sources/remote/authentication_remote_data_source.dart';
 import 'package:ulysse_app/features/authentification/data/data_sources/remote/authentication_remote_data_source_implementation.dart';
 import 'package:ulysse_app/features/authentification/data/repositories/authentication_repositries_implementation.dart';
@@ -11,6 +14,8 @@ import 'package:ulysse_app/features/authentification/domain/repositories/authent
 import 'package:ulysse_app/features/authentification/domain/usecases/check_if_user_exist.dart';
 import 'package:ulysse_app/features/authentification/domain/usecases/create_user.dart';
 import 'package:ulysse_app/features/authentification/domain/usecases/get_current_user.dart';
+import 'package:ulysse_app/features/authentification/domain/usecases/get_current_user_from_cache.dart';
+import 'package:ulysse_app/features/authentification/domain/usecases/save_current_user_to_cache.dart';
 import 'package:ulysse_app/features/authentification/domain/usecases/sigin_with_email_and_password.dart';
 import 'package:ulysse_app/features/authentification/domain/usecases/sigin_with_facebook.dart';
 import 'package:ulysse_app/features/authentification/domain/usecases/sigin_with_google.dart';
@@ -29,6 +34,9 @@ import 'package:ulysse_app/features/parking/presentation/app/bloc/parking_bloc.d
 final sl = GetIt.instance;
 
 Future<void> init() async {
+
+  final sharedPreferences = await SharedPreferences.getInstance();
+
   sl
     // app logic
     ..registerFactory(() => AuthenticationBloc(
@@ -38,7 +46,9 @@ Future<void> init() async {
         signinWithEmailAndPassword: sl(),
         signinWithFacebook: sl(),
         signinWithGoogle: sl(),
-        signOut: sl()))
+        signOut: sl(),
+        saveCurrentUserToCache: sl(),
+        getCurrentUserFromCache: sl()))
     ..registerFactory(() => ParkingBloc(
         addParking: sl(),
         uploadParkingImage: sl(),
@@ -53,6 +63,8 @@ Future<void> init() async {
     ..registerLazySingleton(() => SigninWithFacebook(sl()))
     ..registerLazySingleton(() => SiginWithGoogle(sl()))
     ..registerLazySingleton(() => SignOut(sl()))
+    ..registerLazySingleton(() => SaveCurrenUserToCache(sl()))
+    ..registerLazySingleton(() => GetCurrentUserFromCache(sl()))
 
     // parking use cases
     ..registerLazySingleton(() => AddParking(sl()))
@@ -61,8 +73,9 @@ Future<void> init() async {
     ..registerLazySingleton(() => GetParkingImages(sl()))
 
     // auth repositories
-    ..registerLazySingleton<AuthenticationRepository>(() => AuthenticationRepositoryImplementation(sl()))
+    ..registerLazySingleton<AuthenticationRepository>(() => AuthenticationRepositoryImplementation(sl(), sl()))
     ..registerLazySingleton<AuthenticationRemoteDataSource>(() => AuthenticationRemoteDataSourceImplementation(sl(), sl(), sl(), sl()))
+    ..registerLazySingleton<AuthenticationLocalDataSource>(() => AuthenticationLocalDataSourceImplementation(sl()))
 
     // parking repositories
     ..registerLazySingleton<ParkingRepository>(() => ParkingRepositoryImplemetation(sl()))
@@ -73,5 +86,6 @@ Future<void> init() async {
     ..registerLazySingleton(() => FirebaseFirestore.instance)
     ..registerLazySingleton(() => FirebaseStorage.instance)
     ..registerLazySingleton(() => FacebookAuth.instance)
-    ..registerLazySingleton(() => GoogleSignIn());
+    ..registerLazySingleton(() => GoogleSignIn())
+    ..registerLazySingleton(() => sharedPreferences);
 }
