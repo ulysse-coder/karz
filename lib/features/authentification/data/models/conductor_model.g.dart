@@ -10,16 +10,16 @@ ConductorModel _$ConductorModelFromJson(Map<String, dynamic> json) =>
     ConductorModel(
       uid: json['uid'] as String,
       name: json['name'] as String,
+      phone: json['phone'] as String,
       role: $enumDecode(_$UserRoleEnumMap, json['role']),
-      photo: json['photo'] as String,
     );
 
 Map<String, dynamic> _$ConductorModelToJson(ConductorModel instance) =>
     <String, dynamic>{
       'uid': instance.uid,
       'name': instance.name,
+      'phone': instance.phone,
       'role': _$UserRoleEnumMap[instance.role]!,
-      'photo': instance.photo,
     };
 
 const _$UserRoleEnumMap = {

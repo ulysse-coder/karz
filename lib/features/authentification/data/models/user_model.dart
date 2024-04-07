@@ -11,22 +11,22 @@ class UserModel extends UserEntity {
   const UserModel({
     required super.uid,
     required super.name,
+    required super.phone,
     required super.role,
-    required super.photo
   });
 
   UserModel.fromDocumentSnapshot(DocumentSnapshot doc) : this(
     uid: doc.id,
     name: doc['name'],
+    phone: doc['phone'],
     role: doc['role'],
-    photo: doc['photo']
   );
 
   const UserModel.empty() : this(
     uid: '',
     name: '',
+    phone: '',
     role: UserRole.defaultRole,
-    photo: ''
   );
 
   factory UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);

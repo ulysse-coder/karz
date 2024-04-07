@@ -97,9 +97,9 @@ class AuthenticationRemoteDataSourceImplementation implements AuthenticationRemo
 
       return UserModel(
         uid: userCredential.user!.uid, 
-        name: userCredential.user!.displayName ?? '', 
-        role: UserRole.conducteur, 
-        photo: ''
+        name: userCredential.user!.displayName ?? '',
+        phone: '',
+        role: UserRole.defaultRole, 
       );
     } catch (e) {
       throw DBException(message: e.toString());
@@ -121,9 +121,9 @@ class AuthenticationRemoteDataSourceImplementation implements AuthenticationRemo
         final userCredential = await _auth.signInWithCredential(oAuthCredential);
         return UserModel(
           uid: userCredential.user!.uid,
-          name: userProfile['name'], 
-          role: UserRole.conducteur, 
-          photo: userProfile['photo']
+          name: userProfile['name'],
+          phone: '',
+          role: UserRole.defaultRole, 
         );
       }
 
@@ -151,8 +151,8 @@ class AuthenticationRemoteDataSourceImplementation implements AuthenticationRemo
       return UserModel(
         uid: firebaseUser.uid,
         name: firebaseUser.displayName!, 
-        role: UserRole.conducteur, 
-        photo: ''
+        phone: '',
+        role: UserRole.defaultRole, 
       );
     } catch (e) {
       throw DBException(message: e.toString());

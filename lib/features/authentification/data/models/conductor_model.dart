@@ -11,15 +11,15 @@ class ConductorModel extends UserModel {
   const ConductorModel({
     required super.uid,
     required super.name,
+    required super.phone,
     required super.role,
-    required super.photo
   });
 
   ConductorModel.fromDocumentSnapshot(DocumentSnapshot doc) : this(
     uid: doc.id,
     name: doc['name'],
+    phone: doc['phone'],
     role: doc['role'],
-    photo: doc['photo']
   );
 
   factory ConductorModel.fromJson(Map<String, dynamic> json) => _$ConductorModelFromJson(json);
