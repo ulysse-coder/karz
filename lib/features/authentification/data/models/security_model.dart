@@ -11,8 +11,8 @@ class SecurityModel extends UserModel {
   const SecurityModel({
     required super.uid,
     required super.name,
+    required super.phone,
     required super.role,
-    required super.photo,
     required this.workDuration,
     required this.startAt,
     required this.endAt
@@ -21,8 +21,8 @@ class SecurityModel extends UserModel {
   SecurityModel.fromDocumentSnapshot(DocumentSnapshot doc) : this(
     uid: doc.id,
     name: doc['name'],
+    phone: doc['phone'],
     role: doc['role'],
-    photo: doc['photo'],
     workDuration: doc['workDuration'],
     startAt: doc['startAt'],
     endAt: doc['endAt'],
