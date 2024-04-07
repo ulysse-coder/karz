@@ -20,6 +20,8 @@ class GetCurrentUserEvent extends AuthenticationEvent {
   List<Object> get props => [uid, role];
 }
 
+class GetCurrentUserFromCacheEvent extends AuthenticationEvent {}
+
 class CreateUserEvent extends AuthenticationEvent {
   const CreateUserEvent({
     required this.user,
@@ -31,6 +33,17 @@ class CreateUserEvent extends AuthenticationEvent {
   
   @override
   List<Object> get props => [user, role];
+}
+
+class SaveCurrenUserToCacheEvent extends AuthenticationEvent {
+  const SaveCurrenUserToCacheEvent({
+    required this.user
+  });
+
+  final UserEntity user;
+
+  @override
+  List<Object> get props => [user];
 }
 
 class CheckIfUserExistsEvent extends AuthenticationEvent {
