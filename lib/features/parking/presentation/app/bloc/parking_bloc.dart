@@ -2,10 +2,14 @@ import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:ulysse_app/core/utilities/parking_params.dart';
 import 'package:ulysse_app/features/parking/domain/entities/parking_entity.dart';
 import 'package:ulysse_app/features/parking/domain/usecases/add_parking.dart';
 import 'package:ulysse_app/features/parking/domain/usecases/get_parking.dart';
 import 'package:ulysse_app/features/parking/domain/usecases/get_parking_images.dart';
+import 'package:ulysse_app/features/parking/domain/usecases/select_image_from_gallery.dart';
 import 'package:ulysse_app/features/parking/domain/usecases/upload_parking_image.dart';
 
 part 'parking_event.dart';
@@ -14,12 +18,14 @@ part 'parking_state.dart';
 class ParkingBloc extends Bloc<ParkingEvent, ParkingState> {
   ParkingBloc({
     required AddParking addParking,
+    required SelectImageFromGallery selectImageFromGallery,
     required UploadParkingImage uploadParkingImage,
     required GetParking getParking,
     required GetParkingImages getParkingImages
   }) : 
   
   _addParking = addParking,
+  _selectImageFromGallery = selectImageFromGallery,
   _uploadParkingImage = uploadParkingImage,
   _getParking = getParking,
   _getParkingImages = getParkingImages,
@@ -34,10 +40,18 @@ class ParkingBloc extends Bloc<ParkingEvent, ParkingState> {
         (_) => emit(ParkingAddedState())
       );
     });
+    on<SelectImageFromGalleryEvent>((event, emit) async {
+      final result = await _selectImageFromGallery();
+
+      result.fold((l) => null, (file) => emit(ImageSelectedState(file: file)));
+    });
     on<UploadParkingImageEvent>((event, emit) async {
       emit(ParkingLoadingState());
 
-      final result = await _uploadParkingImage(event.image);
+      final result = await _uploadParkingImage(UploadImageParams(
+        parkingId: event.parkingId, 
+        file: event.file, 
+      ));
 
       result.fold(
         (l) => null, 
@@ -67,6 +81,7 @@ class ParkingBloc extends Bloc<ParkingEvent, ParkingState> {
   }
 
   final AddParking _addParking;
+  final SelectImageFromGallery _selectImageFromGallery;
   final UploadParkingImage _uploadParkingImage;
   final GetParking _getParking;
   final GetParkingImages _getParkingImages;

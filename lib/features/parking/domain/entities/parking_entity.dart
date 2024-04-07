@@ -10,7 +10,8 @@ class ParkingEntity extends Equatable {
     required this.type,
     required this.address,
     required this.registeredBy,
-    required this.acceptedVehiculeType
+    required this.acceptedVehiculeType,
+    required this.registeredAt,
   });
 
   final String id;
@@ -19,6 +20,7 @@ class ParkingEntity extends Equatable {
   final ParkingType type;
   final String address;
   final String registeredBy;
+  final DateTime registeredAt;
   final List<VehiculeType> acceptedVehiculeType;
 
   @override
@@ -29,6 +31,7 @@ class ParkingEntity extends Equatable {
     type,
     address,
     registeredBy,
+    registeredAt,
     acceptedVehiculeType
   ];
 }

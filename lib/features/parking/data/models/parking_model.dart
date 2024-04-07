@@ -14,6 +14,7 @@ class ParkingModel extends ParkingEntity {
     required super.reservationPrice,
     required super.type,
     required super.registeredBy,
+    required super.registeredAt,
     required super.acceptedVehiculeType,
     required super.address
   });
@@ -24,6 +25,7 @@ class ParkingModel extends ParkingEntity {
     reservationPrice: doc['reservation_price'],
     type: doc['type'],
     registeredBy: doc['registered_by'],
+    registeredAt: doc['registered_at'],
     acceptedVehiculeType: doc['accepted_vehicule_type'],
     address: doc['address'],
   );

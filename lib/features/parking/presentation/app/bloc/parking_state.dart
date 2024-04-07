@@ -2,16 +2,22 @@ part of 'parking_bloc.dart';
 
 sealed class ParkingState extends Equatable {
   const ParkingState();
-  
-  @override
-  List<Object> get props => [];
 }
 
-final class ParkingInitial extends ParkingState {}
+final class ParkingInitial extends ParkingState {
+  @override
+  List<Object?> get props => [];
+}
 
-final class ParkingAddedState extends ParkingState {}
+final class ParkingAddedState extends ParkingState {
+  @override
+  List<Object?> get props => [];
+}
 
-final class ParkingLoadingState extends ParkingState {}
+final class ParkingLoadingState extends ParkingState {
+  @override
+  List<Object?> get props => [];
+}
 
 final class ParkingLoadedState extends ParkingState {
   const ParkingLoadedState({
@@ -21,7 +27,18 @@ final class ParkingLoadedState extends ParkingState {
   final ParkingEntity parking;
 
   @override
-  List<Object> get props => [parking];
+  List<ParkingEntity> get props => [parking];
+}
+
+final class ImageSelectedState extends ParkingState {
+  const ImageSelectedState({
+    required this.file
+  });
+
+  final XFile? file;
+
+  @override
+  List<XFile?> get props => [file];
 }
 
 final class ParkingImagesLoadedState extends ParkingState {
@@ -29,10 +46,13 @@ final class ParkingImagesLoadedState extends ParkingState {
     required this.images
   });
 
-  final List<File> images;
+  final List<Reference>? images;
 
   @override
-  List<Object> get props => [images];
+  List<Object?> get props => [images];
 }
 
-final class ParkingImagesUploadedState extends ParkingState {}
+final class ParkingImagesUploadedState extends ParkingState {
+  @override
+  List<Object?> get props => [];
+}

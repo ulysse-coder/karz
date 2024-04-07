@@ -4,6 +4,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ulysse_app/features/authentification/data/data_sources/local/authentication_local_data_source.dart';
 import 'package:ulysse_app/features/authentification/data/data_sources/local/authentication_local_data_source_implementation.dart';
@@ -28,6 +29,7 @@ import 'package:ulysse_app/features/parking/domain/repositories/parking_reposito
 import 'package:ulysse_app/features/parking/domain/usecases/add_parking.dart';
 import 'package:ulysse_app/features/parking/domain/usecases/get_parking.dart';
 import 'package:ulysse_app/features/parking/domain/usecases/get_parking_images.dart';
+import 'package:ulysse_app/features/parking/domain/usecases/select_image_from_gallery.dart';
 import 'package:ulysse_app/features/parking/domain/usecases/upload_parking_image.dart';
 import 'package:ulysse_app/features/parking/presentation/app/bloc/parking_bloc.dart';
 
@@ -51,6 +53,7 @@ Future<void> init() async {
         getCurrentUserFromCache: sl()))
     ..registerFactory(() => ParkingBloc(
         addParking: sl(),
+        selectImageFromGallery: sl(),
         uploadParkingImage: sl(),
         getParking: sl(),
         getParkingImages: sl()))
@@ -68,6 +71,7 @@ Future<void> init() async {
 
     // parking use cases
     ..registerLazySingleton(() => AddParking(sl()))
+    ..registerLazySingleton(() => SelectImageFromGallery(sl()))
     ..registerLazySingleton(() => UploadParkingImage(sl()))
     ..registerLazySingleton(() => GetParking(sl()))
     ..registerLazySingleton(() => GetParkingImages(sl()))
@@ -79,7 +83,7 @@ Future<void> init() async {
 
     // parking repositories
     ..registerLazySingleton<ParkingRepository>(() => ParkingRepositoryImplemetation(sl()))
-    ..registerLazySingleton<ParkingRemoteDataSource>(() => ParkingRemoteDataSourceImplementation(sl(), sl()))
+    ..registerLazySingleton<ParkingRemoteDataSource>(() => ParkingRemoteDataSourceImplementation(sl(), sl(), sl()))
 
     // external dependencies
     ..registerLazySingleton(() => FirebaseAuth.instance)
@@ -87,5 +91,6 @@ Future<void> init() async {
     ..registerLazySingleton(() => FirebaseStorage.instance)
     ..registerLazySingleton(() => FacebookAuth.instance)
     ..registerLazySingleton(() => GoogleSignIn())
-    ..registerLazySingleton(() => sharedPreferences);
+    ..registerLazySingleton(() => sharedPreferences)
+    ..registerLazySingleton(() => ImagePicker());
 }

@@ -10,6 +10,7 @@ class PrivateParkingModel extends ParkingModel {
     required super.reservationPrice,
     required super.acceptedVehiculeType,
     required super.registeredBy,
+    required super.registeredAt,
     required super.address, 
     // required this.places
   });

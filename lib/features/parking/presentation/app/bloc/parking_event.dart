@@ -18,15 +18,19 @@ class AddParkingEvent extends ParkingEvent {
   List<Object> get props => [parking];
 }
 
+class SelectImageFromGalleryEvent extends ParkingEvent {}
+
 class UploadParkingImageEvent extends ParkingEvent {
   const UploadParkingImageEvent({
-    required this.image
+    required this.parkingId,
+    required this.file
   });
 
-  final File image;
+  final String parkingId;
+  final XFile file;
 
   @override
-  List<Object> get props => [image];
+  List<Object> get props => [parkingId, file];
 }
 
 class GetParkingImagesEvent extends ParkingEvent {
