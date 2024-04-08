@@ -1,6 +1,6 @@
 
 import 'package:equatable/equatable.dart';
-import 'package:ulysse_app/features/parking/data/models/place_model.dart';
+import 'package:ulysse_app/core/utilities/enum.dart';
 import 'package:ulysse_app/features/reservation/data/models/vehicule_model.dart';
 
 class ReservationEntity extends Equatable {
@@ -25,10 +25,10 @@ class ReservationEntity extends Equatable {
   final VehiculeModel vehicule;
   final String parkingId;
   final String parkingAddress;
-  final PlaceModel? place;
+  final String? place;
   final DateTime startTime;
   final DateTime endTime;
-  final String status;
+  final ReservationStatus status;
 
   @override
   List<Object> get props => [id, conductorId, conductorName, conductorPhone, vehicule, parkingId, parkingAddress, place!, startTime, endTime, status];

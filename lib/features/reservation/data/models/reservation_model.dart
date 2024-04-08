@@ -1,7 +1,7 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:ulysse_app/features/parking/data/models/place_model.dart';
+import 'package:ulysse_app/core/utilities/enum.dart';
 import 'package:ulysse_app/features/reservation/data/models/vehicule_model.dart';
 import 'package:ulysse_app/features/reservation/domain/entities/reservation_entity.dart';
 
@@ -31,7 +31,7 @@ class ReservationModel extends ReservationEntity {
     vehicule: doc['vehicule'],
     parkingId: doc['parking_id'],
     parkingAddress: doc['adresse_parking'],
-    place: doc['place'] ?? PlaceModel.empty(),
+    place: doc['place'] ?? '',
     startTime: doc['start_time'].toDate(),
     endTime: doc['end_time'].toDate(),
     status: doc['status'],

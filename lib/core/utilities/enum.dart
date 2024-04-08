@@ -15,3 +15,16 @@ enum VehiculeType {
   voiture,
   miniBus,
 }
+
+enum PlaceStatus {
+  reserved,
+  occupied,
+  free
+}
+
+enum ReservationStatus {
+  pending,
+  validated,
+  canceled,
+  finished,
+}
