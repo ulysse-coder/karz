@@ -5,6 +5,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:ulysse_app/core/errors/db_exception.dart';
 import 'package:ulysse_app/core/typedef/typedef.dart';
 import 'package:ulysse_app/features/parking/data/data_sources/remote/parking_remote_data_source.dart';
+import 'package:ulysse_app/features/parking/data/models/parking_model.dart';
 import 'package:ulysse_app/features/parking/domain/entities/parking_entity.dart';
 import 'package:ulysse_app/features/parking/domain/repositories/parking_repository.dart';
 
@@ -16,7 +17,7 @@ class ParkingRepositoryImplemetation extends ParkingRepository {
   @override
   ResultVoid addParking(ParkingEntity parkingEntity) async {
     try {
-      await _remoteDataSource.addParking(parkingEntity);
+      await _remoteDataSource.addParking(parkingEntity as ParkingModel);
       return const Right(null);
     } catch (e) {
       return Left(DBException(message: e.toString()));

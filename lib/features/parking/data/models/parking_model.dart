@@ -11,6 +11,7 @@ class ParkingModel extends ParkingEntity {
   const ParkingModel({
     required super.id,
     required super.capacity,
+    required super.freePlaces,
     required super.reservationPrice,
     required super.type,
     required super.registeredBy,
@@ -22,6 +23,7 @@ class ParkingModel extends ParkingEntity {
   ParkingModel.fromDocumentSnapshot(DocumentSnapshot doc) : this(
     id: doc.id,
     capacity: doc['capacity'],
+    freePlaces: doc['free_places'],
     reservationPrice: doc['reservation_price'],
     type: doc['type'],
     registeredBy: doc['registered_by'],
@@ -29,4 +31,6 @@ class ParkingModel extends ParkingEntity {
     acceptedVehiculeType: doc['accepted_vehicule_type'],
     address: doc['address'],
   );
+
+  Map<String, dynamic> toJson() => _$ParkingModelToJson(this);
 }
