@@ -6,6 +6,7 @@ import 'package:ulysse_app/features/reservation/data/models/vehicule_model.dart'
 class ReservationEntity extends Equatable {
   const ReservationEntity({
     required this.id,
+    required this.conductorId,
     required this.conductorName,
     required this.conductorPhone,
     required this.vehicule,
@@ -18,6 +19,7 @@ class ReservationEntity extends Equatable {
   });
 
   final String id;
+  final String conductorId;
   final String conductorName;
   final String conductorPhone;
   final VehiculeModel vehicule;
@@ -29,6 +31,6 @@ class ReservationEntity extends Equatable {
   final String status;
 
   @override
-  List<Object> get props => [id, conductorName, conductorPhone, vehicule, parkingId, parkingAddress, place!, startTime, endTime, status];
+  List<Object> get props => [id, conductorId, conductorName, conductorPhone, vehicule, parkingId, parkingAddress, place!, startTime, endTime, status];
 
 }
