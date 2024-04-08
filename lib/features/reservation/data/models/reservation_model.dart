@@ -25,16 +25,17 @@ class ReservationModel extends ReservationEntity {
 
   ReservationModel.fromDocumentSnapshot(DocumentSnapshot doc) : this(
     id: doc.id,
-    conductorId: doc['id_conducteur'],
-    conductorName: doc['nom_conducteur'],
-    conductorPhone: doc['phone_conducteur'],
-    vehicule: doc['vehicule'],
+    conductorId: doc['conductor_id'],
+    conductorName: doc['conductor_name'],
+    conductorPhone: doc['conductor_phone'],
+    vehicule: VehiculeModel.fromJson(doc['vehicule']),
     parkingId: doc['parking_id'],
-    parkingAddress: doc['adresse_parking'],
+    parkingAddress: doc['parking_address'],
     place: doc['place'] ?? '',
     startTime: doc['start_time'].toDate(),
     endTime: doc['end_time'].toDate(),
-    status: doc['status'],
+    status: _$ReservationStatusEnumMap.keys.toList()[_$ReservationStatusEnumMap.values.toList().indexOf(doc['status'])],
+
   );
 
   Map<String, dynamic> toJson() => _$ReservationModelToJson(this);
