@@ -6,6 +6,7 @@ class ParkingEntity extends Equatable {
   const ParkingEntity({
     required this.id,
     required this.capacity,
+    required this.freePlaces,
     required this.reservationPrice,
     required this.type,
     required this.address,
@@ -16,6 +17,7 @@ class ParkingEntity extends Equatable {
 
   final String id;
   final int capacity;
+  final int freePlaces;
   final double reservationPrice;
   final ParkingType type;
   final String address;
@@ -27,6 +29,7 @@ class ParkingEntity extends Equatable {
   List<Object?> get props => [
     id,
     capacity,
+    freePlaces,
     reservationPrice,
     type,
     address,

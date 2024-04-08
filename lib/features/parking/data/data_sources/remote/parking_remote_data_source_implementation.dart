@@ -19,19 +19,11 @@ class ParkingRemoteDataSourceImplementation implements ParkingRemoteDataSource {
   static const _kParkingCollection = 'parking';
 
   @override
-  Future<void> addParking(ParkingEntity parkingEntity) async {
+  Future<void> addParking(ParkingModel parking) async {
     try {
       await _firestore
         .collection(_kParkingCollection)
-        .doc(parkingEntity.id)
-        .set({
-          'capacity': parkingEntity.capacity,
-          'reservation_price': parkingEntity.reservationPrice,
-          'type': parkingEntity.type,
-          'address': parkingEntity.address,
-          'registered_by': parkingEntity.registeredBy,
-          'accepted_vehicule_type': parkingEntity.acceptedVehiculeType,
-        });
+        .add(parking.toJson());
     } catch (e) {
       throw DBException(message: e.toString());
     }

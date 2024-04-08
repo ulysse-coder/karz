@@ -6,6 +6,7 @@ class PrivateParkingModel extends ParkingModel {
   const PrivateParkingModel({
     required super.id,
     required super.capacity,
+    required super.freePlaces,
     required super.type,
     required super.reservationPrice,
     required super.acceptedVehiculeType,
