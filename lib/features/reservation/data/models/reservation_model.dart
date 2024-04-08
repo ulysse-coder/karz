@@ -11,6 +11,7 @@ part 'reservation_model.g.dart';
 class ReservationModel extends ReservationEntity {
   const ReservationModel({
     required super.id,
+    required super.conductorId,
     required super.conductorName,
     required super.conductorPhone,
     required super.vehicule,
@@ -24,14 +25,17 @@ class ReservationModel extends ReservationEntity {
 
   ReservationModel.fromDocumentSnapshot(DocumentSnapshot doc) : this(
     id: doc.id,
+    conductorId: doc['id_conducteur'],
     conductorName: doc['nom_conducteur'],
     conductorPhone: doc['phone_conducteur'],
     vehicule: doc['vehicule'],
     parkingId: doc['parking_id'],
     parkingAddress: doc['adresse_parking'],
     place: doc['place'] ?? PlaceModel.empty(),
-    startTime: doc['startTime'].toDate(),
-    endTime: doc['endTime'].toDate(),
+    startTime: doc['start_time'].toDate(),
+    endTime: doc['end_time'].toDate(),
     status: doc['status'],
   );
+
+  Map<String, dynamic> toJson() => _$ReservationModelToJson(this);
 }
