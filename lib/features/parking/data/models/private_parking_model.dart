@@ -12,10 +12,7 @@ class PrivateParkingModel extends ParkingModel {
     required super.registeredBy,
     required super.registeredAt,
     required super.address, 
-    // required this.places
   });
-
-  // final List<PlaceModel> places;
 
   @override
   List<Object?> get props => [
@@ -26,6 +23,5 @@ class PrivateParkingModel extends ParkingModel {
     acceptedVehiculeType,
     registeredBy,
     address,
-    // places
   ];
 }
