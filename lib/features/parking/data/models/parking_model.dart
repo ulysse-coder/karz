@@ -25,10 +25,12 @@ class ParkingModel extends ParkingEntity {
     capacity: doc['capacity'],
     freePlaces: doc['free_places'],
     reservationPrice: doc['reservation_price'],
-    type: doc['type'],
+    type: _$ParkingTypeEnumMap.keys.toList()[_$ParkingTypeEnumMap.values.toList().indexOf(doc['type'])],
     registeredBy: doc['registered_by'],
-    registeredAt: doc['registered_at'],
-    acceptedVehiculeType: doc['accepted_vehicule_type'],
+    registeredAt: doc['registered_at'].toDate(),
+    acceptedVehiculeType: doc['accepted_vehicule_type']
+      .map((type) => _$VehiculeTypeEnumMap.keys.toList()[_$VehiculeTypeEnumMap.values.toList().indexOf(type)])
+      .toList(),
     address: doc['address'],
   );
 
