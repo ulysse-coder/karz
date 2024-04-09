@@ -19,6 +19,12 @@ final class ParkingLoadingState extends ParkingState {
   List<Object?> get props => [];
 }
 
+final class PlaceLoadingState extends ParkingState {
+  @override
+  List<Object?> get props => [];
+}
+
+
 final class ParkingLoadedState extends ParkingState {
   const ParkingLoadedState({
     required this.parking
@@ -53,6 +59,20 @@ final class ParkingImagesLoadedState extends ParkingState {
 }
 
 final class ParkingImagesUploadedState extends ParkingState {
+  @override
+  List<Object?> get props => [];
+}
+
+final class PlacesLoadedState extends ParkingState {
+  const PlacesLoadedState({ required this.places });
+
+  final List<PlaceEntity> places;
+
+  @override
+  List<Object?> get props => [places];
+}
+
+final class CRUDOPerationDoneSuccesfully extends ParkingState {
   @override
   List<Object?> get props => [];
 }
