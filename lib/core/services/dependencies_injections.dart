@@ -27,11 +27,26 @@ import 'package:ulysse_app/features/parking/data/data_sources/remote/parking_rem
 import 'package:ulysse_app/features/parking/data/repositories/parking_repository_implementation.dart';
 import 'package:ulysse_app/features/parking/domain/repositories/parking_repository.dart';
 import 'package:ulysse_app/features/parking/domain/usecases/add_parking.dart';
+import 'package:ulysse_app/features/parking/domain/usecases/add_place.dart';
+import 'package:ulysse_app/features/parking/domain/usecases/delete_place.dart';
 import 'package:ulysse_app/features/parking/domain/usecases/get_parking.dart';
 import 'package:ulysse_app/features/parking/domain/usecases/get_parking_images.dart';
+import 'package:ulysse_app/features/parking/domain/usecases/get_places_by_parking.dart';
 import 'package:ulysse_app/features/parking/domain/usecases/select_image_from_gallery.dart';
+import 'package:ulysse_app/features/parking/domain/usecases/update_place.dart';
 import 'package:ulysse_app/features/parking/domain/usecases/upload_parking_image.dart';
 import 'package:ulysse_app/features/parking/presentation/app/bloc/parking_bloc.dart';
+import 'package:ulysse_app/features/reservation/data/data_sources/remote/reservation_remote_data_source.dart';
+import 'package:ulysse_app/features/reservation/data/data_sources/remote/reservation_remote_data_source_implementation.dart';
+import 'package:ulysse_app/features/reservation/data/repositories/reservation_repository_implementation.dart';
+import 'package:ulysse_app/features/reservation/domain/repositories/reservation_repository.dart';
+import 'package:ulysse_app/features/reservation/domain/usecases/create_reservation.dart';
+import 'package:ulysse_app/features/reservation/domain/usecases/delete_reservation.dart';
+import 'package:ulysse_app/features/reservation/domain/usecases/get_reservation.dart';
+import 'package:ulysse_app/features/reservation/domain/usecases/get_reservations_by_parking.dart';
+import 'package:ulysse_app/features/reservation/domain/usecases/get_reservations_by_user.dart';
+import 'package:ulysse_app/features/reservation/domain/usecases/update_reservation.dart';
+import 'package:ulysse_app/features/reservation/presentation/app/bloc/bloc/reservation_bloc.dart';
 
 final sl = GetIt.instance;
 
@@ -56,7 +71,18 @@ Future<void> init() async {
         selectImageFromGallery: sl(),
         uploadParkingImage: sl(),
         getParking: sl(),
-        getParkingImages: sl()))
+        getParkingImages: sl(),
+        getPlacesByParking: sl(),
+        addPlace: sl(),
+        updatePlace: sl(),
+        deletePlace: sl()))
+    ..registerFactory(() => ReservationBloc(
+        getReservation: sl(),
+        getReservationsByParking: sl(),
+        getReservationsByUser: sl(),
+        createReservation: sl(),
+        updateReservation: sl(),
+        cancelReservation: sl()))
 
     // auth use cases
     ..registerLazySingleton(() => CreateUser(sl()))
@@ -75,6 +101,18 @@ Future<void> init() async {
     ..registerLazySingleton(() => UploadParkingImage(sl()))
     ..registerLazySingleton(() => GetParking(sl()))
     ..registerLazySingleton(() => GetParkingImages(sl()))
+    ..registerLazySingleton(() => GetPlacesByParking(sl()))
+    ..registerLazySingleton(() => AddPlace(sl()))
+    ..registerLazySingleton(() => UpdatePlace(sl()))
+    ..registerLazySingleton(() => DeletePlace(sl()))
+
+    // reservation use cases
+    ..registerLazySingleton(() => GetReservation(sl()))
+    ..registerLazySingleton(() => GetReservationsByParking(sl()))
+    ..registerLazySingleton(() => GetReservationsByUser(sl()))
+    ..registerLazySingleton(() => CreateReservation(sl()))
+    ..registerLazySingleton(() => UpdateReservation(sl()))
+    ..registerLazySingleton(() => CancelReservation(sl()))
 
     // auth repositories
     ..registerLazySingleton<AuthenticationRepository>(() => AuthenticationRepositoryImplementation(sl(), sl()))
@@ -84,6 +122,10 @@ Future<void> init() async {
     // parking repositories
     ..registerLazySingleton<ParkingRepository>(() => ParkingRepositoryImplemetation(sl()))
     ..registerLazySingleton<ParkingRemoteDataSource>(() => ParkingRemoteDataSourceImplementation(sl(), sl(), sl()))
+
+    // reservation repositories
+    ..registerLazySingleton<ReservationRepository>(() => ReservationRespositoryImplementation(sl()))
+    ..registerLazySingleton<ReservationRemoteDataSource>(() => ReservationRemoteDataSourceImplementation(sl()))
 
     // external dependencies
     ..registerLazySingleton(() => FirebaseAuth.instance)
