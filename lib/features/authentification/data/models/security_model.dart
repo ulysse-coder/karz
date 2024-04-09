@@ -22,7 +22,7 @@ class SecurityModel extends UserModel {
     uid: doc.id,
     name: doc['name'],
     phone: doc['phone'],
-    role: doc['role'],
+    role: UserRole.gardien,
     workDuration: doc['workDuration'],
     startAt: doc['startAt'],
     endAt: doc['endAt'],
@@ -32,6 +32,16 @@ class SecurityModel extends UserModel {
 
   @override
   Map<String, dynamic> toJson() => _$SecurityModelToJson(this);
+
+  SecurityModel.empty() : this(
+    uid: '',
+    name: '',
+    phone: '',
+    role: UserRole.gardien,
+    workDuration: 2,
+    startAt: DateTime.now(),
+    endAt: DateTime.now()
+  );
 
   final int workDuration;
   final DateTime startAt;
