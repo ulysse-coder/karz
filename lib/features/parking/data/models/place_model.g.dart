@@ -14,7 +14,7 @@ PlaceModel _$PlaceModelFromJson(Map<String, dynamic> json) => PlaceModel(
 
 Map<String, dynamic> _$PlaceModelToJson(PlaceModel instance) =>
     <String, dynamic>{
-      // 'id': instance.id,
+      'id': instance.id,
       'name': instance.name,
       'status': _$PlaceStatusEnumMap[instance.status]!,
     };

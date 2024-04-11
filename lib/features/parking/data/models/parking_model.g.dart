@@ -9,34 +9,34 @@ part of 'parking_model.dart';
 ParkingModel _$ParkingModelFromJson(Map<String, dynamic> json) => ParkingModel(
       id: json['id'] as String,
       capacity: json['capacity'] as int,
-      freePlaces: json['free_places'] as int,
-      reservationPrice: (json['reservation_price'] as num).toDouble(),
+      freePlaces: json['freePlaces'] as int,
+      reservationPrice: (json['reservationPrice'] as num).toDouble(),
       type: $enumDecode(_$ParkingTypeEnumMap, json['type']),
-      registeredBy: json['registered_by'] as String,
-      registeredAt: DateTime.parse(json['registered_at'] as String),
-      acceptedVehiculeType: (json['accepted_vehicule_type'] as List<dynamic>)
+      registeredBy: json['registeredBy'] as String,
+      registeredAt: DateTime.parse(json['registeredAt'] as String),
+      acceptedVehiculeType: (json['acceptedVehiculeType'] as List<dynamic>)
           .map((e) => $enumDecode(_$VehiculeTypeEnumMap, e))
           .toList(),
       address: json['address'] as String,
-      rate: (json['rate'] as num?)?.toDouble(),
-      reviewsNumber: json['reviews_number'] as int?,
+      rate: (json['rate'] as num?)?.toDouble() ?? 0,
+      reviewsNumber: json['reviewsNumber'] as int? ?? 0,
     );
 
 Map<String, dynamic> _$ParkingModelToJson(ParkingModel instance) =>
     <String, dynamic>{
-      // 'id': instance.id,
+      'id': instance.id,
       'capacity': instance.capacity,
-      'free_places': instance.freePlaces,
-      'reservation_price': instance.reservationPrice,
+      'freePlaces': instance.freePlaces,
+      'reservationPrice': instance.reservationPrice,
       'type': _$ParkingTypeEnumMap[instance.type]!,
       'address': instance.address,
-      'registered_by': instance.registeredBy,
-      'registered_at': instance.registeredAt.toIso8601String(),
-      'accepted_vehicule_type': instance.acceptedVehiculeType
+      'registeredBy': instance.registeredBy,
+      'registeredAt': instance.registeredAt.toIso8601String(),
+      'acceptedVehiculeType': instance.acceptedVehiculeType
           .map((e) => _$VehiculeTypeEnumMap[e]!)
           .toList(),
       'rate': instance.rate,
-      'reviews_number': instance.reviewsNumber
+      'reviewsNumber': instance.reviewsNumber,
     };
 
 const _$ParkingTypeEnumMap = {
