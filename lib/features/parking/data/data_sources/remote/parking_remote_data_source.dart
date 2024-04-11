@@ -10,6 +10,10 @@ abstract class ParkingRemoteDataSource {
 
   Future<void> addParking(ParkingModel parking);
 
+  Future<void> updateParking(ParkingModel parking);
+
+  Future<void> deleteParking(String parkingId);
+
   Future<XFile?> selectImageFromGallery();
 
   Future<void> uploadParkingImage(String parkingId, XFile file);

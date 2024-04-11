@@ -28,3 +28,10 @@ enum ReservationStatus {
   canceled,
   finished,
 }
+
+enum Impressions {
+  clean,
+  welcoming,
+  safety,
+  qualityPriceRatio
+}

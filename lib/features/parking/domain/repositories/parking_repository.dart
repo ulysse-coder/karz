@@ -11,6 +11,10 @@ abstract class ParkingRepository {
 
   ResultVoid addParking(ParkingEntity parkingEntity);
 
+  ResultVoid updateParking(ParkingEntity parkingEntity);
+
+  ResultVoid deleteParking(String parkingId);
+
   ResultFuture<XFile?> selectImageFromGallery();
 
   ResultVoid uploadParkingImage(String parkingId, XFile file);
