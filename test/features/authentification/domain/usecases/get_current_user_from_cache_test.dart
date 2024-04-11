@@ -4,50 +4,50 @@ import 'package:ulysse_app/core/errors/db_exception.dart';
 import 'package:ulysse_app/features/authentification/data/models/user_model.dart';
 import 'package:ulysse_app/features/authentification/domain/repositories/authentication_repository.dart';
 import 'package:test/test.dart';
-import 'package:ulysse_app/features/authentification/domain/usecases/sigin_with_google.dart';
+import 'package:ulysse_app/features/authentification/domain/usecases/get_current_user_from_cache.dart';
 
 class MockAuthenticationRepository extends Mock
     implements AuthenticationRepository {}
 
 void main() {
-  late SiginWithGoogle siginWithGoogle;
+  late GetCurrentUserFromCache getCurrentUserFromCache;
   late MockAuthenticationRepository mockAuthenticationRepository;
 
   setUp(() {
     mockAuthenticationRepository = MockAuthenticationRepository();
-    siginWithGoogle = SiginWithGoogle(mockAuthenticationRepository);
+    getCurrentUserFromCache = GetCurrentUserFromCache(mockAuthenticationRepository);
   });
 
   const user = UserModel.empty();
 
-  group('SiginWithGoogle', () {
+  group('GetCurrentUserFromCache', () {
     test(
-        'should return success result when AuthenticationRepository.siginWithGoogle succeeds',
+        'should call and return success result when AuthenticationRepository.getCurrentUserFromCache succeeds',
         () async {
-      when(() => mockAuthenticationRepository.siginWithGoogle())
+      when(() => mockAuthenticationRepository.getCurrentUserFromCache())
           .thenAnswer((_) async => const Right(user));
 
-      final result = await siginWithGoogle();
+      final result = await getCurrentUserFromCache();
 
       expect(result, const Right(user));
-      verify(() => mockAuthenticationRepository.siginWithGoogle())
+      verify(() => mockAuthenticationRepository.getCurrentUserFromCache())
           .called(1);
       verifyNoMoreInteractions(mockAuthenticationRepository);
     });
 
     test(
-        'should return failure result when AuthenticationRepository.siginWithGoogle fails',
+        'should call and return failure result when AuthenticationRepository.getCurrentUserFromCache fails',
         () async {
-      when(() => mockAuthenticationRepository.siginWithGoogle())
+      when(() => mockAuthenticationRepository.getCurrentUserFromCache())
           .thenAnswer((_) async =>
-              const Left(DBException(message: 'Error saving user')));
+              const Left(DBException(message: 'Error creating user')));
 
       // Act
-      final result = await siginWithGoogle();
+      final result = await getCurrentUserFromCache();
 
       // Assert
-      expect(result, const Left(DBException(message: 'Error saving user')));
-      verify(() => mockAuthenticationRepository.siginWithGoogle())
+      expect(result, const Left(DBException(message: 'Error creating user')));
+      verify(() => mockAuthenticationRepository.getCurrentUserFromCache())
           .called(1);
       verifyNoMoreInteractions(mockAuthenticationRepository);
     });

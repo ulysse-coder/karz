@@ -17,7 +17,9 @@ class ParkingModel extends ParkingEntity {
     required super.registeredBy,
     required super.registeredAt,
     required super.acceptedVehiculeType,
-    required super.address
+    required super.address,
+    super.rate,
+    super.reviewsNumber
   });
 
   ParkingModel.fromDocumentSnapshot(DocumentSnapshot doc) : this(
@@ -32,6 +34,8 @@ class ParkingModel extends ParkingEntity {
       .map((type) => _$VehiculeTypeEnumMap.keys.toList()[_$VehiculeTypeEnumMap.values.toList().indexOf(type)])
       .toList(),
     address: doc['address'],
+    rate: doc['rate'],
+    reviewsNumber: doc['reviews_number']
   );
 
   Map<String, dynamic> toJson() => _$ParkingModelToJson(this);

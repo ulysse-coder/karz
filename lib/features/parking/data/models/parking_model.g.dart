@@ -18,6 +18,8 @@ ParkingModel _$ParkingModelFromJson(Map<String, dynamic> json) => ParkingModel(
           .map((e) => $enumDecode(_$VehiculeTypeEnumMap, e))
           .toList(),
       address: json['address'] as String,
+      rate: (json['rate'] as num?)?.toDouble() ?? 0,
+      reviewsNumber: json['reviewsNumber'] as int? ?? 0,
     );
 
 Map<String, dynamic> _$ParkingModelToJson(ParkingModel instance) =>
@@ -33,6 +35,8 @@ Map<String, dynamic> _$ParkingModelToJson(ParkingModel instance) =>
       'accepted_vehicule_type': instance.acceptedVehiculeType
           .map((e) => _$VehiculeTypeEnumMap[e]!)
           .toList(),
+      'rate': instance.rate,
+      'reviewsNumber': instance.reviewsNumber,
     };
 
 const _$ParkingTypeEnumMap = {

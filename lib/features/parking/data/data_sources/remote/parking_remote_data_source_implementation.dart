@@ -31,6 +31,24 @@ class ParkingRemoteDataSourceImplementation implements ParkingRemoteDataSource {
   }
 
   @override
+  Future<void> deleteParking(String parkingId) async {
+    try {
+      await _firestore.collection(_kParkingCollection).doc(parkingId).delete();
+    } catch (e) {
+      throw DBException(message: e.toString());
+    }
+  }
+  
+  @override
+  Future<void> updateParking(ParkingModel parking) async {
+    try {
+      await _firestore.collection(_kParkingCollection).doc(parking.id).update(parking.toJson());
+    } catch (e) {
+      throw DBException(message: e.toString());
+    }
+  }
+
+  @override
   Future<ParkingModel> getParking(String parkingId) async {
     try {
       final doc = await _firestore
@@ -143,4 +161,5 @@ class ParkingRemoteDataSourceImplementation implements ParkingRemoteDataSource {
       throw(DBException(message: e.toString()));
     }
   }
+
 }

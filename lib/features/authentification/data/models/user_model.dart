@@ -19,7 +19,7 @@ class UserModel extends UserEntity {
     uid: doc.id,
     name: doc['name'],
     phone: doc['phone'],
-    role: doc['role'],
+    role: _$UserRoleEnumMap.keys.toList()[_$UserRoleEnumMap.values.toList().indexOf(doc['role'])],
   );
 
   const UserModel.empty() : this(

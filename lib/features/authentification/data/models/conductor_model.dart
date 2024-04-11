@@ -19,7 +19,7 @@ class ConductorModel extends UserModel {
     uid: doc.id,
     name: doc['name'],
     phone: doc['phone'],
-    role: doc['role'],
+    role: UserRole.conducteur,
   );
 
   factory ConductorModel.fromJson(Map<String, dynamic> json) => _$ConductorModelFromJson(json);

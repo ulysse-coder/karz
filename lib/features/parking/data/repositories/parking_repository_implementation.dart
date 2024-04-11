@@ -27,6 +27,26 @@ class ParkingRepositoryImplemetation extends ParkingRepository {
   }
 
   @override
+  ResultVoid deleteParking(String parkingId) async {
+    try {
+      await _remoteDataSource.deleteParking(parkingId);
+      return const Right(null);
+    } catch (e) {
+      return Left(DBException(message: e.toString()));
+    }
+  }
+  
+  @override
+  ResultVoid updateParking(ParkingEntity parkingEntity ) async {
+    try {
+      await _remoteDataSource.updateParking(parkingEntity as ParkingModel);
+      return const Right(null);
+    } catch (e) {
+      return Left(DBException(message: e.toString()));
+    }
+  }
+
+  @override
   ResultFuture<ParkingEntity> getParking(String parkingId) async {
     try {
       final result = await _remoteDataSource.getParking(parkingId);

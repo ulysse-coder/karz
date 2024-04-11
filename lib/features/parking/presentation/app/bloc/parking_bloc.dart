@@ -70,7 +70,7 @@ class ParkingBloc extends Bloc<ParkingEvent, ParkingState> {
         (_) => emit(ParkingImagesUploadedState())
       );
     });
-    on<GetParkingImagesEvent>((event, emit) async {
+    /* on<GetParkingImagesEvent>((event, emit) async {
       emit(ParkingLoadingState());
 
       final result = await _getParkingImages(event.parkingId);
@@ -79,7 +79,7 @@ class ParkingBloc extends Bloc<ParkingEvent, ParkingState> {
         (l) => null, 
         (images) => emit(ParkingImagesLoadedState(images: images))
       );
-    });
+    }); */
     on<GetParkingEvent>((event, emit) async {
       emit(ParkingLoadingState());
 
@@ -90,7 +90,7 @@ class ParkingBloc extends Bloc<ParkingEvent, ParkingState> {
         (parking) => emit(ParkingLoadedState(parking: parking))
       );
     });
-    on<GetPlacesByParkingEvent>((event, emit) async {
+    /* on<GetPlacesByParkingEvent>((event, emit) async {
       emit(PlaceLoadingState());
 
       final result = await _getPlacesByParking(event.parkingId);
@@ -100,7 +100,7 @@ class ParkingBloc extends Bloc<ParkingEvent, ParkingState> {
         (places) => emit(PlacesLoadedState(places: places))
       );
 
-    });
+    }); */
     on<AddPlaceEvent>((event, emit) async {
       final result = await _addPlace(PlaceCRUDParams(parkingId: event.parkingId, place: event.place));
 
@@ -135,6 +135,33 @@ class ParkingBloc extends Bloc<ParkingEvent, ParkingState> {
         (r) => emit(CRUDOPerationDoneSuccesfully())
       );
     });
+  }
+
+  // @override
+  Stream<ParkingState> mapEventToState(ParkingEvent event) async* {
+    if (event is GetPlacesByParkingEvent) {
+      yield ParkingLoadingState();
+
+      final result = await _getPlacesByParking(event.parkingId);
+
+      result.fold(
+        (l) => null, 
+        (places) async* {
+          yield PlacesLoadedState(places: places);
+        }
+      );
+    }
+    else if (event is GetParkingImagesEvent) {
+      yield ParkingLoadingState();
+
+      final result = await _getParkingImages(event.parkingId);
+
+      result.fold(
+        (l) => null, 
+        (images) async* {
+          yield ParkingImagesLoadedState(images: images);
+        });
+    }
   }
 
   final AddParking _addParking;

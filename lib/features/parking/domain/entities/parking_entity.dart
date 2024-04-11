@@ -13,6 +13,8 @@ class ParkingEntity extends Equatable {
     required this.registeredBy,
     required this.acceptedVehiculeType,
     required this.registeredAt,
+    this.rate = 0,
+    this.reviewsNumber = 0
   });
 
   final String id;
@@ -24,6 +26,8 @@ class ParkingEntity extends Equatable {
   final String registeredBy;
   final DateTime registeredAt;
   final List<VehiculeType> acceptedVehiculeType;
+  final double? rate;
+  final int? reviewsNumber;
 
   @override
   List<Object?> get props => [
@@ -35,6 +39,8 @@ class ParkingEntity extends Equatable {
     address,
     registeredBy,
     registeredAt,
-    acceptedVehiculeType
+    acceptedVehiculeType,
+    rate!,
+    reviewsNumber!
   ];
 }
