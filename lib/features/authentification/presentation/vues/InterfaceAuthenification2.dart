@@ -22,6 +22,7 @@ class _InterfaceState extends State<InterfaceAuthentification2> {
         body: Container(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           height: double.maxFinite,
+          width: double.maxFinite,
           decoration: const BoxDecoration(
             color: Color(0xff14213D),
           ),
@@ -31,9 +32,9 @@ class _InterfaceState extends State<InterfaceAuthentification2> {
               Text(
                 'Applogo',
                 style: TextStyle(
-                  fontSize: (longueurEcran / 16.52),
+                  fontSize: 15,
                   color: Colors.white,
-                  fontFamily: 'Italianno',
+
                 ),
               ),
             ],
