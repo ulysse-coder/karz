@@ -27,14 +27,14 @@ class _InterfaceState extends State<InterfaceAuthentification1> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
-                'asset/images/Coder.png', // Chemin de l'image
+                'asset/images/Welcome.png', // Chemin de l'image
                 fit: BoxFit.cover, // Ajuster l'image pour couvrir la zone
                 height: (longueurEcran / 2.0867),
               ),
               Text(
                 'Connectez vous à My app',
                 style: TextStyle(
-                  fontSize: (longueurEcran / 16.52),
+                  fontSize: 10,
                   color: Colors.white,
                   //fontFamily: 'Italianno',
                 ),
@@ -51,7 +51,7 @@ class _InterfaceState extends State<InterfaceAuthentification1> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset(
-                      'asset/images/Coder.png', // Chemin de l'image
+                      'asset/images/Welcome.png', // Chemin de l'image
                       //fit: BoxFit.cover, // Ajuster l'image pour couvrir la zone
                       height: 20,
                       width:  20,
@@ -82,7 +82,7 @@ class _InterfaceState extends State<InterfaceAuthentification1> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset(
-                      'asset/images/Coder.png', // Chemin de l'image
+                      'asset/images/Welcome.png', // Chemin de l'image
                       //fit: BoxFit.cover, // Ajuster l'image pour couvrir la zone
                       height: 20,
                       width:  20,
@@ -112,7 +112,7 @@ class _InterfaceState extends State<InterfaceAuthentification1> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset(
-                      'asset/images/Coder.png', // Chemin de l'image
+                      'asset/images/Welcome.png', // Chemin de l'image
                       //fit: BoxFit.cover, // Ajuster l'image pour couvrir la zone
                       height: 20,
                       width:  20,
