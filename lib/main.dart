@@ -1,6 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:ulysse_app/features/authentification/presentation/vues/InterfaceAuthentification2.dart';
+import 'package:ulysse_app/features/authentification/presentation/vues/InterfaceAuthenification1.dart';
 import 'package:ulysse_app/firebase_options.dart';
 
 Future<void> main() async {
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: InterfaceAuthentification2()
+      home: InterfaceAuthentification1()
     );
   }
 }
