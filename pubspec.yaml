@@ -46,4 +46,8 @@ flutter:
     - family: Italianno
       fonts:
          - asset: fonts/Italianno-Regular.ttf
+
+    - family: Itim
+      fonts:
+        - asset: fonts/Itim-Regular.ttf
   # see https://flutter.dev/custom-fonts/#from-packages
