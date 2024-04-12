@@ -1,6 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:ulysse_app/features/authentification/presentation/vues/InterfaceAuthenification1.dart';
+import 'package:ulysse_app/features/authentification/presentation/vues/InterfaceAuthentification1.dart';
 import 'package:ulysse_app/firebase_options.dart';
 
 Future<void> main() async {
