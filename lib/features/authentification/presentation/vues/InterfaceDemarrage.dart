@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:ulysse_app/core/constants/dimensions.dart';
 
-class InterfaceAuthentification0 extends StatefulWidget {
-  const InterfaceAuthentification0({Key? key}) : super(key: key);
+class InterfaceDemarrage extends StatefulWidget {
+  const InterfaceDemarrage({Key? key}) : super(key: key);
 
   @override
-  State<InterfaceAuthentification0> createState() => _InterfaceState();
+  State<InterfaceDemarrage> createState() => _InterfaceState();
 }
 
-class _InterfaceState extends State<InterfaceAuthentification0> {
+class _InterfaceState extends State<InterfaceDemarrage> {
   @override
   Widget build(BuildContext context) {
     int largeurEcran = MediaQuery.of(context).size.width.floor();
@@ -23,8 +21,8 @@ class _InterfaceState extends State<InterfaceAuthentification0> {
           child: Image.asset(
             'asset/images/logo.jpg',
             fit: BoxFit.cover, // Ajuster l'image pour couvrir la zone
-            height: longueurEcran/1.78,
-            width: largeurEcran/0.82,
+            height: (longueurEcran/1.78),
+            width: (largeurEcran/0.82),
           ),
         )
     );
