@@ -42,6 +42,7 @@ flutter:
   # To add asset to your application, add an asset section, like this:
   assets:
     - asset/images/
+    - asset/icons/
   fonts:
     - family: Italianno
       fonts:
