@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart'; // Importez pour utiliser debugPrint
+// Importez la bibliothèque `get` si vous en avez besoin
+// Importez également la bibliothèque contenant les dimensions si nécessaire
 
 class InterfaceAuthentification1 extends StatefulWidget {
-  const InterfaceAuthentification1({Key? key}) : super(key: key);
-
   @override
-  State<InterfaceAuthentification1> createState() => _InterfaceState();
+  _InterfaceState createState() => _InterfaceState();
 }
 
 class _InterfaceState extends State<InterfaceAuthentification1> {
@@ -18,23 +19,24 @@ class _InterfaceState extends State<InterfaceAuthentification1> {
     return MaterialApp(
       home: Scaffold(
         body: Container(
-          padding: EdgeInsets.symmetric(horizontal: (longueurEcran / 41)),
+          padding: EdgeInsets.symmetric(horizontal: 2),
           height: double.maxFinite,
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             color: Color(0xff14213D),
           ),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
-                'asset/images/Welcome.png', // Chemin de l'image
+                'asset/images/Secure-login.png', // Chemin de l'image
                 fit: BoxFit.cover, // Ajuster l'image pour couvrir la zone
-                height: (longueurEcran / 2.0867),
+                height: 250,
               ),
               Text(
                 'Connectez vous à My app',
                 style: TextStyle(
-                  fontSize: 10,
+                  fontSize: 22,
                   color: Colors.white,
                   //fontFamily: 'Italianno',
                 ),
@@ -42,97 +44,24 @@ class _InterfaceState extends State<InterfaceAuthentification1> {
 
               SizedBox(height: 10),
 
-              //boutton 1
               TextButton(
                 onPressed: () {
-                  debugPrint("Bouton Connexion avec Google appuyé");
+                  debugPrint("Boutton appuyé");
                 },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      'asset/images/Welcome.png', // Chemin de l'image
-                      //fit: BoxFit.cover, // Ajuster l'image pour couvrir la zone
-                      height: 20,
-                      width:  20,
-                    ),
-                    const Text(
-                      'Connexion avec Google',
-                      style: TextStyle(
-                        fontSize: 7,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
+                child: const Text(
+                  'Click Me',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
                 ),
                 style: TextButton.styleFrom(
-                  backgroundColor: Colors.white,
-                  minimumSize: (Size(50, 50)),
+                  backgroundColor: Colors.blue,
                 ),
               ),
 
-              SizedBox(height: 15),
-              //boutton2
-              TextButton(
-                onPressed: () {
-                  debugPrint("Bouton Connexion avec Facebook appuyé");
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      'asset/images/Welcome.png', // Chemin de l'image
-                      //fit: BoxFit.cover, // Ajuster l'image pour couvrir la zone
-                      height: 20,
-                      width:  20,
-                    ),
-                    const Text(
-                      'Connexion avec Facebook',
-                      style: TextStyle(
-                        fontSize: 7,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
-                ),
-                style: TextButton.styleFrom(
-                  backgroundColor: Colors.white,
-                  minimumSize: (Size(50, 50)),
-                ),
-              ),
-              SizedBox(height: 15),
-              //boutton3
-              TextButton(
-                onPressed: () {
-                  debugPrint("Bouton Connexion avec Email appuyé");
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      'asset/images/Welcome.png', // Chemin de l'image
-                      //fit: BoxFit.cover, // Ajuster l'image pour couvrir la zone
-                      height: 20,
-                      width:  20,
-                    ),
-                    const Text(
-                      'Connexion avec Email',
-                      style: TextStyle(
-                        fontSize: 7,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
-                ),
-                style: TextButton.styleFrom(
-                  backgroundColor: Colors.white,
-                  minimumSize: (Size(50, 50)),
-                ),
-              ),
-            ]
+            ],
           ),
         ),
       ),
