@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart'; // Importez pour utiliser debugPrint
-// Importez la bibliothèque `get` si vous en avez besoin
-// Importez également la bibliothèque contenant les dimensions si nécessaire
 
 class InterfaceAuthentification1 extends StatefulWidget {
   @override
@@ -19,48 +16,101 @@ class _InterfaceState extends State<InterfaceAuthentification1> {
     return MaterialApp(
       home: Scaffold(
         body: Container(
-          padding: EdgeInsets.symmetric(horizontal: 2),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          width: double.maxFinite,
           height: double.maxFinite,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Color(0xff14213D),
           ),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
-                'asset/images/Secure-login.png', // Chemin de l'image
+                'asset/images/Welcome.png', // Chemin de l'image
                 fit: BoxFit.cover, // Ajuster l'image pour couvrir la zone
-                height: 250,
+                height: (longueurEcran/3.08),
               ),
-              Text(
-                'Connectez vous à My app',
-                style: TextStyle(
-                  fontSize: 22,
-                  color: Colors.white,
-                  //fontFamily: 'Italianno',
-                ),
-              ),
-
-              SizedBox(height: 10),
-
+              SizedBox(height: longueurEcran/61.6),
               TextButton(
                 onPressed: () {
-                  debugPrint("Boutton appuyé");
+                  debugPrint("Bouton Connexion avec Google appuyé");
                 },
-                child: const Text(
-                  'Click Me',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
                 style: TextButton.styleFrom(
-                  backgroundColor: Colors.blue,
+                  backgroundColor: Colors.white,
+                  minimumSize:  Size(longueurEcran/2.05, largeurEcran/20.53),
+                ),
+                child: Row(
+                  children: [
+                    Image.asset(
+                      'asset/icons/google.jpeg', // Chemin de l'image
+                      height: 30, // Taille de l'image
+                    ),
+                    const SizedBox(width: 45),
+                    const Text(
+                      'Connexion avec Google',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
                 ),
               ),
-
+              const SizedBox(height: 15),
+              TextButton(
+                onPressed: () {
+                  debugPrint("Bouton Connexion avec Facebook appuyé");
+                },
+                style: TextButton.styleFrom(
+                  backgroundColor: Colors.white,
+                  minimumSize:  Size(longueurEcran/2.05, largeurEcran/20.53),
+                ),
+                child:  Row(
+                  children: [
+                    Image.asset(
+                      'asset/icons/facebook.png', // Chemin de l'image
+                      height: 30, // Taille de l'image
+                    ),
+                    const SizedBox(width: 45),
+                    const Text(
+                      'Connexion avec Facebook',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 15),
+              TextButton(
+                onPressed: () {
+                  debugPrint("Bouton Connexion avec Email appuyé");
+                },
+                style: TextButton.styleFrom(
+                  backgroundColor: Colors.white,
+                  minimumSize:  Size(longueurEcran/2.05, largeurEcran/20.53),
+                ),
+                child:  Row(
+                  children: [
+                    Image.asset(
+                      'asset/icons/email.jpeg', // Chemin de l'image
+                      height: 30, // Taille de l'image
+                    ),
+                    const SizedBox(width: 45),
+                    const Text(
+                      'Connexion avec Google',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
