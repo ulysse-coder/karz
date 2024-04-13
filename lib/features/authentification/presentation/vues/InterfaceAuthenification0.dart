@@ -17,30 +17,16 @@ class _InterfaceState extends State<InterfaceAuthentification0> {
     debugPrint("Largeur: $largeurEcran");
     debugPrint("Longueur: $longueurEcran");
 
-    return MaterialApp(
-      home: Scaffold(
-        body: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          height: double.maxFinite,
-          width: double.maxFinite,
-          decoration: const BoxDecoration(
-            color: Color(0xff14213D),
+    return Scaffold(
+        backgroundColor: Color(0xff14213D),
+        body: Center(
+          child: Image.asset(
+            'asset/images/logo.jpg',
+            fit: BoxFit.cover, // Ajuster l'image pour couvrir la zone
+            height: longueurEcran/1.78,
+            width: largeurEcran/0.82,
           ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Applogo',
-                style: TextStyle(
-                  fontSize: 15,
-                  color: Colors.white,
-
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
+        )
     );
   }
 }
