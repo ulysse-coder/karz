@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
-class InterfaceAuthentification1 extends StatefulWidget {
+class InterfaceLogin extends StatefulWidget {
+  const InterfaceLogin({super.key});
+
   @override
-  _InterfaceState createState() => _InterfaceState();
+  State<InterfaceLogin> createState() => __InterfaceState();
 }
 
-class _InterfaceState extends State<InterfaceAuthentification1> {
+class __InterfaceState extends State<InterfaceLogin> {
   @override
   Widget build(BuildContext context) {
     int largeurEcran = MediaQuery.of(context).size.width.floor();
@@ -16,7 +18,7 @@ class _InterfaceState extends State<InterfaceAuthentification1> {
     return MaterialApp(
       home: Scaffold(
         body: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
+          padding: EdgeInsets.symmetric(horizontal: longueurEcran/61.6), //10
           width: double.maxFinite,
           height: double.maxFinite,
           decoration: const BoxDecoration(
@@ -26,30 +28,34 @@ class _InterfaceState extends State<InterfaceAuthentification1> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
-                'asset/images/Welcome.png', // Chemin de l'image
-                fit: BoxFit.cover, // Ajuster l'image pour couvrir la zone
-                height: (longueurEcran/3.08),
+                'asset/images/Welcome.png',
+                fit: BoxFit.cover,
+                height: (longueurEcran/3.08), //200
               ),
-              SizedBox(height: longueurEcran/61.6),
+
+              SizedBox(height: longueurEcran/61.6), //10
+
               TextButton(
                 onPressed: () {
                   debugPrint("Bouton Connexion avec Google appuyé");
                 },
                 style: TextButton.styleFrom(
                   backgroundColor: Colors.white,
-                  minimumSize:  Size(longueurEcran/2.05, largeurEcran/20.53),
+                  minimumSize:  Size(longueurEcran/2.05, largeurEcran/18), //200 //20
                 ),
                 child: Row(
                   children: [
                     Image.asset(
-                      'asset/icons/google.jpeg', // Chemin de l'image
-                      height: 30, // Taille de l'image
+                      'asset/icons/google.jpeg',
+                      height: (longueurEcran/20.53), //30
                     ),
-                    const SizedBox(width: 45),
-                    const Text(
+
+                    SizedBox(width: (largeurEcran/7.2)), //50
+
+                    Text(
                       'Connexion avec Google',
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: (longueurEcran/38.5), //16
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
                       ),
@@ -57,26 +63,30 @@ class _InterfaceState extends State<InterfaceAuthentification1> {
                   ],
                 ),
               ),
-              const SizedBox(height: 15),
+
+              SizedBox(height: (longueurEcran/41.06)), //15
+
               TextButton(
                 onPressed: () {
                   debugPrint("Bouton Connexion avec Facebook appuyé");
                 },
                 style: TextButton.styleFrom(
                   backgroundColor: Colors.white,
-                  minimumSize:  Size(longueurEcran/2.05, largeurEcran/20.53),
+                  minimumSize:  Size(longueurEcran/2.05, largeurEcran/18), //200 //20
                 ),
                 child:  Row(
                   children: [
                     Image.asset(
-                      'asset/icons/facebook.png', // Chemin de l'image
-                      height: 30, // Taille de l'image
+                      'asset/icons/facebook.png',
+                      height: (longueurEcran/20.53), //30
                     ),
-                    const SizedBox(width: 45),
-                    const Text(
+
+                    SizedBox(width: (largeurEcran/7.2)), //50
+
+                    Text(
                       'Connexion avec Facebook',
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: (longueurEcran/38.5), //16
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
                       ),
@@ -84,26 +94,30 @@ class _InterfaceState extends State<InterfaceAuthentification1> {
                   ],
                 ),
               ),
-              const SizedBox(height: 15),
+
+              SizedBox(height: (longueurEcran/41.06)), //15
+
               TextButton(
                 onPressed: () {
                   debugPrint("Bouton Connexion avec Email appuyé");
                 },
                 style: TextButton.styleFrom(
                   backgroundColor: Colors.white,
-                  minimumSize:  Size(longueurEcran/2.05, largeurEcran/20.53),
+                  minimumSize:  Size(longueurEcran/2.05, largeurEcran/18), //200 //20
                 ),
                 child:  Row(
                   children: [
                     Image.asset(
-                      'asset/icons/email.jpeg', // Chemin de l'image
-                      height: 30, // Taille de l'image
+                      'asset/icons/email.jpeg',
+                      height: (longueurEcran/20.53), //30
                     ),
-                    const SizedBox(width: 45),
-                    const Text(
-                      'Connexion avec Google',
+
+                    SizedBox(width: (largeurEcran/7.2)), //50
+
+                    Text(
+                      'Connexion avec Email',
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: (longueurEcran/38.5), //16
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
                       ),
