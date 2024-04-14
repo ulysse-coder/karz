@@ -1,27 +1,27 @@
 import 'package:flutter/material.dart';
 
-class InterfaceInformation extends StatefulWidget {
+class ComplementGardien extends StatefulWidget {
+  const ComplementGardien({super.key});
+
   @override
-  _InterfaceState createState() => _InterfaceState();
+  State<ComplementGardien>  createState() => _ComplementGardien();
 }
 
-class _InterfaceState extends State<InterfaceInformation> {
+class _ComplementGardien extends State<ComplementGardien> {
 
     @override
     Widget build(BuildContext context) {
       int largeurEcran = MediaQuery.of(context).size.width.floor();
       int longueurEcran = MediaQuery.of(context).size.height.floor();
-      debugPrint("Largeur: $largeurEcran");
-      debugPrint("Longueur: $longueurEcran");
 
       return Scaffold(
         appBar: AppBar(
-          backgroundColor: Color(0xFFE5E5E5),
+          backgroundColor: Color(0xFFE5E5E5), // Fond gris pour l'AppBar
           title: Text(
             'Compléter mes informations',
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: (longueurEcran/25.67), // 24
+              fontSize: 25,
               fontWeight: FontWeight.bold,
               fontFamily: 'Itim',
             ),
@@ -33,74 +33,81 @@ class _InterfaceState extends State<InterfaceInformation> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              SizedBox(height: (longueurEcran/41.07)), //15
+              SizedBox(height: 15),
               Container(
-                margin: EdgeInsets.symmetric(vertical: (longueurEcran/123.2), horizontal: (largeurEcran/45)), //5 //8
+                margin: EdgeInsets.symmetric(vertical: 5, horizontal: 8),
+                // Ajouter une marge de 2cm entre l'image et les textfields
                 child: TextField(
                   decoration: InputDecoration(
                     hintText: 'Entrez votre nom complet',
-                    contentPadding: EdgeInsets.symmetric(vertical: (longueurEcran/61.6), horizontal: (largeurEcran/36)), //10 //10
+                    contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                       borderSide: BorderSide(
-                        color: Colors.black,
-                        width: (largeurEcran/72), //5
+                        color: Colors.black, // Couleur grise pour la bordure
+                        width: 2,
                       ),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                       borderSide: BorderSide(
                         color: Colors.black,
-                        width: (largeurEcran/72), //5
+                        width: 2,
                       ),
                     ),
                   ),
                   onChanged: (value) {},
                 ),
               ),
-              SizedBox(height: (longueurEcran/123.2)), //5
+              SizedBox(height: 15),
 
               Container(
-                margin: EdgeInsets.symmetric(vertical: (longueurEcran/123.2), horizontal: (largeurEcran/45)), //5 //8
+                margin: EdgeInsets.symmetric(vertical: 5, horizontal: 8),
                 child: TextField(
                   decoration: InputDecoration(
                     hintText: 'Entrez votre numéro de téléphone',
-                    contentPadding: EdgeInsets.symmetric(vertical: (longueurEcran/61.6), horizontal: (largeurEcran/36)), //10 //10
+                    contentPadding: EdgeInsets.symmetric(
+                        vertical: 10, horizontal: 10),
+                    // Ajouter un remplissage pour centrer le texte
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
+                      // Arrondir les coins du TextField
                       borderSide: BorderSide(
-                        color: Colors.black,
-                        width: (largeurEcran/72), //5
+                        color: Colors.black, // Couleur grise pour la bordure
+                        width: 2,
                       ),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
+                      // Arrondir les coins du TextField
                       borderSide: BorderSide(
                         color: Colors.black,
-                        width: (largeurEcran/72), //5
+                        width: 2,
                       ),
                     ),
                   ),
                   onChanged: (value) {},
                 ),
               ),
-              SizedBox(height: (longueurEcran/41.06)), //15
+              SizedBox(height: 15),
 
               Container(
-                margin: EdgeInsets.symmetric(vertical: (longueurEcran/61.6), horizontal: (largeurEcran/36)), //10 //10
-                child: TextButton(
+                margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                // Ajouter une marge de 2cm entre le bouton et les textfields
+                child: TextButton( // Utilisation de TextButton avec un style personnalisé pour le fond orange
                   onPressed: () {
                     debugPrint("Boutton Continuer appuyé ");
                   },
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all<Color>(
                         Color(0xFFFF7A00)),
+                    // Couleur orange pour le fond du bouton
                     minimumSize: MaterialStateProperty.all<Size>(Size(longueurEcran/6, largeurEcran/12.33)),
                   ),
                   child: Text(
-                    'Valider',
+                    'Continuer',
                     style: TextStyle(
-                      fontSize: (longueurEcran/30.8), // 20
+                      fontSize: 23,
                       fontFamily: 'Itim',
                       fontWeight: FontWeight.bold,
                       color: Colors.white,

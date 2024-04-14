@@ -4,10 +4,10 @@ class InterfaceDemarrage extends StatefulWidget {
   const InterfaceDemarrage({Key? key}) : super(key: key);
 
   @override
-  State<InterfaceDemarrage> createState() => _InterfaceState();
+  State<InterfaceDemarrage> createState() => _InterfaceDemarrage();
 }
 
-class _InterfaceState extends State<InterfaceDemarrage> {
+class _InterfaceDemarrage extends State<InterfaceDemarrage> {
   @override
   Widget build(BuildContext context) {
     int largeurEcran = MediaQuery.of(context).size.width.floor();

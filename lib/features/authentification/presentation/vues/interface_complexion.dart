@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:ulysse_app/core/constants/dimensions.dart';
 
-class InterfaceAuthentification2 extends StatefulWidget {
-  const InterfaceAuthentification2({Key? key}) : super(key: key);
+class InterfaceComplexion extends StatefulWidget {
+  const InterfaceComplexion({Key? key}) : super(key: key);
 
   @override
-  State<InterfaceAuthentification2> createState() => _InterfaceState();
+  State<InterfaceComplexion> createState() => _InterfaceComplexion();
 }
 
-class _InterfaceState extends State<InterfaceAuthentification2> {
+class _InterfaceComplexion extends State<InterfaceComplexion> {
   @override
   Widget build(BuildContext context) {
     int largeurEcran = MediaQuery.of(context).size.width.floor();
@@ -29,31 +27,31 @@ class _InterfaceState extends State<InterfaceAuthentification2> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
-                'asset/images/Welcome.png', // Chemin de l'image
-                fit: BoxFit.cover, // Ajuster l'image pour couvrir la zone
-                height: (longueurEcran / 2.0867),
+                'asset/images/Welcome.png',
+                fit: BoxFit.cover,
+                height: (longueurEcran / 2.46), //250
               ),
               Text(
                 'Bienvenue',
                 style: TextStyle(
-                  fontSize: (longueurEcran / 16.52),
+                  fontSize: (longueurEcran / 15.4), //40
                   color: Colors.white,
                   fontFamily: 'Italianno',
                 ),
               ),
 
-              const SizedBox(height: 15),
+              SizedBox(height: (longueurEcran/41.06)), //15
 
               Text(
                 'Dites-nous qui vous êtes',
                 style: TextStyle(
-                  fontSize: (longueurEcran/30),
+                  fontSize: (longueurEcran/30.8), //20
                   color: Colors.white,
                   fontFamily: 'Itim',
                 ),
               ),
 
-              const SizedBox(height: 15),
+              SizedBox(height: (longueurEcran/41.06)), //15
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -63,15 +61,14 @@ class _InterfaceState extends State<InterfaceAuthentification2> {
                       debugPrint('Bouton Conducteur appuyé');
                     },
                     style: ElevatedButton.styleFrom(
-                      minimumSize: const Size(150, 50),
+                      minimumSize: Size((longueurEcran/15.4), (largeurEcran/9)), //40 //40
                       backgroundColor: const Color(0xFFE5E5E5),
                     ),
                     child:  Text(
                       'Conducteur',
                       style: TextStyle(
-                        fontSize: (longueurEcran/30),
+                        fontSize: (longueurEcran/30.8), //20
                         color: Colors.black87,
-                        //fontFamily: 'Itim',
                       ),
                     ),
                   ),
@@ -81,13 +78,13 @@ class _InterfaceState extends State<InterfaceAuthentification2> {
                       debugPrint('Bouton Gardien appuyé');
                     },
                     style: ElevatedButton.styleFrom(
-                      minimumSize: const Size(150, 50),
+                      minimumSize: Size((longueurEcran/4.1), (largeurEcran/9)), //150 //40
                       backgroundColor: const Color(0xFFE5E5E5),
                     ),
                     child:  Text(
                       'Gardien',
                       style: TextStyle(
-                        fontSize: (longueurEcran/30),
+                        fontSize: (longueurEcran/30.8), //20
                         color: Colors.black87,
                         //fontFamily: 'Itim',
                       ),
