@@ -6,16 +6,14 @@ class PrivateParkingModel extends ParkingModel {
   const PrivateParkingModel({
     required super.id,
     required super.capacity,
+    required super.freePlaces,
     required super.type,
     required super.reservationPrice,
     required super.acceptedVehiculeType,
     required super.registeredBy,
     required super.registeredAt,
     required super.address, 
-    // required this.places
   });
-
-  // final List<PlaceModel> places;
 
   @override
   List<Object?> get props => [
@@ -26,6 +24,5 @@ class PrivateParkingModel extends ParkingModel {
     acceptedVehiculeType,
     registeredBy,
     address,
-    // places
   ];
 }
