@@ -1,5 +1,7 @@
-
-
-<string name="facebook_app_id">776496647529430</string>
-<string name="fb_login_protocol_scheme">fb1234</string>
-<string name="facebook_client_token">ef51a8bb6d0b76e2b21f451f1ad9dcc9</string>
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+    <string name="app_name">ulysse</string>
+    <string name="facebook_app_id">776496647529430</string>
+    <string name="fb_login_protocol_scheme">fb1234</string>
+    <string name="facebook_client_token">ef51a8bb6d0b76e2b21f451f1ad9dcc9</string>
+</resources>
