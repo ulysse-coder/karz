@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:ulysse_app/core/constants/dimensions.dart';
 
 class InterfaceComplexion extends StatefulWidget {
   const InterfaceComplexion({Key? key}) : super(key: key);
