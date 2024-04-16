@@ -2,9 +2,9 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:ulysse_app/core/utilities/auth_params.dart';
 import 'package:ulysse_app/core/utilities/enum.dart';
-import 'package:ulysse_app/features/authentification/data/models/user_model.dart';
 import 'package:ulysse_app/features/authentification/domain/entities/user_entity.dart';
 import 'package:ulysse_app/features/authentification/domain/usecases/check_if_user_exist.dart';
+import 'package:ulysse_app/features/authentification/domain/usecases/create_user.dart';
 import 'package:ulysse_app/features/authentification/domain/usecases/create_user.dart';
 import 'package:ulysse_app/features/authentification/domain/usecases/get_current_user.dart';
 import 'package:ulysse_app/features/authentification/domain/usecases/get_current_user_from_cache.dart';
@@ -49,9 +49,13 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
     on<CreateUserEvent>((event, emit) async {
       emit(AuthLoadingState());
 
-      final result = await _createUser(UserCreationParams(
-        user: event.user, 
-        role: event.role
+      final result = await _createUser(CreateUserParams(
+        id: event.id,
+        name: event.name,
+        role: event.role,
+        workDuration: event.workDuration!,
+        startAt: event.startAt!,
+        endAt: event.endAt!
       ));
 
       result.fold(

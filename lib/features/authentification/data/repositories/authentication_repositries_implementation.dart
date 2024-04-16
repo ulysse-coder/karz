@@ -26,9 +26,16 @@ class AuthenticationRepositoryImplementation implements AuthenticationRepository
   }
 
   @override
-  ResultVoid createUser(UserEntity user, UserRole role) async {
+  ResultVoid createUser(
+    String id, 
+    String name, 
+    UserRole role, 
+    int workDuration, 
+    DateTime startAt, 
+    DateTime endAt
+  ) async {
     try {
-      await _remoteDataSource.createUser(user as UserModel, role);
+      await _remoteDataSource.createUser(id, name, role, workDuration, startAt, endAt);
       return const Right(null);
     } catch (e) {
       return Left(DBException(message: e.toString()));
@@ -124,5 +131,5 @@ class AuthenticationRepositoryImplementation implements AuthenticationRepository
       return Left(DBException(message: e.toString()));
     }
   }
-
+  
 }

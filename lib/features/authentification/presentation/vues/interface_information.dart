@@ -23,8 +23,8 @@ class _InterfaceInformation extends State<InterfaceInformation> {
   @override
   void initState() {
     super.initState();
-    _name.text = userController.currentUser.name ?? '';
-    _phone.text = userController.currentUser.phone ?? '';
+    _name.text = userController.currentUser.name;
+    _phone.text = userController.currentUser.phone;
   }
 
   @override
@@ -142,8 +142,10 @@ class _InterfaceInformation extends State<InterfaceInformation> {
                     switch (userController.currentUser.role) {
                       case UserRole.conducteur:
                         context.read<AuthenticationBloc>().add(CreateUserEvent(
-                            user: userController.currentUser,
-                            role: userController.currentUser.role));
+                          id: userController.currentUser.uid,
+                          name: userController.currentUser.name,
+                          role: userController.currentUser.role,
+                        ));
                         break;
                       case UserRole.gardien:
                         Get.to(() => const ComplementGardien());

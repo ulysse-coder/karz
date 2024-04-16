@@ -44,26 +44,32 @@ class AuthenticationRemoteDataSourceImplementation implements AuthenticationRemo
   }
 
   @override
-  Future<void> createUser(UserModel user, UserRole role) async {
-
+  Future<void> createUser(
+    String id, 
+    String name, 
+    UserRole role, 
+    int workDuration, 
+    DateTime startAt, 
+    DateTime endAt
+  ) async {
     try {
       switch (role) {
         case UserRole.conducteur:
           debugPrint("======== Create conducteur");
-          final ConductorModel conductor = user as ConductorModel;
-          await _firestore.collection(_kConductorsCollection).doc(user.uid).set({
-            'name': conductor.name,
+          // final ConductorModel conductor = user as ConductorModel;
+          await _firestore.collection(_kConductorsCollection).doc(id).set({
+            'name': name,
             'role': 'conducteur',
           });
           break;
         case UserRole.gardien:
           debugPrint("======== Create conducteur");
-          final SecurityModel securitiy = user as SecurityModel;
-          await _firestore.collection(_kSecuritiesCollection).doc(user.uid).set({
-            'name': securitiy.name,
-            'workDuration': securitiy.workDuration,
-            'startAt': securitiy.startAt,
-            'endAt': securitiy.endAt,
+          // final SecurityModel securitiy = user as SecurityModel;
+          await _firestore.collection(_kSecuritiesCollection).doc(id).set({
+            'name': name,
+            'workDuration': workDuration,
+            'startAt': startAt,
+            'endAt': endAt,
             'role': 'gardien',
           });
           break;
@@ -171,4 +177,5 @@ class AuthenticationRemoteDataSourceImplementation implements AuthenticationRemo
     _facebookAuth.logOut();
     _googleSignIn.signOut();
   }
+  
 }
