@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:ulysse_app/core/utilities/enum.dart';
+import 'package:ulysse_app/features/authentification/presentation/app/controller/user_controller.dart';
+import 'package:ulysse_app/features/authentification/presentation/vues/interface_information.dart';
 
 class InterfaceComplexion extends StatefulWidget {
   const InterfaceComplexion({Key? key}) : super(key: key);
@@ -8,6 +12,8 @@ class InterfaceComplexion extends StatefulWidget {
 }
 
 class _InterfaceComplexion extends State<InterfaceComplexion> {
+  UserController userController = Get.find();
+
   @override
   Widget build(BuildContext context) {
     int largeurEcran = MediaQuery.of(context).size.width.floor();
@@ -56,39 +62,49 @@ class _InterfaceComplexion extends State<InterfaceComplexion> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  ElevatedButton(
-                    onPressed: () {
+                  InkWell(
+                    onTap: () {
                       debugPrint('Bouton Conducteur appuyé');
+                      userController.currentUser = userController.currentUser.copyWith(role: UserRole.conducteur);
+                      debugPrint("========== Nouveau role: ${userController.currentUser.role}");
+                      Get.to(() => const InterfaceInformation());
                     },
-                    style: ElevatedButton.styleFrom(
-                      minimumSize: Size((longueurEcran/15.4), (largeurEcran/9)), //40 //40
-                      backgroundColor: const Color(0xFFE5E5E5),
-                    ),
-                    child:  Text(
-                      'Conducteur',
-                      style: TextStyle(
-                        fontSize: (longueurEcran/30.8), //20
-                        color: Colors.black87,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(30)
                       ),
-                    ),
+                      child: Text(
+                        'Conducteur',
+                        style: TextStyle(
+                          fontSize: (longueurEcran/30.8), //20
+                          color: Colors.black87,
+                        ),
+                      ),
+                    )
                   ),
-
-                  ElevatedButton(
-                    onPressed: () {
-                      debugPrint('Bouton Gardien appuyé');
-                    },
-                    style: ElevatedButton.styleFrom(
-                      minimumSize: Size((longueurEcran/4.1), (largeurEcran/9)), //150 //40
-                      backgroundColor: const Color(0xFFE5E5E5),
-                    ),
-                    child:  Text(
-                      'Gardien',
-                      style: TextStyle(
-                        fontSize: (longueurEcran/30.8), //20
-                        color: Colors.black87,
-                        //fontFamily: 'Itim',
-                      ),
-                    ),
+                  InkWell(
+                      onTap: () {
+                        debugPrint('Bouton Gardien appuyé');
+                        userController.currentUser = userController.currentUser.copyWith(role: UserRole.gardien);
+                        debugPrint("========== Nouveau role: ${userController.currentUser.role}");
+                        Get.to(() => const InterfaceInformation());
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(30)
+                        ),
+                        child: Text(
+                          'Gardien',
+                          style: TextStyle(
+                            fontSize: (longueurEcran/30.8), //20
+                            color: Colors.black87,
+                          ),
+                        ),
+                      )
                   ),
                 ],
               ),

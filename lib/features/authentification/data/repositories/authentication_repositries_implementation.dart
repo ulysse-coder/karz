@@ -46,6 +46,26 @@ class AuthenticationRepositoryImplementation implements AuthenticationRepository
   }
 
   @override
+  ResultBool getUserLoggingState() async {
+    try {
+      final result = await _localDataSource.getUserLoggingState();
+      return Right(result);
+    } catch(e) {
+      return Left(DBException(message: e.toString()));
+    }
+  }
+
+  @override
+  ResultVoid setUserLoggingState() async {
+    try {
+      await _localDataSource.setUserLoggingState();
+      return const Right(null);
+    } catch(e) {
+      return Left(DBException(message: e.toString()));
+    }
+  }
+
+  @override
   ResultFuture<UserEntity> siginWithEmailAndPassword(String email, String password) async {
     try {
       final result = await _remoteDataSource.siginWithEmailAndPassword(email, password);
@@ -104,4 +124,5 @@ class AuthenticationRepositoryImplementation implements AuthenticationRepository
       return Left(DBException(message: e.toString()));
     }
   }
+
 }

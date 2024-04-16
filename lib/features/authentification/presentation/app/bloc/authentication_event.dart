@@ -20,6 +20,10 @@ class GetCurrentUserEvent extends AuthenticationEvent {
   List<Object> get props => [uid, role];
 }
 
+class GetUserLoggingStateEvent extends AuthenticationEvent {}
+
+class SetUserLoggingStateEvent extends AuthenticationEvent {}
+
 class GetCurrentUserFromCacheEvent extends AuthenticationEvent {}
 
 class CreateUserEvent extends AuthenticationEvent {

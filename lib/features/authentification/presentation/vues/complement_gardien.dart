@@ -16,8 +16,8 @@ class _ComplementGardien extends State<ComplementGardien> {
 
       return Scaffold(
         appBar: AppBar(
-          backgroundColor: Color(0xFFE5E5E5), // Fond gris pour l'AppBar
-          title: Text(
+          backgroundColor: const Color(0xFFE5E5E5), // Fond gris pour l'AppBar
+          title: const Text(
             'Compléter mes informations',
             textAlign: TextAlign.center,
             style: TextStyle(
@@ -33,24 +33,24 @@ class _ComplementGardien extends State<ComplementGardien> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              SizedBox(height: 15),
+              const SizedBox(height: 15),
               Container(
-                margin: EdgeInsets.symmetric(vertical: 5, horizontal: 8),
+                margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
                 // Ajouter une marge de 2cm entre l'image et les textfields
                 child: TextField(
                   decoration: InputDecoration(
                     hintText: 'Entrez votre nom complet',
-                    contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                    contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Colors.black, // Couleur grise pour la bordure
                         width: 2,
                       ),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Colors.black,
                         width: 2,
                       ),
@@ -59,20 +59,20 @@ class _ComplementGardien extends State<ComplementGardien> {
                   onChanged: (value) {},
                 ),
               ),
-              SizedBox(height: 15),
+              const SizedBox(height: 15),
 
               Container(
-                margin: EdgeInsets.symmetric(vertical: 5, horizontal: 8),
+                margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
                 child: TextField(
                   decoration: InputDecoration(
                     hintText: 'Entrez votre numéro de téléphone',
-                    contentPadding: EdgeInsets.symmetric(
+                    contentPadding: const EdgeInsets.symmetric(
                         vertical: 10, horizontal: 10),
                     // Ajouter un remplissage pour centrer le texte
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                       // Arrondir les coins du TextField
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Colors.black, // Couleur grise pour la bordure
                         width: 2,
                       ),
@@ -80,7 +80,7 @@ class _ComplementGardien extends State<ComplementGardien> {
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                       // Arrondir les coins du TextField
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Colors.black,
                         width: 2,
                       ),
@@ -89,10 +89,10 @@ class _ComplementGardien extends State<ComplementGardien> {
                   onChanged: (value) {},
                 ),
               ),
-              SizedBox(height: 15),
+              const SizedBox(height: 15),
 
               Container(
-                margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                 // Ajouter une marge de 2cm entre le bouton et les textfields
                 child: TextButton( // Utilisation de TextButton avec un style personnalisé pour le fond orange
                   onPressed: () {
@@ -100,11 +100,11 @@ class _ComplementGardien extends State<ComplementGardien> {
                   },
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all<Color>(
-                        Color(0xFFFF7A00)),
+                        const Color(0xFFFF7A00)),
                     // Couleur orange pour le fond du bouton
                     minimumSize: MaterialStateProperty.all<Size>(Size(longueurEcran/6, largeurEcran/12.33)),
                   ),
-                  child: Text(
+                  child: const Text(
                     'Continuer',
                     style: TextStyle(
                       fontSize: 23,

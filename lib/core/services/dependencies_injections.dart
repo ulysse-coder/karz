@@ -16,7 +16,9 @@ import 'package:ulysse_app/features/authentification/domain/usecases/check_if_us
 import 'package:ulysse_app/features/authentification/domain/usecases/create_user.dart';
 import 'package:ulysse_app/features/authentification/domain/usecases/get_current_user.dart';
 import 'package:ulysse_app/features/authentification/domain/usecases/get_current_user_from_cache.dart';
+import 'package:ulysse_app/features/authentification/domain/usecases/get_user_logging_state.dart';
 import 'package:ulysse_app/features/authentification/domain/usecases/save_current_user_to_cache.dart';
+import 'package:ulysse_app/features/authentification/domain/usecases/set_user_logging_state.dart';
 import 'package:ulysse_app/features/authentification/domain/usecases/sigin_with_email_and_password.dart';
 import 'package:ulysse_app/features/authentification/domain/usecases/sigin_with_facebook.dart';
 import 'package:ulysse_app/features/authentification/domain/usecases/sigin_with_google.dart';
@@ -59,6 +61,8 @@ Future<void> init() async {
     ..registerFactory(() => AuthenticationBloc(
         createUser: sl(),
         getCurrentUser: sl(),
+        getUserLoggingState: sl(),
+        setUserLoggingState: sl(),
         checkIfUserExists: sl(),
         signinWithEmailAndPassword: sl(),
         signinWithFacebook: sl(),
@@ -87,6 +91,8 @@ Future<void> init() async {
     // auth use cases
     ..registerLazySingleton(() => CreateUser(sl()))
     ..registerLazySingleton(() => GetCurrentUser(sl()))
+    ..registerLazySingleton(() => GetUserLoggingState(sl()))
+    ..registerLazySingleton(() => SetUserLoggingState(sl()))
     ..registerLazySingleton(() => CheckIfUserExist(sl()))
     ..registerLazySingleton(() => SiginWithEmailAndPassword(sl()))
     ..registerLazySingleton(() => SigninWithFacebook(sl()))
@@ -117,7 +123,7 @@ Future<void> init() async {
     // auth repositories
     ..registerLazySingleton<AuthenticationRepository>(() => AuthenticationRepositoryImplementation(sl(), sl()))
     ..registerLazySingleton<AuthenticationRemoteDataSource>(() => AuthenticationRemoteDataSourceImplementation(sl(), sl(), sl(), sl()))
-    ..registerLazySingleton<AuthenticationLocalDataSource>(() => AuthenticationLocalDataSourceImplementation(sl()))
+    ..registerLazySingleton<AuthenticationLocalDataSource>(() => AuthenticationLocalDataSourceImplementation(sl(), sl()))
 
     // parking repositories
     ..registerLazySingleton<ParkingRepository>(() => ParkingRepositoryImplemetation(sl()))
