@@ -11,6 +11,10 @@ abstract class AuthenticationRepository {
 
   ResultBool checkIfUserExist(String uid, UserRole role);
 
+  ResultBool getUserLoggingState();
+
+  ResultVoid setUserLoggingState();
+
   ResultFuture<UserEntity> siginWithFacebook();
 
   ResultFuture<UserEntity> siginWithGoogle();

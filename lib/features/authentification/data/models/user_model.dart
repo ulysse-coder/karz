@@ -29,6 +29,17 @@ class UserModel extends UserEntity {
     role: UserRole.defaultRole,
   );
 
+  UserModel copyWith({
+    String? name,
+    String? phone,
+    UserRole? role,
+  }) => UserModel(
+    uid: uid, 
+    name: name ?? this.name, 
+    phone: phone ?? this.phone,
+    role: role ?? this.role,
+  );
+
   factory UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);
   Map<String, dynamic> toJson() => _$UserModelToJson(this);
 

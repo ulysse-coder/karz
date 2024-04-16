@@ -1,18 +1,32 @@
 
 import 'dart:convert';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ulysse_app/core/errors/db_exception.dart';
 import 'package:ulysse_app/features/authentification/data/data_sources/local/authentication_local_data_source.dart';
 import 'package:ulysse_app/features/authentification/data/models/user_model.dart';
 
 class AuthenticationLocalDataSourceImplementation implements AuthenticationLocalDataSource {
-  const AuthenticationLocalDataSourceImplementation(this._sharedPreferences);
+  const AuthenticationLocalDataSourceImplementation(this._auth, this._sharedPreferences);
 
+  final FirebaseAuth _auth;
   final SharedPreferences _sharedPreferences;
 
   static const _key = 'user';
 
+  final kIsUserLoggedIn = 'logging_state';
+
+  @override
+  Future<void> setUserLoggingState() async {
+    final isUserLoggedIn = _auth.currentUser != null;
+    await _sharedPreferences.setBool(kIsUserLoggedIn, isUserLoggedIn);
+  }
+
+  @override
+  Future<bool> getUserLoggingState() async {
+    return _sharedPreferences.getBool(kIsUserLoggedIn) ?? false;
+  }
 
   @override
   Future<UserModel> getCurrentUserFromCache() async {
