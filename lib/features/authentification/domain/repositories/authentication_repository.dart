@@ -5,7 +5,14 @@ import 'package:ulysse_app/features/authentification/domain/entities/user_entity
 
 abstract class AuthenticationRepository {
 
-  ResultVoid createUser(UserEntity user, UserRole role);
+  ResultVoid createUser(
+    String id,
+    String name,
+    UserRole role,
+    int workDuration,
+    DateTime startAt,
+    DateTime endAt
+  );
 
   ResultFuture<UserEntity> getCurrentUser(String uid, UserRole role);
 
