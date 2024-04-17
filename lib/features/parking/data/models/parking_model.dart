@@ -11,22 +11,32 @@ class ParkingModel extends ParkingEntity {
   const ParkingModel({
     required super.id,
     required super.capacity,
+    required super.freePlaces,
     required super.reservationPrice,
     required super.type,
     required super.registeredBy,
     required super.registeredAt,
     required super.acceptedVehiculeType,
-    required super.address
+    required super.address,
+    super.rate,
+    super.reviewsNumber
   });
 
   ParkingModel.fromDocumentSnapshot(DocumentSnapshot doc) : this(
     id: doc.id,
     capacity: doc['capacity'],
+    freePlaces: doc['free_places'],
     reservationPrice: doc['reservation_price'],
-    type: doc['type'],
+    type: _$ParkingTypeEnumMap.keys.toList()[_$ParkingTypeEnumMap.values.toList().indexOf(doc['type'])],
     registeredBy: doc['registered_by'],
-    registeredAt: doc['registered_at'],
-    acceptedVehiculeType: doc['accepted_vehicule_type'],
+    registeredAt: doc['registered_at'].toDate(),
+    acceptedVehiculeType: doc['accepted_vehicule_type']
+      .map((type) => _$VehiculeTypeEnumMap.keys.toList()[_$VehiculeTypeEnumMap.values.toList().indexOf(type)])
+      .toList(),
     address: doc['address'],
+    rate: doc['rate'],
+    reviewsNumber: doc['reviews_number']
   );
+
+  Map<String, dynamic> toJson() => _$ParkingModelToJson(this);
 }

@@ -54,3 +54,51 @@ class GetParkingEvent extends ParkingEvent {
   @override
   List<Object> get props => [parkingId];
 }
+
+class GetPlacesByParkingEvent extends ParkingEvent {
+  const GetPlacesByParkingEvent({ required this.parkingId });
+
+  final String parkingId;
+
+  @override
+  List<Object> get props => [parkingId];
+}
+
+class AddPlaceEvent extends ParkingEvent {
+  const AddPlaceEvent({
+    required this.parkingId,
+    required this.place
+  });
+
+  final String parkingId;
+  final PlaceEntity place;
+
+  @override
+  List<Object> get props => [parkingId, place];
+}
+
+class UpdatePlaceEvent extends ParkingEvent {
+  const UpdatePlaceEvent({
+    required this.parkingId, 
+    required this.place
+  });
+
+  final String parkingId;
+  final PlaceEntity place;
+
+  @override
+  List<Object> get props => [parkingId, place];
+}
+
+class DeletePlaceEvent extends ParkingEvent {
+  const DeletePlaceEvent({
+    required this.parkingId, 
+    required this.place
+  });
+
+  final String parkingId;
+  final PlaceEntity place;
+
+  @override
+  List<Object> get props => [parkingId, place];
+}

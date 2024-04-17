@@ -7,7 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:ulysse_app/core/errors/db_exception.dart';
 import 'package:ulysse_app/features/parking/data/data_sources/remote/parking_remote_data_source.dart';
 import 'package:ulysse_app/features/parking/data/models/parking_model.dart';
-import 'package:ulysse_app/features/parking/domain/entities/parking_entity.dart';
+import 'package:ulysse_app/features/parking/data/models/place_model.dart';
 
 class ParkingRemoteDataSourceImplementation implements ParkingRemoteDataSource {
   const ParkingRemoteDataSourceImplementation(this._firestore, this._firebaseStorage, this._imagePicker);
@@ -17,21 +17,32 @@ class ParkingRemoteDataSourceImplementation implements ParkingRemoteDataSource {
   final ImagePicker _imagePicker;
 
   static const _kParkingCollection = 'parking';
+  static const _kPlaceCollection = 'places';
 
   @override
-  Future<void> addParking(ParkingEntity parkingEntity) async {
+  Future<void> addParking(ParkingModel parking) async {
     try {
       await _firestore
         .collection(_kParkingCollection)
-        .doc(parkingEntity.id)
-        .set({
-          'capacity': parkingEntity.capacity,
-          'reservation_price': parkingEntity.reservationPrice,
-          'type': parkingEntity.type,
-          'address': parkingEntity.address,
-          'registered_by': parkingEntity.registeredBy,
-          'accepted_vehicule_type': parkingEntity.acceptedVehiculeType,
-        });
+        .add(parking.toJson());
+    } catch (e) {
+      throw DBException(message: e.toString());
+    }
+  }
+
+  @override
+  Future<void> deleteParking(String parkingId) async {
+    try {
+      await _firestore.collection(_kParkingCollection).doc(parkingId).delete();
+    } catch (e) {
+      throw DBException(message: e.toString());
+    }
+  }
+  
+  @override
+  Future<void> updateParking(ParkingModel parking) async {
+    try {
+      await _firestore.collection(_kParkingCollection).doc(parking.id).update(parking.toJson());
     } catch (e) {
       throw DBException(message: e.toString());
     }
@@ -88,4 +99,67 @@ class ParkingRemoteDataSourceImplementation implements ParkingRemoteDataSource {
       throw DBException(message: e.toString());      
     }
   }
+
+  @override
+  Future<void> addPlace(String parkingId, PlaceModel place) async {
+    try {
+
+      await _firestore.collection(_kParkingCollection)
+        .doc(parkingId)
+        .collection(_kPlaceCollection)
+        .add(place.toJson());
+
+    } catch (e) {
+      throw(DBException(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<void> deletePlace(String parkingId, PlaceModel place) async {
+    try {
+      await _firestore.collection(_kParkingCollection)
+        .doc(parkingId)
+        .collection("places")
+        .doc(place.id)
+        .delete();
+
+
+    } catch (e) {
+      throw(DBException(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<List<PlaceModel>> getPlacesByParking(String parkingId) async {
+    try {
+      final snap = await _firestore.collection(_kParkingCollection)
+        .doc(parkingId)
+        .collection(_kPlaceCollection)
+        .get();
+
+      if (snap.docs.isEmpty) {
+        return <PlaceModel>[];
+      }
+
+      return snap.docs.map((doc) => PlaceModel.fromDocumentSnapshot(doc)).toList();
+
+    } catch (e) {
+      throw(DBException(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<void> updatePlace(String parkingId, PlaceModel place) async {
+    try {
+      await _firestore.collection(_kParkingCollection)
+        .doc(parkingId)
+        .collection("places")
+        .doc(place.id)
+        .update(place.toJson());
+
+    } catch (e) {
+      throw(DBException(message: e.toString()));
+    }
+  }
+
 }
