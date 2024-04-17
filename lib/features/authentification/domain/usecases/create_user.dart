@@ -13,8 +13,9 @@ class CreateUser extends UseCaseWithParameters<void, CreateUserParams> {
   @override
   ResultFuture<void> call(CreateUserParams args) => _repository.createUser(
     args.id, 
-    args.name, 
-    args.role, 
+    args.name,
+    args.phone,
+    args.role,
     args.workDuration, 
     args.startAt, 
     args.endAt
@@ -25,20 +26,22 @@ class CreateUser extends UseCaseWithParameters<void, CreateUserParams> {
 class CreateUserParams extends Equatable {
   const CreateUserParams({
     required this.id, 
-    required this.name, 
-    required this.role, 
-    required this.workDuration, 
+    required this.name,
+    required this.phone,
+    required this.role,
+    required this.workDuration,
     required this.startAt, 
     required this.endAt, 
   });
 
   final String id;
   final String name;
+  final String phone;
   final UserRole role;
   final int workDuration;
   final DateTime startAt;
   final DateTime endAt;
 
   @override
-  List<Object?> get props => [id, name, role, workDuration, startAt, endAt];
+  List<Object?> get props => [id, name, phone, role, workDuration, startAt, endAt];
 }

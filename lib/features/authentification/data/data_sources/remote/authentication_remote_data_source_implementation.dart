@@ -45,8 +45,9 @@ class AuthenticationRemoteDataSourceImplementation implements AuthenticationRemo
 
   @override
   Future<void> createUser(
-    String id, 
-    String name, 
+    String id,
+    String name,
+    String phone,
     UserRole role, 
     int workDuration, 
     DateTime startAt, 
@@ -59,6 +60,7 @@ class AuthenticationRemoteDataSourceImplementation implements AuthenticationRemo
           // final ConductorModel conductor = user as ConductorModel;
           await _firestore.collection(_kConductorsCollection).doc(id).set({
             'name': name,
+            'phone': phone,
             'role': 'conducteur',
           });
           break;
@@ -67,6 +69,7 @@ class AuthenticationRemoteDataSourceImplementation implements AuthenticationRemo
           // final SecurityModel securitiy = user as SecurityModel;
           await _firestore.collection(_kSecuritiesCollection).doc(id).set({
             'name': name,
+            'phone': phone,
             'workDuration': workDuration,
             'startAt': startAt,
             'endAt': endAt,
@@ -79,7 +82,7 @@ class AuthenticationRemoteDataSourceImplementation implements AuthenticationRemo
           break;
       }
     } catch (e) {
-      debugPrint("====== Eerreur lors de la creation: ${e.toString()}");
+      debugPrint("====== Erreur lors de la creation: ${e.toString()}");
       throw DBException(message: e.toString());
     }
   }

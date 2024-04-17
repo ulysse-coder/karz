@@ -28,14 +28,15 @@ class AuthenticationRepositoryImplementation implements AuthenticationRepository
   @override
   ResultVoid createUser(
     String id, 
-    String name, 
+    String name,
+    String phone,
     UserRole role, 
     int workDuration, 
     DateTime startAt, 
     DateTime endAt
   ) async {
     try {
-      await _remoteDataSource.createUser(id, name, role, workDuration, startAt, endAt);
+      await _remoteDataSource.createUser(id, name, phone, role, workDuration, startAt, endAt);
       return const Right(null);
     } catch (e) {
       return Left(DBException(message: e.toString()));

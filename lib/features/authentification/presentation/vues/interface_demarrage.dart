@@ -21,6 +21,8 @@ class _InterfaceDemarrage extends State<InterfaceDemarrage> {
   @override
   void initState() {
     super.initState();
+    // context.read<AuthenticationBloc>().add(SignOutEvent());
+    // context.read<AuthenticationBloc>().add(SetUserLoggingStateEvent());
     context.read<AuthenticationBloc>().add(GetUserLoggingStateEvent());
   }
 
