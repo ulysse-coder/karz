@@ -4,6 +4,8 @@ import 'package:ulysse_app/features/authentification/presentation/vues/Interface
 import 'package:ulysse_app/features/authentification/presentation/vues/InterfaceLogin.dart';
 import 'package:ulysse_app/firebase_options.dart';
 
+import 'features/authentification/presentation/vues/InterfaceInformation.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
@@ -21,7 +23,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: InterfaceComplexion()
-    );
+      home: InterfaceInformation()
+    ); 
   }
 }

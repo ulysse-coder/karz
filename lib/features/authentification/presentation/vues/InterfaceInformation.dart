@@ -22,7 +22,6 @@ class _InterfaceState extends State<InterfaceInformation> {
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: (longueurEcran/25.67), // 24
-              fontWeight: FontWeight.bold,
               fontFamily: 'Itim',
             ),
           ),
@@ -30,8 +29,8 @@ class _InterfaceState extends State<InterfaceInformation> {
         ),
         body: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               SizedBox(height: (longueurEcran/41.07)), //15
               Container(
@@ -88,6 +87,7 @@ class _InterfaceState extends State<InterfaceInformation> {
 
               Container(
                 margin: EdgeInsets.symmetric(vertical: (longueurEcran/61.6), horizontal: (largeurEcran/36)), //10 //10
+                alignment: Alignment.center,
                 child: TextButton(
                   onPressed: () {
                     debugPrint("Boutton Continuer appuyé ");
