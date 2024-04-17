@@ -8,6 +8,7 @@ abstract class AuthenticationRemoteDataSource {
   Future<void> createUser(
     String id,
     String name,
+    String phone,
     UserRole role,
     int workDuration,
     DateTime startAt,

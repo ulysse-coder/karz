@@ -144,6 +144,7 @@ class _InterfaceInformation extends State<InterfaceInformation> {
                         context.read<AuthenticationBloc>().add(CreateUserEvent(
                           id: userController.currentUser.uid,
                           name: userController.currentUser.name,
+                          phone: userController.currentUser.phone,
                           role: userController.currentUser.role,
                         ));
                         break;

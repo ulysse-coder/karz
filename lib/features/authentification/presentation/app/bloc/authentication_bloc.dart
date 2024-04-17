@@ -52,10 +52,11 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
       final result = await _createUser(CreateUserParams(
         id: event.id,
         name: event.name,
+        phone: event.phone,
         role: event.role,
-        workDuration: event.workDuration!,
-        startAt: event.startAt!,
-        endAt: event.endAt!
+        workDuration: event.workDuration??0,
+        startAt: event.startAt ?? DateTime.now(),
+        endAt: event.endAt ?? DateTime.now()
       ));
 
       result.fold(

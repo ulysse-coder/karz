@@ -28,28 +28,25 @@ class GetCurrentUserFromCacheEvent extends AuthenticationEvent {}
 
 class CreateUserEvent extends AuthenticationEvent {
   const CreateUserEvent({
-    // required this.user,
-    // required this.role
-    required this.id, 
-    required this.name, 
+    required this.id,
+    required this.name,
+    required this.phone,
     required this.role, 
     this.workDuration, 
     this.startAt, 
     this.endAt 
   });
 
-  // final UserModel user;
-  // final UserRole role;
-
-  final String id; 
-  final String name; 
+  final String id;
+  final String name;
+  final String phone;
   final UserRole role; 
   final int? workDuration; 
   final DateTime? startAt; 
   final DateTime? endAt;
   
   @override
-  List<Object> get props => [/* user, role */id, name, role, workDuration!, startAt!, endAt!];
+  List<Object> get props => [id, name, phone, role, workDuration!, startAt!, endAt!];
 }
 
 class SaveCurrenUserToCacheEvent extends AuthenticationEvent {
