@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:ulysse_app/core/errors/db_exception.dart';
@@ -43,31 +44,45 @@ class AuthenticationRemoteDataSourceImplementation implements AuthenticationRemo
   }
 
   @override
-  Future<void> createUser(UserModel user, UserRole role) async {
-    
+  Future<void> createUser(
+    String id,
+    String name,
+    String phone,
+    UserRole role, 
+    int workDuration, 
+    DateTime startAt, 
+    DateTime endAt
+  ) async {
     try {
       switch (role) {
         case UserRole.conducteur:
-          final conductor = user as ConductorModel;
-          await _firestore.collection(_kConductorsCollection).doc(user.uid).set({
-            'name': conductor.name,
+          debugPrint("======== Create conducteur");
+          // final ConductorModel conductor = user as ConductorModel;
+          await _firestore.collection(_kConductorsCollection).doc(id).set({
+            'name': name,
+            'phone': phone,
             'role': 'conducteur',
           });
           break;
         case UserRole.gardien:
-          final securitiy = user as SecurityModel;
-          await _firestore.collection(_kSecuritiesCollection).doc(user.uid).set({
-            'name': securitiy.name,
-            'workDuration': securitiy.workDuration,
-            'startAt': securitiy.startAt,
-            'endAt': securitiy.endAt,
+          debugPrint("======== Create conducteur");
+          // final SecurityModel securitiy = user as SecurityModel;
+          await _firestore.collection(_kSecuritiesCollection).doc(id).set({
+            'name': name,
+            'phone': phone,
+            'workDuration': workDuration,
+            'startAt': startAt,
+            'endAt': endAt,
             'role': 'gardien',
           });
           break;
         case UserRole.defaultRole:
+          debugPrint("========erreur si default role");
+
           break;
       }
     } catch (e) {
+      debugPrint("====== Erreur lors de la creation: ${e.toString()}");
       throw DBException(message: e.toString());
     }
   }
@@ -99,7 +114,7 @@ class AuthenticationRemoteDataSourceImplementation implements AuthenticationRemo
         uid: userCredential.user!.uid, 
         name: userCredential.user!.displayName ?? '',
         phone: '',
-        role: UserRole.defaultRole, 
+        role: UserRole.defaultRole,
       );
     } catch (e) {
       throw DBException(message: e.toString());
@@ -165,4 +180,5 @@ class AuthenticationRemoteDataSourceImplementation implements AuthenticationRemo
     _facebookAuth.logOut();
     _googleSignIn.signOut();
   }
+  
 }

@@ -8,7 +8,9 @@ import 'package:ulysse_app/features/authentification/domain/usecases/check_if_us
 import 'package:ulysse_app/features/authentification/domain/usecases/create_user.dart';
 import 'package:ulysse_app/features/authentification/domain/usecases/get_current_user.dart';
 import 'package:ulysse_app/features/authentification/domain/usecases/get_current_user_from_cache.dart';
+import 'package:ulysse_app/features/authentification/domain/usecases/get_user_logging_state.dart';
 import 'package:ulysse_app/features/authentification/domain/usecases/save_current_user_to_cache.dart';
+import 'package:ulysse_app/features/authentification/domain/usecases/set_user_logging_state.dart';
 import 'package:ulysse_app/features/authentification/domain/usecases/sigin_with_email_and_password.dart';
 import 'package:ulysse_app/features/authentification/domain/usecases/sigin_with_facebook.dart';
 import 'package:ulysse_app/features/authentification/domain/usecases/sigin_with_google.dart';
@@ -18,6 +20,8 @@ import 'package:ulysse_app/features/authentification/presentation/app/bloc/authe
 class MockCreateUser extends Mock implements CreateUser {}
 
 class MockGetCurrentUser extends Mock implements GetCurrentUser {}
+class MockGetUserLogginState extends Mock implements GetUserLoggingState {}
+class MockSetUserLogginState extends Mock implements SetUserLoggingState {}
 
 class MockCheckIfUserExists extends Mock implements CheckIfUserExist {}
 
@@ -37,6 +41,8 @@ void main() {
   late AuthenticationBloc authenticationBloc;
   late MockCreateUser mockCreateUser;
   late MockGetCurrentUser mockGetCurrentUser;
+  late MockGetUserLogginState mockGetUserLogginState;
+  late MockSetUserLogginState mockSetUserLogginState;
   late MockCheckIfUserExists mockCheckIfUserExists;
   late MockSiginWithEmailAndPassword mockSiginWithEmailAndPassword;
   late MockSiginWithFacebook mockSiginWithFacebook;
@@ -48,6 +54,8 @@ void main() {
   setUp(() {
     mockCreateUser = MockCreateUser();
     mockGetCurrentUser = MockGetCurrentUser();
+    mockGetUserLogginState = MockGetUserLogginState();
+    mockSetUserLogginState = MockSetUserLogginState();
     mockCheckIfUserExists = MockCheckIfUserExists();
     mockSiginWithEmailAndPassword = MockSiginWithEmailAndPassword();
     mockSiginWithFacebook = MockSiginWithFacebook();
@@ -59,6 +67,8 @@ void main() {
     authenticationBloc = AuthenticationBloc(
       createUser: mockCreateUser,
       getCurrentUser: mockGetCurrentUser,
+      getUserLoggingState: mockGetUserLogginState,
+      setUserLoggingState: mockSetUserLogginState,
       checkIfUserExists: mockCheckIfUserExists,
       signinWithEmailAndPassword: mockSiginWithEmailAndPassword,
       signinWithFacebook: mockSiginWithFacebook,

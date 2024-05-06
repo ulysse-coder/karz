@@ -20,6 +20,19 @@ final class UserLoadedState extends AuthenticationState {
   List<Object> get props => [user];
 }
 
+final class UserLoggingStateLoaded extends AuthenticationState {
+  const UserLoggingStateLoaded({
+    required this.isLoggedIn
+  });
+
+  final bool isLoggedIn;
+
+  @override
+  List<Object> get props => [isLoggedIn];
+}
+
+final class UserLoggingStateModified extends AuthenticationState {}
+
 final class UserCreatedState extends AuthenticationState {}
 
 final class UserSignedInState extends AuthenticationState {

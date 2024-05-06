@@ -2,13 +2,15 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:ulysse_app/core/utilities/auth_params.dart';
 import 'package:ulysse_app/core/utilities/enum.dart';
-import 'package:ulysse_app/features/authentification/data/models/user_model.dart';
 import 'package:ulysse_app/features/authentification/domain/entities/user_entity.dart';
 import 'package:ulysse_app/features/authentification/domain/usecases/check_if_user_exist.dart';
 import 'package:ulysse_app/features/authentification/domain/usecases/create_user.dart';
+import 'package:ulysse_app/features/authentification/domain/usecases/create_user.dart';
 import 'package:ulysse_app/features/authentification/domain/usecases/get_current_user.dart';
 import 'package:ulysse_app/features/authentification/domain/usecases/get_current_user_from_cache.dart';
+import 'package:ulysse_app/features/authentification/domain/usecases/get_user_logging_state.dart';
 import 'package:ulysse_app/features/authentification/domain/usecases/save_current_user_to_cache.dart';
+import 'package:ulysse_app/features/authentification/domain/usecases/set_user_logging_state.dart';
 import 'package:ulysse_app/features/authentification/domain/usecases/sigin_with_email_and_password.dart';
 import 'package:ulysse_app/features/authentification/domain/usecases/sigin_with_facebook.dart';
 import 'package:ulysse_app/features/authentification/domain/usecases/sigin_with_google.dart';
@@ -21,6 +23,8 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
   AuthenticationBloc({
     required CreateUser createUser,
     required GetCurrentUser getCurrentUser,
+    required SetUserLoggingState setUserLoggingState,
+    required GetUserLoggingState getUserLoggingState,
     required CheckIfUserExist checkIfUserExists,
     required SiginWithEmailAndPassword signinWithEmailAndPassword,
     required SigninWithFacebook signinWithFacebook,
@@ -32,6 +36,8 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
   
   _createUser = createUser,
   _getCurrentUser = getCurrentUser,
+  _getUserLoggingState = getUserLoggingState,
+  _setUserLoggingState = setUserLoggingState,
   _checkIfUserExists = checkIfUserExists,
   _signinWithEmailAndPassword = signinWithEmailAndPassword,
   _signinWithFacebook = signinWithFacebook,
@@ -43,9 +49,14 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
     on<CreateUserEvent>((event, emit) async {
       emit(AuthLoadingState());
 
-      final result = await _createUser(UserCreationParams(
-        user: event.user, 
-        role: event.role
+      final result = await _createUser(CreateUserParams(
+        id: event.id,
+        name: event.name,
+        phone: event.phone,
+        role: event.role,
+        workDuration: event.workDuration??0,
+        startAt: event.startAt ?? DateTime.now(),
+        endAt: event.endAt ?? DateTime.now()
       ));
 
       result.fold(
@@ -134,10 +145,24 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
         (_) => emit(UserSignedOutState())
       );
     });
+    on<GetUserLoggingStateEvent>((event, emit) async {
+      emit(AuthLoadingState());
+
+      final result = await _getUserLoggingState();
+
+      result.fold((l) => null, (isLoggedIn) => emit(UserLoggingStateLoaded(isLoggedIn: isLoggedIn)));
+    });
+    on<SetUserLoggingStateEvent>((event, emit) async {
+      final result = await _setUserLoggingState();
+
+      result.fold((l) => null, (_) => emit(UserLoggingStateModified()));
+    });
   }
 
   final CreateUser _createUser;
   final GetCurrentUser _getCurrentUser;
+  final SetUserLoggingState _setUserLoggingState;
+  final GetUserLoggingState _getUserLoggingState;
   final CheckIfUserExist _checkIfUserExists;
   final SiginWithEmailAndPassword _signinWithEmailAndPassword;
   final SigninWithFacebook _signinWithFacebook;

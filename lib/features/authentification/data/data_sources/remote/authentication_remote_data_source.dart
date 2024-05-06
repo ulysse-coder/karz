@@ -5,7 +5,15 @@ import 'package:ulysse_app/features/authentification/data/models/user_model.dart
 abstract class AuthenticationRemoteDataSource {
   const AuthenticationRemoteDataSource();
 
-  Future<void> createUser(UserModel user, UserRole role);
+  Future<void> createUser(
+    String id,
+    String name,
+    String phone,
+    UserRole role,
+    int workDuration,
+    DateTime startAt,
+    DateTime endAt
+  );
 
   Future<UserModel> getCurrentUser(String uid, UserRole role);
 
