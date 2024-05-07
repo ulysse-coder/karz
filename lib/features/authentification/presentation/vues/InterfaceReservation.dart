@@ -28,11 +28,11 @@ class _InterfaceReservationState extends State<InterfaceReservation> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFF14213D),
-        title: const Text(
+        title:  Text(
           'Réserver ma place',
           textAlign: TextAlign.center,
           style: TextStyle(
-            fontSize: 24,
+            fontSize: longueurEcran / 27.5, // 24
             fontWeight: FontWeight.bold,
             fontFamily: 'Italianno',
             color: Colors.white,
@@ -45,24 +45,24 @@ class _InterfaceReservationState extends State<InterfaceReservation> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            const SizedBox(height: 10),
+            SizedBox(height: longueurEcran / 66),
 
             Container(
-              margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 30),
+              margin: EdgeInsets.symmetric(vertical: longueurEcran / 330, horizontal: largeurEcran / 12.47), // 5, 30
               child: TextField(
                 controller: _name,
                 decoration: InputDecoration(
                   hintText: 'Entrez votre N° de plaque',
-                  contentPadding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+                  contentPadding: EdgeInsets.symmetric(vertical: longueurEcran / 66, horizontal: largeurEcran / 37.5), // 15, 15
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(longueurEcran / 66.0), // 10
                     borderSide: const BorderSide(
                       color: Colors.black,
                       width: 1,
                     ),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(longueurEcran / 66.0), // 10
                     borderSide: const BorderSide(
                       color: Colors.black,
                       width: 1,
@@ -75,28 +75,28 @@ class _InterfaceReservationState extends State<InterfaceReservation> {
               ),
             ),
 
-            const SizedBox(height: 5),
+            SizedBox(height: longueurEcran / 330),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
                   width: MediaQuery.of(context).size.width * 0.6,
-                  margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+                  margin: EdgeInsets.symmetric(vertical: longueurEcran / 66, horizontal: largeurEcran / 25), // 5, 15
                   child: TextField(
                     controller: _phone,
                     decoration: InputDecoration(
                       hintText: 'Entrez la durée',
-                      contentPadding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+                      contentPadding: EdgeInsets.symmetric(vertical: longueurEcran / 330, horizontal: largeurEcran / 74.9), // 5, 10
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(longueurEcran / 66.0), // 10
                         borderSide: const BorderSide(
                           color: Colors.black,
                           width: 1,
                         ),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(longueurEcran / 66.0), // 10
                         borderSide: const BorderSide(
                           color: Colors.black,
                           width: 1,
@@ -109,25 +109,25 @@ class _InterfaceReservationState extends State<InterfaceReservation> {
                   ),
                 ),
 
-                const SizedBox(width: 5),
+                SizedBox(width: largeurEcran / 149.8), // 2.5
 
                 Container(
                   width: MediaQuery.of(context).size.width * 0.6,
-                  margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+                  margin: EdgeInsets.symmetric(vertical: longueurEcran / 66, horizontal: largeurEcran / 25), // 5, 15
                   child: TextField(
                     controller: _date,
                     decoration: InputDecoration(
                       hintText: 'Heures/jours',
-                      contentPadding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                      contentPadding: EdgeInsets.symmetric(vertical: longueurEcran / 330, horizontal: largeurEcran / 37.5), // 10, 15
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(longueurEcran / 66.0), // 10
                         borderSide: const BorderSide(
                           color: Colors.black,
                           width: 1,
                         ),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(longueurEcran / 66.0), // 10
                         borderSide: const BorderSide(
                           color: Colors.black,
                           width: 1,
@@ -141,25 +141,24 @@ class _InterfaceReservationState extends State<InterfaceReservation> {
                 ),
               ],
             ),
-
-            const SizedBox(height: 10),
+            SizedBox(height: longueurEcran / 330),
 
             Container(
-              margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 30),
+              margin: EdgeInsets.symmetric(vertical: longueurEcran / 66, horizontal: largeurEcran / 12.47), // 5, 30
               child: TextField(
                 controller: _name,
                 decoration: InputDecoration(
                   hintText: 'Entrez la date de réservation',
-                  contentPadding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+                  contentPadding: EdgeInsets.symmetric(vertical: longueurEcran / 330, horizontal: largeurEcran / 37.5), // 15, 15
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(longueurEcran / 66.0), // 10
                     borderSide: const BorderSide(
                       color: Colors.black,
                       width: 1,
                     ),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(longueurEcran / 66.0), // 10
                     borderSide: const BorderSide(
                       color: Colors.black,
                       width: 1,
@@ -167,7 +166,7 @@ class _InterfaceReservationState extends State<InterfaceReservation> {
                   ),
                   suffixIcon: Image.asset(
                     'asset/icons/calendrier.png',
-                    height: longueurEcran / 15,
+                    height: longueurEcran / 15, // 40
                   ),
                 ),
                 onChanged: (value) {
@@ -175,30 +174,29 @@ class _InterfaceReservationState extends State<InterfaceReservation> {
                 },
               ),
             ),
-
-            const SizedBox(height: 10),
+            SizedBox(height: longueurEcran / 66),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                const Text(
+                Text(
                   'Nb de places',
                   style: TextStyle(
-                    fontSize: 20,
+                    fontSize: longueurEcran / 33, // 20
                     color: Colors.black,
                     fontFamily: 'Itim',
                   ),
                 ),
-                const SizedBox(width: 10),
+                SizedBox(width: largeurEcran / 37.5), // 10
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                  decoration: const BoxDecoration(
+                  padding: EdgeInsets.symmetric(horizontal: largeurEcran / 50, vertical: longueurEcran / 330), // 16, 5
+                  decoration: BoxDecoration(
                     color: Colors.grey,
                   ),
                   child: Text(
                     '1',
                     style: TextStyle(
-                      fontSize: longueurEcran / 30,
+                      fontSize: longueurEcran / 33, // 20
                       color: Colors.black87,
                     ),
                   ),
@@ -206,29 +204,29 @@ class _InterfaceReservationState extends State<InterfaceReservation> {
               ],
             ),
 
-            const SizedBox(height: 10),
+            SizedBox(height: longueurEcran / 66),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                const Text(
+                Text(
                   'Nb de places disponibles',
                   style: TextStyle(
-                    fontSize: 20,
+                    fontSize: longueurEcran / 33, // 20
                     color: Colors.black,
                     fontFamily: 'Itim',
                   ),
                 ),
-                const SizedBox(width: 10),
+                SizedBox(width: largeurEcran / 37.5), // 10
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                  decoration: const BoxDecoration(
+                  padding: EdgeInsets.symmetric(horizontal: largeurEcran / 50, vertical: longueurEcran / 330), // 16, 5
+                  decoration: BoxDecoration(
                     color: Colors.grey,
                   ),
                   child: Text(
                     'x',
                     style: TextStyle(
-                      fontSize: longueurEcran / 30,
+                      fontSize: longueurEcran / 33, // 20
                       color: Colors.black87,
                     ),
                   ),
@@ -236,24 +234,24 @@ class _InterfaceReservationState extends State<InterfaceReservation> {
               ],
             ),
 
-            const SizedBox(height: 10),
+            SizedBox(height: longueurEcran / 66),
 
             Container(
-              margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
+              margin: EdgeInsets.symmetric(vertical: longueurEcran / 330, horizontal: largeurEcran / 12.47), // 5, 30
               child: TextField(
                 controller: _name,
                 decoration: InputDecoration(
                   hintText: 'Entrez le N° de plaque de la 2ème personne',
-                  contentPadding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+                  contentPadding: EdgeInsets.symmetric(vertical: longueurEcran / 66, horizontal: largeurEcran / 37.5), // 15, 15
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(longueurEcran / 66.0), // 10
                     borderSide: const BorderSide(
                       color: Colors.black,
                       width: 1,
                     ),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(longueurEcran / 66.0), // 10
                     borderSide: const BorderSide(
                       color: Colors.black,
                       width: 1,
@@ -265,29 +263,26 @@ class _InterfaceReservationState extends State<InterfaceReservation> {
                 },
               ),
             ),
-
-            const SizedBox(height: 5),
-
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
                   width: MediaQuery.of(context).size.width * 0.6,
-                  margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+                  margin: EdgeInsets.symmetric(vertical: longueurEcran / 66, horizontal: largeurEcran / 25), // 5, 15
                   child: TextField(
                     controller: _phone,
                     decoration: InputDecoration(
                       hintText: 'Entrez la durée',
-                      contentPadding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+                      contentPadding: EdgeInsets.symmetric(vertical: longueurEcran / 330, horizontal: largeurEcran / 74.9), // 5, 10
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(longueurEcran / 66.0), // 10
                         borderSide: const BorderSide(
                           color: Colors.black,
                           width: 1,
                         ),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(longueurEcran / 66.0), // 10
                         borderSide: const BorderSide(
                           color: Colors.black,
                           width: 1,
@@ -300,25 +295,25 @@ class _InterfaceReservationState extends State<InterfaceReservation> {
                   ),
                 ),
 
-                const SizedBox(width: 5),
+                SizedBox(width: largeurEcran / 149.8), // 2.5
 
                 Container(
                   width: MediaQuery.of(context).size.width * 0.6,
-                  margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                  margin: EdgeInsets.symmetric(vertical: longueurEcran / 66, horizontal: largeurEcran / 25), // 5, 15
                   child: TextField(
                     controller: _date,
                     decoration: InputDecoration(
                       hintText: 'Heures/jours',
-                      contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                      contentPadding: EdgeInsets.symmetric(vertical: longueurEcran / 330, horizontal: largeurEcran / 37.5), // 10, 15
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(longueurEcran / 66.0), // 10
                         borderSide: const BorderSide(
                           color: Colors.black,
                           width: 1,
                         ),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(longueurEcran / 66.0), // 10
                         borderSide: const BorderSide(
                           color: Colors.black,
                           width: 1,
@@ -332,24 +327,24 @@ class _InterfaceReservationState extends State<InterfaceReservation> {
                 ),
               ],
             ),
-            const SizedBox(height: 10),
+            SizedBox(height: longueurEcran / 330),
 
             Container(
-              margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 30),
+              margin: EdgeInsets.symmetric(vertical: longueurEcran / 66, horizontal: largeurEcran / 12.47), // 5, 30
               child: TextField(
                 controller: _name,
                 decoration: InputDecoration(
                   hintText: 'Entrez la date de réservation',
-                  contentPadding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+                  contentPadding: EdgeInsets.symmetric(vertical: longueurEcran / 330, horizontal: largeurEcran / 37.5), // 15, 15
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(longueurEcran / 66.0), // 10
                     borderSide: const BorderSide(
                       color: Colors.black,
                       width: 1,
                     ),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(longueurEcran / 66.0), // 10
                     borderSide: const BorderSide(
                       color: Colors.black,
                       width: 1,
@@ -357,7 +352,7 @@ class _InterfaceReservationState extends State<InterfaceReservation> {
                   ),
                   suffixIcon: Image.asset(
                     'asset/icons/calendrier.png',
-                    height: longueurEcran / 15,
+                    height: longueurEcran / 15, // 40
                   ),
                 ),
                 onChanged: (value) {
@@ -365,14 +360,13 @@ class _InterfaceReservationState extends State<InterfaceReservation> {
                 },
               ),
             ),
-
-            const SizedBox(height: 15),
+            SizedBox(height: longueurEcran / 330),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
+                  margin: EdgeInsets.symmetric(vertical: longueurEcran / 66, horizontal: largeurEcran / 12.47), // 5, 30
                   child: TextButton(
                     onPressed: () {
                       // Handle Annuler button press
@@ -382,13 +376,13 @@ class _InterfaceReservationState extends State<InterfaceReservation> {
                         const Color(0xFFDA0E0E),
                       ),
                       minimumSize: MaterialStateProperty.all<Size>(
-                        Size(longueurEcran / 6, largeurEcran / 12.33),
+                        Size(longueurEcran / 6, largeurEcran / 12.33), // 20, 30
                       ),
                     ),
-                    child: const Text(
+                    child: Text(
                       'Annuler',
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: longueurEcran / 33, // 20
                         fontFamily: 'Itim',
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
@@ -397,10 +391,10 @@ class _InterfaceReservationState extends State<InterfaceReservation> {
                   ),
                 ),
 
-                const SizedBox(width: 15),
+                SizedBox(width: largeurEcran / 74.9), // 5
 
                 Container(
-                  margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
+                  margin: EdgeInsets.symmetric(vertical: longueurEcran / 66, horizontal: largeurEcran / 12.47), // 5, 30
                   child: TextButton(
                     onPressed: () {
                       // Handle Réserver button press
@@ -410,13 +404,13 @@ class _InterfaceReservationState extends State<InterfaceReservation> {
                         const Color(0xFFFF7A00),
                       ),
                       minimumSize: MaterialStateProperty.all<Size>(
-                        Size(longueurEcran / 6, largeurEcran / 12.33),
+                        Size(longueurEcran / 6, largeurEcran / 12.33), // 20, 30
                       ),
                     ),
-                    child: const Text(
+                    child: Text(
                       'Réserver',
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: longueurEcran / 33, // 20
                         fontFamily: 'Itim',
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
