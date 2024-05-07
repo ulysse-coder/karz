@@ -4,6 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:ulysse_app/core/services/dependencies_injections.dart';
 import 'package:ulysse_app/features/authentification/presentation/app/bloc/authentication_bloc.dart';
+import 'package:ulysse_app/features/parking/presentation/app/bloc/parking_bloc.dart';
+import 'package:ulysse_app/features/parking/presentation/app/controllers/parking_controller.dart';
+import 'package:ulysse_app/features/reservation/presentation/app/bloc/bloc/reservation_bloc.dart';
 import 'package:ulysse_app/features/reservation/presentation/app/bloc/controllers/reservation_controller.dart';
 import 'package:ulysse_app/features/reservation/presentation/vues/interaface_reservation.dart';
 import 'package:ulysse_app/firebase_options.dart';
@@ -16,6 +19,7 @@ Future<void> main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform
   ).then ((_) {
     Get.put(UserController()); 
+    Get.put(ParkingController());
     Get.put(ReservationController());
   });
   runApp(const MyApp());
@@ -28,7 +32,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
         providers: [
-          BlocProvider(create: (_) => sl<AuthenticationBloc>())
+          BlocProvider(create: (_) => sl<AuthenticationBloc>()),
+          BlocProvider(create: (_) => sl<ParkingBloc>()),
+          BlocProvider(create: (_) => sl<ReservationBloc>()),
         ],
         child: GetMaterialApp(
             debugShowCheckedModeBanner: false,
