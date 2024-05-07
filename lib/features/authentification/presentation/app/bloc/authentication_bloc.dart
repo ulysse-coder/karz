@@ -5,7 +5,6 @@ import 'package:ulysse_app/core/utilities/enum.dart';
 import 'package:ulysse_app/features/authentification/domain/entities/user_entity.dart';
 import 'package:ulysse_app/features/authentification/domain/usecases/check_if_user_exist.dart';
 import 'package:ulysse_app/features/authentification/domain/usecases/create_user.dart';
-import 'package:ulysse_app/features/authentification/domain/usecases/create_user.dart';
 import 'package:ulysse_app/features/authentification/domain/usecases/get_current_user.dart';
 import 'package:ulysse_app/features/authentification/domain/usecases/get_current_user_from_cache.dart';
 import 'package:ulysse_app/features/authentification/domain/usecases/get_user_logging_state.dart';

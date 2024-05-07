@@ -5,17 +5,16 @@ import 'package:ulysse_app/core/utilities/custom_widget.dart';
 import 'package:ulysse_app/core/utilities/enum.dart';
 import 'package:ulysse_app/features/authentification/presentation/app/bloc/authentication_bloc.dart';
 import 'package:ulysse_app/features/authentification/presentation/app/controller/user_controller.dart';
-import 'package:ulysse_app/features/authentification/presentation/vues/complement_gardien.dart';
 import 'package:ulysse_app/features/authentification/presentation/vues/home_page.dart';
 
 class InterfaceInformation extends StatefulWidget {
   const InterfaceInformation({super.key});
 
   @override
-  State<InterfaceInformation> createState() => _InterfaceInformation();
+  State<InterfaceInformation> createState() => _InterfaceInformationState();
 }
 
-class _InterfaceInformation extends State<InterfaceInformation> {
+class _InterfaceInformationState extends State<InterfaceInformation> {
   UserController userController = Get.find();
   final TextEditingController _name = TextEditingController();
   final TextEditingController _phone = TextEditingController();
@@ -35,10 +34,9 @@ class _InterfaceInformation extends State<InterfaceInformation> {
     return BlocListener<AuthenticationBloc, AuthenticationState>(
       listener: (context, state) {
         debugPrint("========= Current state: $state");
-        if(state is AuthLoadingState) {
+        if (state is AuthLoadingState) {
           loadingDialog();
-        }
-        else if(state is UserCreatedState) {
+        } else if (state is UserCreatedState) {
           Get.off(() => const HomePage());
         }
       },
@@ -142,14 +140,14 @@ class _InterfaceInformation extends State<InterfaceInformation> {
                     switch (userController.currentUser.role) {
                       case UserRole.conducteur:
                         context.read<AuthenticationBloc>().add(CreateUserEvent(
-                          id: userController.currentUser.uid,
-                          name: userController.currentUser.name,
-                          phone: userController.currentUser.phone,
-                          role: userController.currentUser.role,
-                        ));
+                              id: userController.currentUser.uid,
+                              name: userController.currentUser.name,
+                              phone: userController.currentUser.phone,
+                              role: userController.currentUser.role,
+                            ));
                         break;
                       case UserRole.gardien:
-                        Get.to(() => const ComplementGardien());
+                        //Get.to(() => const HomePage());
                         break;
                       case UserRole.defaultRole:
                         break;
