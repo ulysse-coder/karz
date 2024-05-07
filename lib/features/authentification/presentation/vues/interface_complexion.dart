@@ -95,7 +95,7 @@ class _InterfaceComplexionState extends State<InterfaceComplexion> {
                         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                         decoration: BoxDecoration(
                             color: Colors.white,
-                            borderRadius: BorderRadius.circular(30)
+                            //borderRadius: BorderRadius.circular(30)
                         ),
                         child: Text(
                           'Gardien',
