@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ulysse_app/core/constants/colors.dart';
 import 'package:ulysse_app/features/authentification/presentation/app/bloc/authentication_bloc.dart';
 import 'package:ulysse_app/features/authentification/presentation/app/controller/user_controller.dart';
 import 'package:get/get.dart';
@@ -21,8 +22,6 @@ class _InterfaceDemarrageState extends State<InterfaceDemarrage> {
   @override
   void initState() {
     super.initState();
-    // context.read<AuthenticationBloc>().add(SignOutEvent());
-    // context.read<AuthenticationBloc>().add(SetUserLoggingStateEvent());
     context.read<AuthenticationBloc>().add(GetUserLoggingStateEvent());
   }
 
@@ -34,7 +33,7 @@ class _InterfaceDemarrageState extends State<InterfaceDemarrage> {
     debugPrint("Longueur: $longueurEcran");
 
     return Scaffold(
-        backgroundColor: const Color(0xff14213D),
+        backgroundColor: primary,
         body: BlocConsumer<AuthenticationBloc, AuthenticationState>(
           listener: (_, state) {
             if(state is UserLoggingStateLoaded) {

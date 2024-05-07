@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:ulysse_app/core/constants/colors.dart';
 import 'package:ulysse_app/core/utilities/custom_widget.dart';
 import 'package:ulysse_app/features/authentification/data/models/user_model.dart';
 import 'package:ulysse_app/features/authentification/presentation/app/bloc/authentication_bloc.dart';
@@ -39,7 +40,7 @@ class _InterfaceLoginState extends State<InterfaceLogin> {
           width: double.maxFinite,
           height: double.maxFinite,
           decoration: const BoxDecoration(
-            color: Color(0xff14213D),
+            color: primary,
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

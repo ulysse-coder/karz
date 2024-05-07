@@ -7,13 +7,15 @@ enum UserRole {
 
 enum ParkingType {
   private,
-  public
+  public,
+  defaultType
 }
 
 enum VehiculeType {
   deuxRoues,
   voiture,
   miniBus,
+  defaultType
 }
 
 enum PlaceStatus {

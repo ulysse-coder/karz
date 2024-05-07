@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ulysse_app/core/constants/colors.dart';
 import 'package:ulysse_app/core/utilities/enum.dart';
 import 'package:ulysse_app/features/authentification/presentation/app/controller/user_controller.dart';
 import 'package:ulysse_app/features/authentification/presentation/vues/interface_information.dart';
@@ -27,7 +28,7 @@ class _InterfaceComplexionState extends State<InterfaceComplexion> {
           padding:  EdgeInsets.symmetric(horizontal: (longueurEcran/41)),
           height: double.maxFinite,
           decoration: const BoxDecoration(
-            color: Color(0xff14213D),
+            color: primary,
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

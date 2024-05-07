@@ -22,7 +22,9 @@ void main() {
       uid: 'uid', 
       name: 'name', 
       phone: 'phone', 
-      role: UserRole.conducteur);
+      role: UserRole.conducteur, 
+      bankAccounts: []
+    );
   });
 
   final userJson = {

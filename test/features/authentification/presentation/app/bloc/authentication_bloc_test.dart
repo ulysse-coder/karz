@@ -3,6 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:ulysse_app/core/utilities/auth_params.dart';
+import 'package:ulysse_app/core/utilities/enum.dart';
 import 'package:ulysse_app/features/authentification/data/models/user_model.dart';
 import 'package:ulysse_app/features/authentification/domain/usecases/check_if_user_exist.dart';
 import 'package:ulysse_app/features/authentification/domain/usecases/create_user.dart';
@@ -81,9 +82,14 @@ void main() {
   });
 
   const user = UserModel.empty();
-  final params = UserCreationParams(
-    user: user,
-    role: user.role
+  final params = CreateUserParams(
+    id: 'id',
+    name: 'name',
+    phone: 'phone',
+    role: UserRole.conducteur,
+    workDuration: 0,
+    startAt: DateTime.now(),
+    endAt: DateTime.now()
   );
   final urParams = UserURParams(uid: 'uid', role: user.role);
   const authParams = AuthParams(email: 'email', password: 'password');
@@ -97,7 +103,12 @@ void main() {
         when(() => mockCreateUser(params)).thenAnswer((_) async => const Right(null));
         return authenticationBloc;
       },
-      act: (bloc) => bloc.add(CreateUserEvent(user: user, role: user.role)),
+      act: (bloc) => bloc.add(const CreateUserEvent(
+        id: 'id', 
+        name: 'name', 
+        phone: 'phone', 
+        role: UserRole.conducteur
+      )),
       expect: () => [isA<AuthLoadingState>(), isA<UserCreatedState>()],
       verify: (_) => verify(() => mockCreateUser(params)).called(1) ,
     );

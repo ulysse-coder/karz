@@ -39,5 +39,17 @@ class ParkingModel extends ParkingEntity {
     reviewsNumber: doc['reviews_number']
   );
 
+  ParkingModel.empty() : this(
+    id: '',
+    capacity: 0,
+    freePlaces: 0,
+    reservationPrice: 0,
+    type: ParkingType.defaultType,
+    registeredBy: '',
+    registeredAt: '',
+    acceptedVehiculeType: [],
+    address: AddressModel.empty(),
+  );
+
   Map<String, dynamic> toJson() => _$ParkingModelToJson(this);
 }

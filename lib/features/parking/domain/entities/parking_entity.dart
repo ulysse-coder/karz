@@ -25,7 +25,7 @@ class ParkingEntity extends Equatable {
   final ParkingType type;
   final AddressModel address;
   final String registeredBy;
-  final DateTime registeredAt;
+  final String registeredAt;
   final List<VehiculeType> acceptedVehiculeType;
   final double? rate;
   final int? reviewsNumber;

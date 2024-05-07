@@ -34,7 +34,7 @@ class CreateUserEvent extends AuthenticationEvent {
     required this.role, 
     this.workDuration, 
     this.startAt, 
-    this.endAt 
+    this.endAt,
   });
 
   final String id;

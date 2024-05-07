@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:ulysse_app/core/constants/colors.dart';
 import 'package:ulysse_app/core/utilities/custom_widget.dart';
 import 'package:ulysse_app/core/utilities/enum.dart';
 import 'package:ulysse_app/features/authentification/presentation/app/bloc/authentication_bloc.dart';
@@ -64,7 +65,7 @@ class _InterfaceInformationState extends State<InterfaceInformation> {
                 margin: EdgeInsets.symmetric(
                     vertical: (longueurEcran / 123.2),
                     horizontal: (largeurEcran / 45)), //5 //8
-                child: TextField(
+                child: TextFormField(
                   controller: _name,
                   decoration: InputDecoration(
                     hintText: 'Entrez votre nom complet',
@@ -155,7 +156,7 @@ class _InterfaceInformationState extends State<InterfaceInformation> {
                   },
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all<Color>(
-                        const Color(0xFFFF7A00)),
+                        secondary),
                     minimumSize: MaterialStateProperty.all<Size>(
                         Size(longueurEcran / 6, largeurEcran / 12.33)),
                   ),

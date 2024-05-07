@@ -12,6 +12,12 @@ class AddressModel extends AddressEntity {
     required super.fullAddress
   });
 
+  AddressModel.empty() : this(
+    latitude: 0.0,
+    longitude: 0.0,
+    fullAddress: ''
+  );
+
   factory AddressModel.fromJson(Map<String, dynamic> json) => _$AddressModelFromJson(json);
   Map<String, dynamic> toJson() => _$AddressModelToJson(this);
 }
