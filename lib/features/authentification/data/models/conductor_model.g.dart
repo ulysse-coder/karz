@@ -12,6 +12,9 @@ ConductorModel _$ConductorModelFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String,
       phone: json['phone'] as String,
       role: $enumDecode(_$UserRoleEnumMap, json['role']),
+      bankAccounts: (json['bank_accounts'] as List<dynamic>)
+          .map((e) => BankAccountModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$ConductorModelToJson(ConductorModel instance) =>
@@ -20,6 +23,7 @@ Map<String, dynamic> _$ConductorModelToJson(ConductorModel instance) =>
       'name': instance.name,
       'phone': instance.phone,
       'role': _$UserRoleEnumMap[instance.role]!,
+      'bank_accounts': instance.bankAccounts.map((e) => e.toJson()).toList(),
     };
 
 const _$UserRoleEnumMap = {
