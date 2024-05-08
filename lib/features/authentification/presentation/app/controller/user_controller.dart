@@ -1,4 +1,5 @@
 
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ulysse_app/core/utilities/enum.dart';
@@ -15,6 +16,7 @@ class UserController extends GetxController {
   void onInit() async {
     super.onInit();
     _currentUserRole.value = await getCurrentUserRole();
+    debugPrint("====== current role: ${_currentUserRole.value}");
   }
 
   ConductorModel get currentConductor => _currentConductor.value;

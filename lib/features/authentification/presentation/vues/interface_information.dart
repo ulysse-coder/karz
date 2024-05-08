@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -152,6 +154,11 @@ class _InterfaceInformationState extends State<InterfaceInformation> {
                   child: BlocConsumer<AuthenticationBloc, AuthenticationState>(
                     listener: (context, state) {
                       if(state is UserCreatedState) {
+                        final conductorJson = userController.currentConductor.toJson();
+                        final conductorString = jsonEncode(conductorJson);
+                        context.read<AuthenticationBloc>().add(SaveCurrenUserToCacheEvent(user: conductorString));
+                      }
+                      if(state is UserSavedToCache) {
                         Get.offAll(() => const HomePage());
                       }
                     },

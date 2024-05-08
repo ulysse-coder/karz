@@ -52,6 +52,7 @@ final class UserLoggingStateLoaded extends AuthenticationState {
 final class UserLoggingStateModified extends AuthenticationState {}
 
 final class UserCreatedState extends AuthenticationState {}
+final class UserSavedToCache extends AuthenticationState {}
 
 final class ConductorSignedInState extends AuthenticationState {
   const ConductorSignedInState({required this.conductor});

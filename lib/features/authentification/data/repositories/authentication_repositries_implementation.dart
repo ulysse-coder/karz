@@ -89,7 +89,7 @@ class AuthenticationRepositoryImplementation implements AuthenticationRepository
   }
   
   @override
-  ResultFuture<UserEntity> getCurrentUserFromCache() async {
+  ResultFuture<ConductorEntity> getCurrentUserFromCache() async {
     try {
       final result = await _localDataSource.getCurrentUserFromCache();
       return Right(result);

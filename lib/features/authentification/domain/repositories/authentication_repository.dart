@@ -39,6 +39,6 @@ abstract class AuthenticationRepository {
 
   ResultVoid saveCurrentUserToCache(String user);
 
-  ResultFuture<UserEntity> getCurrentUserFromCache();
+  ResultFuture<ConductorEntity> getCurrentUserFromCache();
 
 }

@@ -39,6 +39,7 @@ class AuthenticationRemoteDataSourceImplementation implements AuthenticationRemo
           return false;
       }
     } catch (e) {
+      debugPrint("====== current er: $e");
       throw DBException(message: e.toString());
     }
   }

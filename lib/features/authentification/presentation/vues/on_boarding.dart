@@ -17,19 +17,24 @@ class _OnBoardingViewState extends State<OnBoardingView> {
   final RxInt _currentPageIndex = 0.obs;
   final List<Widget> _pages = const [
     OnBoardingWidget(
-      image: 'assets/image/deliverer.png', 
+      image: 'asset/images/Welcome.png', 
       title: 'Bienvenue', 
-      description: "Prêt à révolutionner la manière dont vous commandez et livrez de la nourriture ? Suivez-nous pour une expérience culinaire sans précédent !"
+      description: "Nous sommes ravis de vous accueillir dans notre communauté dédiée à simplifier votre expérience de stationnement !"
     ),
     OnBoardingWidget(
-      image: 'assets/image/fast-food.png', 
-      title: 'Découvrez une nouvelle ère de gourmandise !', 
-      description: "Kally vous connecte avec les meilleurs restaurants de votre région et les livreurs les plus fiables. Votre prochaine expérience gastronomique n'attend que vous !"
+      image: 'asset/images/location.png', 
+      title: 'Préférences de stationnement', 
+      description: "Définissez vos préférences en matière de stationnement. Que vous recherchiez un parking couvert, sécurisé ou à tarif réduit, nous avons ce qu'il vous faut. Personnalisez votre recherche pour trouver la place idéale qui correspond à vos besoins."
     ),
     OnBoardingWidget(
-      image: 'assets/image/client.png', 
-      title: 'Prêt à simplifier votre vie ?', 
-      description: "Avec Kaaly, commandez vos plats préférés en un clin d'œil, de la cuisine du restaurant à votre porte. Prêt à commencer l'aventure ?"
+      image: 'asset/images/reservation.png', 
+      title: 'Options de réservation', 
+      description: "Explorez nos différentes options de réservation. Que vous souhaitiez réserver une place pour quelques heures, une journée entière ou même de façon régulière, nous avons des solutions flexibles pour répondre à vos besoins de stationnement."
+    ),
+    OnBoardingWidget(
+      image: 'asset/images/illustration4.png', 
+      title: ' Profitez de votre place réservée', 
+      description: "Une fois votre réservation confirmée, dirigez-vous vers votre place de parking réservée en toute sérénité. Plus besoin de tourner en rond à la recherche d'un stationnement libre, votre place vous attend !"
     ),
     HowAppIsUsedView()
   ];

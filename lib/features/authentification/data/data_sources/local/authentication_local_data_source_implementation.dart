@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ulysse_app/core/errors/db_exception.dart';
 import 'package:ulysse_app/features/authentification/data/data_sources/local/authentication_local_data_source.dart';
+import 'package:ulysse_app/features/authentification/data/models/conductor_model.dart';
 import 'package:ulysse_app/features/authentification/data/models/user_model.dart';
 
 class AuthenticationLocalDataSourceImplementation implements AuthenticationLocalDataSource {
@@ -29,11 +30,11 @@ class AuthenticationLocalDataSourceImplementation implements AuthenticationLocal
   }
 
   @override
-  Future<UserModel> getCurrentUserFromCache() async {
+  Future<ConductorModel> getCurrentUserFromCache() async {
     try {
       final userString = _sharedPreferences.getString(_key);
       final userJson = jsonDecode(userString!);
-      return UserModel.fromJson(userJson);
+      return ConductorModel.fromJson(userJson);
     } catch (e) {
       throw(DBException(message: e.toString()));
     }

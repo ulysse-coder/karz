@@ -6,6 +6,7 @@ import 'package:ulysse_app/core/constants/colors.dart';
 import 'package:ulysse_app/core/constants/dimensions.dart';
 import 'package:ulysse_app/core/utilities/enum.dart';
 import 'package:ulysse_app/core/widgets/heading1.dart';
+import 'package:ulysse_app/core/widgets/standard_text.dart';
 import 'package:ulysse_app/features/authentification/presentation/app/controller/user_controller.dart';
 import 'package:ulysse_app/features/authentification/presentation/vues/app_use_case_listile.dart';
 import 'package:ulysse_app/features/authentification/presentation/vues/interface_login.dart';
@@ -30,11 +31,20 @@ class HowAppIsUsedView extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Heading1(
-            text: "Comment souhaitez-vous utiliser Kaaly aujourd'hui ?",
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-            textAlign: TextAlign.center,
+          const ListTile(
+            title: Heading1(
+              text: "Prêt à démarrer ? ",
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              textAlign: TextAlign.center,
+            ),
+            subtitle: StandardText(
+              text: "Comment souhaitez-vous utiliser Kaaly aujourd'hui ?",
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              textAlign: TextAlign.center,
+            ),
+
           ),
           SizedBox(height: height100,),
           Column(

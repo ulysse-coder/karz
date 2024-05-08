@@ -38,23 +38,33 @@ class _InterfaceDemarrageState extends State<InterfaceDemarrage> {
         backgroundColor: primary,
         body: BlocListener<AuthenticationBloc, AuthenticationState>(
           listener: (_, state) {
+            debugPrint("====== current state: $state");
             if(state is UserLoggingStateLoaded) {
               if(state.isLoggedIn) {
                 switch (userController.currentUserRole) {
                   case UserRole.conducteur:
-                    context.read<AuthenticationBloc>().add(CheckIfUserExistsEvent(
-                      uid: userController.currentConductor.uid,
-                      role: UserRole.conducteur
-                    ));
+                    Get.offAll(() => const HomePage());
                     break;
                   case UserRole.gardien:
-                    context.read<AuthenticationBloc>().add(CheckIfUserExistsEvent(
-                      uid: userController.currentSecurity.uid,
-                      role: UserRole.gardien
-                    ));
+                  // Get.offAll(() => const HomePage());
                     break;
                   case UserRole.defaultRole: break;
                 }
+                // switch (userController.currentUserRole) {
+                //   case UserRole.conducteur:
+                //     context.read<AuthenticationBloc>().add(CheckIfUserExistsEvent(
+                //       uid: userController.currentConductor.uid,
+                //       role: UserRole.conducteur
+                //     ));
+                //     break;
+                //   case UserRole.gardien:
+                //     context.read<AuthenticationBloc>().add(CheckIfUserExistsEvent(
+                //       uid: userController.currentSecurity.uid,
+                //       role: UserRole.gardien
+                //     ));
+                //     break;
+                //   case UserRole.defaultRole: break;
+                // }
               }
               else if(userController.currentUserRole == UserRole.defaultRole) {
                 Get.offAll(() => const OnBoardingView());

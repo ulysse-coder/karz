@@ -84,14 +84,14 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
     on<SaveCurrenUserToCacheEvent>((event, emit) async {
       final result = await _saveCurrenUserToCache(event.user);
 
-      result.fold((l) => null, (r) => emit(UserCreatedState()));
+      result.fold((l) => null, (r) => emit(UserSavedToCache()));
     });
     on<GetCurrentUserFromCacheEvent>((event, emit) async {
       emit(AuthLoadingState());
 
       final result = await _getCurrentUserFromCache();
 
-      result.fold((l) => null, (user) => emit(UserLoadedState(user: user)));
+      result.fold((l) => null, (conductor) => emit(ConductorLoaded(conductor: conductor)));
     });
     on<CheckIfUserExistsEvent>((event, emit) async {
       emit(AuthLoadingState());
