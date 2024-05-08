@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:ulysse_app/core/services/dependencies_injections.dart';
 import 'package:ulysse_app/features/authentification/presentation/app/bloc/authentication_bloc.dart';
+import 'package:ulysse_app/features/authentification/presentation/vues/interface_demarrage.dart';
 import 'package:ulysse_app/features/parking/presentation/app/bloc/parking_bloc.dart';
 import 'package:ulysse_app/features/parking/presentation/app/controllers/parking_controller.dart';
 import 'package:ulysse_app/features/reservation/presentation/app/bloc/bloc/reservation_bloc.dart';
@@ -11,14 +12,11 @@ import 'package:ulysse_app/features/reservation/presentation/app/bloc/controller
 import 'package:ulysse_app/features/reservation/presentation/vues/interaface_reservation.dart';
 import 'package:ulysse_app/firebase_options.dart';
 
-import 'features/authentification/presentation/app/controller/user_controller.dart';
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await init();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform
   ).then ((_) {
-    Get.put(UserController()); 
     Get.put(ParkingController());
     Get.put(ReservationController());
   });
@@ -42,7 +40,7 @@ class MyApp extends StatelessWidget {
               colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
               useMaterial3: true,
             ),
-            home: const InterfaceReservation()
+            home: const InterfaceDemarrage()
         )
     );
   }

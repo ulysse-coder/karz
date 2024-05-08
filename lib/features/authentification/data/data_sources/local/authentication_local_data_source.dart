@@ -5,7 +5,7 @@ abstract class AuthenticationLocalDataSource {
 
   Future<bool> getUserLoggingState();
   Future<void> setUserLoggingState();
-  Future<void> saveCurrentUserToCache(UserModel user);
+  Future<void> saveCurrentUserToCache(String user);
   Future<UserModel> getCurrentUserFromCache();
 
 }

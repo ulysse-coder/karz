@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:ulysse_app/core/constants/colors.dart';
 import 'package:ulysse_app/core/constants/dimensions.dart';
 import 'package:ulysse_app/core/utilities/enum.dart';
 import 'package:ulysse_app/features/authentification/presentation/app/controller/user_controller.dart';
-import 'package:ulysse_app/features/parking/data/models/place_model.dart';
-import 'package:ulysse_app/features/parking/presentation/app/bloc/parking_bloc.dart';
 import 'package:ulysse_app/features/parking/presentation/app/controllers/parking_controller.dart';
 import 'package:ulysse_app/features/reservation/data/models/reservation_model.dart';
 import 'package:ulysse_app/features/reservation/data/models/vehicule_model.dart';
@@ -32,7 +28,6 @@ class _InterfaceReservationState extends State<InterfaceReservation> {
   final TextEditingController _date = TextEditingController();
   final TextEditingController _startTime = TextEditingController();
   final TextEditingController _endTime = TextEditingController();
-  final TextEditingController _duration = TextEditingController();
   final RxBool _isEndTimeFieldEnabled = false.obs;
 
   @override
@@ -44,10 +39,9 @@ class _InterfaceReservationState extends State<InterfaceReservation> {
 
   @override
   Widget build(BuildContext context) {
-    int largeurEcran = MediaQuery.of(context).size.width.floor();
-
     return Scaffold(
       appBar: AppBar(
+        surfaceTintColor: Colors.white,
         title: const Text(
           'Réserver une place',
           textAlign: TextAlign.center,
@@ -63,7 +57,22 @@ class _InterfaceReservationState extends State<InterfaceReservation> {
       body: CustomScrollView(
         slivers: [
           SliverPadding(
-            padding: EdgeInsets.symmetric(vertical: paddingH16, horizontal: paddingW16),
+            padding: EdgeInsets.only(
+              top: paddingH16,
+              left: paddingW16,
+              right: paddingW16
+            ),
+            sliver: SliverToBoxAdapter(
+              child: Text(
+                'Selectionez une place',
+                style: TextStyle(
+                  fontSize: font24
+                ),
+              ),
+            ),
+          ),
+          SliverPadding(
+            padding: EdgeInsets.symmetric(vertical: paddingH10, horizontal: paddingW16),
             sliver: SliverGrid.count(
               mainAxisSpacing: paddingW10,
               crossAxisSpacing: paddingH10,
@@ -95,123 +104,84 @@ class _InterfaceReservationState extends State<InterfaceReservation> {
                 child: Form(
                   key: _formKey,
                   child: Column(
-                    mainAxisSize: MainAxisSize.min,
                     children: [
-                        TextFormField(
-                          controller: _matricule,
-                          keyboardType: TextInputType.text,
-                          decoration: InputDecoration(
-                              hintText: 'Ex: 3434RC',
-                              labelText: "Numero d'immatriculation",
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(radius15),
-                                borderSide: const BorderSide(
-                                  color: Colors.black,
-                                  width: 5, //5
-                                ),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(radius15),
-                                borderSide: const BorderSide(
-                                  color: primary,
-                                ),
-                              ),
-                              suffix: const Icon(
-                                Icons.car_repair_outlined,
-                                color: secondary,
-                              )
-                          ),
-                          validator: (value) {
-                            return value!.isEmpty ? "champ requis" : null;
-                          },
-                          onChanged: (value) {
-                            _matricule.text = value;
-                          },
-                        ),
-                        SizedBox(height: height24,),
-                        TextFormField(
-                          onTap: () {
-                            _datePicker();
-                          },
-                          controller: _date,
-                          readOnly: true,
-                          decoration: InputDecoration(
-                              labelText: "Date de reservation",
-                              hintText: _date.text,
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(radius15),
-                                borderSide: const BorderSide(
-                                  color: Colors.black,
-                                  width: (5), //5
-                                ),
-                              ),
-                              suffix: const Icon(
-                                Icons.calendar_month_outlined,
-                                color: secondary,
-                              )
-                          ),
-                          validator: (value) {
-                            return value!.isEmpty ? "champ requis" : null;
-                          },
-                          onChanged: (value) {
-                            _date.text = value;
-                          },
-                        ),
-                        SizedBox(height: height24,),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                              child: Container(
-                                margin: EdgeInsets.only(right: marginW16),
-                                child: TextFormField(
-                                  onTap: () {
-                                    _timePicker();
-                                  },
-                                  readOnly: true,
-                                  controller: _startTime,
-                                  keyboardType: TextInputType.datetime,
-                                  decoration: InputDecoration(
-                                      hintText: 'Depart',
-                                      labelText: "Heure de depart",
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(radius15),
-                                        borderSide: const BorderSide(
-                                          color: primary,
-                                        ),
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(radius15),
-                                        borderSide: const BorderSide(
-                                          color: primary,
-                                        ),
-                                      ),
-                                      suffix: const Icon(
-                                        Icons.timer_outlined,
-                                        color: secondary,
-                                      )
-                                  ),
-                                  validator: (value) {
-                                    return value!.isEmpty ? "champ requis" : null;
-                                  },
-                                  onChanged: (value) {
-                                    _startTime.text = value;
-                                  },
-                                )
+                      TextFormField(
+                        controller: _matricule,
+                        keyboardType: TextInputType.text,
+                        decoration: InputDecoration(
+                            hintText: 'Ex: 3434RC',
+                            labelText: "Numero d'immatriculation",
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(radius15),
+                              borderSide: const BorderSide(
+                                color: Colors.black,
+                                width: 5, //5
                               ),
                             ),
-                            Expanded(
-                              child: Obx(() => TextFormField(
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(radius15),
+                              borderSide: const BorderSide(
+                                color: primary,
+                              ),
+                            ),
+                            suffix: const Icon(
+                              Icons.car_repair_outlined,
+                              color: secondary,
+                            )
+                        ),
+                        validator: (value) {
+                          return value!.isEmpty ? "champ requis" : null;
+                        },
+                        onChanged: (value) {
+                          _matricule.text = value;
+                        },
+                      ),
+                      SizedBox(height: height16,),
+                      TextFormField(
+                        onTap: () {
+                          _datePicker();
+                        },
+                        controller: _date,
+                        readOnly: true,
+                        decoration: InputDecoration(
+                            labelText: "Date de reservation",
+                            hintText: _date.text,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(radius15),
+                              borderSide: const BorderSide(
+                                color: Colors.black,
+                                width: (5), //5
+                              ),
+                            ),
+                            suffix: const Icon(
+                              Icons.calendar_month_outlined,
+                              color: secondary,
+                            )
+                        ),
+                        validator: (value) {
+                          return value!.isEmpty ? "champ requis" : null;
+                        },
+                        onChanged: (value) {
+                          _date.text = value;
+                        },
+                      ),
+                      SizedBox(height: height16,),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: Container(
+                              margin: EdgeInsets.only(right: marginW16),
+                              child: TextFormField(
                                 onTap: () {
-                                  _isEndTimeFieldEnabled.value ? _timePicker() : null;
+                                  _timePicker('start');
                                 },
                                 readOnly: true,
-                                enabled: _startTime.text.isNotEmpty,
-                                controller: _endTime,
+                                controller: _startTime,
                                 keyboardType: TextInputType.datetime,
                                 decoration: InputDecoration(
                                     hintText: 'Depart',
-                                    labelText: "Heure de Fin",
+                                    labelText: "Heure de depart",
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(radius15),
                                       borderSide: const BorderSide(
@@ -235,11 +205,107 @@ class _InterfaceReservationState extends State<InterfaceReservation> {
                                 onChanged: (value) {
                                   _startTime.text = value;
                                 },
-                              ))
+                              )
+                            ),
+                          ),
+                          Expanded(
+                            child: Obx(() => TextFormField(
+                              onTap: () {
+                                _isEndTimeFieldEnabled.value ? _timePicker('end') : null;
+                              },
+                              readOnly: true,
+                              enabled: _isEndTimeFieldEnabled.value,
+                              controller: _endTime,
+                              keyboardType: TextInputType.datetime,
+                              decoration: InputDecoration(
+                                  hintText: 'Depart',
+                                  labelText: "Heure de Fin",
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(radius15),
+                                    borderSide: const BorderSide(
+                                      color: primary,
+                                    ),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(radius15),
+                                    borderSide: const BorderSide(
+                                      color: primary,
+                                    ),
+                                  ),
+                                  suffix: const Icon(
+                                    Icons.timer_outlined,
+                                    color: secondary,
+                                  )
+                              ),
+                              validator: (value) {
+                                return value!.isEmpty ? "champ requis" : null;
+                              },
+                              onChanged: (value) {
+                                _startTime.text = value;
+                              },
+                            ))
+                          )
+                        ],
+                      ),
+                      SizedBox(height: height16,),
+                      ListTile(
+                        onTap: () => Get.bottomSheet(
+                          Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(radius30),
+                                topRight: Radius.circular(radius30)
+                              )
+                            ),
+                            child: Column(
+                              children: [
+                                ListTile(
+                                  // onTap: () => Get.to(() => AddPaymentCardViewForm()),
+                                  leading: const Icon(Icons.add_card, color: secondary),
+                                  trailing: const Icon(Icons.arrow_forward_ios_outlined, color: secondary,),
+                                  title: Text(
+                                    "Ajouter une carte",
+                                    softWrap: true,
+                                    style: TextStyle(
+                                        fontSize: font20,
+                                        fontFamily: "itim"
+                                    ),
+                                  ),
+                                ),
+                                const Divider(),
+                                Expanded(
+                                  child: ListView.separated(
+                                    itemCount: 5,
+                                    separatorBuilder: (_, index) => const Divider(),
+                                    itemBuilder: (context, index) => Container(),
+                                  )
+                                )
+                              ],
                             )
-                          ],
+                          )
                         ),
-                      ]
+                        leading: const Icon(Icons.paid_outlined, color: secondary),
+                        trailing: const Icon(Icons.arrow_drop_down_circle_outlined, color: secondary,),
+                        title: Text(
+                          "Mode de paiement",
+                          softWrap: true,
+                          style: TextStyle(
+                            fontSize: font20,
+                            fontFamily: "itim"
+                          ),
+                        ),
+                        subtitle: Text(
+                          "Cliquer pour choisir ou ajouter un mode de paiment",
+                          softWrap: true,
+                          style: TextStyle(
+                            fontSize: font14,
+                            fontFamily: "itim",
+                            color: Colors.grey[600]
+                          ),
+                        )
+                      )
+                    ]
                   ),
                 )
               )
@@ -250,21 +316,11 @@ class _InterfaceReservationState extends State<InterfaceReservation> {
       bottomNavigationBar: InkWell(
         onTap: () {
           if(_formKey.currentState!.validate()) {
-            final endTimeHour = startime.value.hour + int.parse(_duration.text);
-            // startime.text is like: 12:30 AM
-            // First, split by " "
-            // Then split by :
-            // Then add the duration
-            // convert _startTime into a DateTime variable
-            final startDateTime = DateTime.parse(_startTime.text);
-            // Add duration to the new startTime
-            final endTime = startDateTime.add(Duration(hours: int.parse(_duration.text))).toString();
-            debugPrint("======= End time: $endTime");
             reservationController.currentReservation = ReservationModel(
                 id: '',
-                conductorId: userController.currentUser.uid,
-                conductorName: userController.currentUser.name,
-                conductorPhone: userController.currentUser.phone,
+                conductorId: userController.currentConductor.uid,
+                conductorName: userController.currentConductor.name,
+                conductorPhone: userController.currentConductor.phone,
                 //TODO: (Need to pass correct vehicule model)
                 vehicule: VehiculeModel.empty(),
                 place: '',
@@ -272,12 +328,17 @@ class _InterfaceReservationState extends State<InterfaceReservation> {
                 parkingAddress: parkingController.currentParking.address.fullAddress,
                 date: _date.text,
                 startTime: _startTime.text,
-                endTime: '${endTimeHour}hh:${startime.value.minute}m',
+                endTime: _endTime.text,
                 status: ReservationStatus.pending
             );
             debugPrint("===== Current reservation: ${reservationController.currentReservation}");
             // context.read<ReservationBloc>().add(CreateReservationEvent(
             //   reservation: reservation));
+            // clear text field
+            _matricule.clear();
+            _date.clear();
+            _startTime.clear();
+            _endTime.clear();
           }
         },
         child: Container(
@@ -320,17 +381,26 @@ class _InterfaceReservationState extends State<InterfaceReservation> {
     }
   }
 
-  void _timePicker() async {
+  void _timePicker(String time) async {
     TimeOfDay? timePicker = await showTimePicker(
       context: context, 
       initialTime: TimeOfDay.now()
     );
 
     if(timePicker != null) {
-      startime.value = timePicker;
+      if(time == 'start') {
+        setState(() {
+          _startTime.text = timePicker.format(context);
+          _isEndTimeFieldEnabled.value = _startTime.text.isNotEmpty;
+          debugPrint("======= START TIME: ${_startTime.text}");
+          return;
+        });
+      }
+
       setState(() {
-        _startTime.text = timePicker.format(context);
-        debugPrint("======= START TIME: ${_startTime.text}");
+        _endTime.text = timePicker.format(context);
+        debugPrint("======= START TIME: ${_endTime.text}");
+        return;
       });
     }
   }

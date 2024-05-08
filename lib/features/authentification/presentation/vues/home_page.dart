@@ -1,10 +1,10 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ulysse_app/core/constants/colors.dart';
-import 'package:ulysse_app/features/authentification/presentation/app/bloc/authentication_bloc.dart';
+import 'package:ulysse_app/core/constants/dimensions.dart';
 import 'package:ulysse_app/features/authentification/presentation/app/controller/user_controller.dart';
 import 'package:get/get.dart';
+import 'package:ulysse_app/features/authentification/presentation/vues/sidebar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -15,44 +15,95 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   UserController userController = Get.find();
+  final TextEditingController _address = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: primary,
-      body: Center(
-        child: Column(
-          children: [
-            Text(
-              'Bienvenue ${userController.currentUser.name}',
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 40,
-                fontFamily: 'Itim'
+      drawer: Sidebar(conductor: userController.currentConductor),
+      // backgroundColor: primary,
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            leading: IconButton(
+              onPressed:() => Scaffold.of(context).openDrawer(),
+              icon: const Icon(
+                Icons.menu,
+                color: secondary,
               ),
             ),
-            const SizedBox(height: 16,),
-            InkWell(
-              onTap: () => context.read<AuthenticationBloc>().add(SignOutEvent()),
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                decoration: BoxDecoration(
-                  color: secondary,
-                  borderRadius: BorderRadius.circular(10)
-                ),
-                child: const Text(
-                  'Deconnexion',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontFamily: 'Itim'
+            title: Text(
+              "Karz",
+              textAlign: TextAlign.right,
+              style: TextStyle(
+                fontFamily: "Itim",
+                color: secondary,
+                fontWeight: FontWeight.bold,
+                fontSize: font24*2
+              ),
+            ),
+            flexibleSpace: Image.asset(
+              "asset/images/localisation.jpg",
+              width: double.maxFinite,
+              fit: BoxFit.cover,
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Stack(
+              children: [
+                Positioned(
+                  top: height220 - height24,
+                  left: 0,
+                  right: 0,
+                  child: Container(
+                    width: double.maxFinite,
+                    padding: EdgeInsets.symmetric(
+                      vertical: paddingH24,
+                      horizontal: paddingW16
+                    ),
+                    decoration: BoxDecoration(
+                      color: primary,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(radius30),
+                        topRight: Radius.circular(radius30)
+                      )
+                    ),
+                    child: Column(
+                      children: [
+                        TextFormField(
+                          controller: _address,
+                          keyboardType: TextInputType.streetAddress,
+                          decoration: InputDecoration(
+                            fillColor: Colors.white,
+                            labelText: "Où Allez vous?",
+                            hintText: "Ex: 13, rue Abdellah, Rabat",
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(radius15),
+                              borderSide: const BorderSide(color: Colors.white),
+                            ),
+                            labelStyle: TextStyle(
+                              fontSize: font14 + 2,
+                              fontWeight: FontWeight.bold,
+                              color: const Color(0xFFB3B3B3)
+                            ),
+                            hintStyle: TextStyle(
+                              fontSize: font14 + 2, //16
+                              fontWeight: FontWeight.bold
+                            ),
+                            focusedBorder: const OutlineInputBorder(
+                              borderSide: BorderSide(color: primary),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
-                ),
-              )
-            )
-          ]
-        )
-      ),
+                )
+              ],
+            ),
+          )
+        ],
+      )
     );
   }
 }

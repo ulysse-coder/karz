@@ -40,11 +40,9 @@ class AuthenticationLocalDataSourceImplementation implements AuthenticationLocal
   }
 
   @override
-  Future<void> saveCurrentUserToCache(UserModel user) async {
+  Future<void> saveCurrentUserToCache(String user) async {
     try {
-      final userJson = user.toJson();
-      final userString = jsonEncode(userJson);
-      await _sharedPreferences.setString(_key, userString);
+      await _sharedPreferences.setString(_key, user);
     } catch (e) {
       throw(DBException(message: e.toString()));
     }

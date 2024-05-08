@@ -4,12 +4,11 @@ import 'package:ulysse_app/core/usecases/usecases.dart';
 import 'package:ulysse_app/features/authentification/domain/entities/conductor_entity.dart';
 import 'package:ulysse_app/features/authentification/domain/repositories/authentication_repository.dart';
 
-class SigninWithFacebook extends UseCaseWithoutParameters<ConductorEntity> {
-  const SigninWithFacebook(this._repository);
+class CreateConductor extends UseCaseWithParameters<void, ConductorEntity> {
+  const CreateConductor(this._repository);
 
   final AuthenticationRepository _repository;
 
   @override
-  ResultFuture<ConductorEntity> call() => _repository.siginWithFacebook();
-  
+  ResultFuture<void> call(ConductorEntity args) => _repository.createConductor(conductor: args);
 }

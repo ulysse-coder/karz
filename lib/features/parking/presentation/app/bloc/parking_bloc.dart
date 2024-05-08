@@ -137,33 +137,6 @@ class ParkingBloc extends Bloc<ParkingEvent, ParkingState> {
     });
   }
 
-  // @override
-  Stream<ParkingState> mapEventToState(ParkingEvent event) async* {
-    if (event is GetPlacesByParkingEvent) {
-      yield ParkingLoadingState();
-
-      final result = await _getPlacesByParking(event.parkingId);
-
-      result.fold(
-        (l) => null, 
-        (places) async* {
-          yield PlacesLoadedState(places: places);
-        }
-      );
-    }
-    else if (event is GetParkingImagesEvent) {
-      yield ParkingLoadingState();
-
-      final result = await _getParkingImages(event.parkingId);
-
-      result.fold(
-        (l) => null, 
-        (images) async* {
-          yield ParkingImagesLoadedState(images: images);
-        });
-    }
-  }
-
   final AddParking _addParking;
   final SelectImageFromGallery _selectImageFromGallery;
   final UploadParkingImage _uploadParkingImage;
