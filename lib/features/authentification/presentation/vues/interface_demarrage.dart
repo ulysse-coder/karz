@@ -12,10 +12,10 @@ class InterfaceDemarrage extends StatefulWidget {
   const InterfaceDemarrage({Key? key}) : super(key: key);
 
   @override
-  State<InterfaceDemarrage> createState() => _InterfaceDemarrage();
+  State<InterfaceDemarrage> createState() => _InterfaceDemarrageState();
 }
 
-class _InterfaceDemarrage extends State<InterfaceDemarrage> {
+class _InterfaceDemarrageState extends State<InterfaceDemarrage> {
   UserController userController = Get.put(UserController());
 
   @override

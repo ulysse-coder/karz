@@ -11,10 +11,10 @@ class InterfaceLogin extends StatefulWidget {
   const InterfaceLogin({super.key});
 
   @override
-  State<InterfaceLogin> createState() => __InterfaceState();
+  State<InterfaceLogin> createState() => _InterfaceLoginState();
 }
 
-class __InterfaceState extends State<InterfaceLogin> {
+class _InterfaceLoginState extends State<InterfaceLogin> {
   @override
   Widget build(BuildContext context) {
     int largeurEcran = MediaQuery.of(context).size.width.floor();

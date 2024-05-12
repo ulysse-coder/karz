@@ -8,10 +8,10 @@ class InterfaceComplexion extends StatefulWidget {
   const InterfaceComplexion({Key? key}) : super(key: key);
 
   @override
-  State<InterfaceComplexion> createState() => _InterfaceComplexion();
+  State<InterfaceComplexion> createState() => _InterfaceComplexionState();
 }
 
-class _InterfaceComplexion extends State<InterfaceComplexion> {
+class _InterfaceComplexionState extends State<InterfaceComplexion> {
   UserController userController = Get.find();
 
   @override
@@ -95,7 +95,7 @@ class _InterfaceComplexion extends State<InterfaceComplexion> {
                         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                         decoration: BoxDecoration(
                             color: Colors.white,
-                            borderRadius: BorderRadius.circular(30)
+                            //borderRadius: BorderRadius.circular(30)
                         ),
                         child: Text(
                           'Gardien',
