@@ -7,6 +7,12 @@ class Sidebar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       child:
+        Theme(
+        data: Theme.of(context).copyWith(
+      iconTheme: IconThemeData(
+        color: Colors.red, // Définit la couleur de l'icône
+      ),
+    ),child:
       ListView(
         padding: EdgeInsets.zero,
         children: [
@@ -75,6 +81,6 @@ class Sidebar extends StatelessWidget {
           ),
         ],
       )
-    );
+    ));
   }
 }
