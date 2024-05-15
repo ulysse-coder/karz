@@ -12,6 +12,11 @@ class VehiculeModel extends VehiculeEntity {
     required super.type
   });
 
+  VehiculeModel.empty() : this(
+    matricule: '',
+    type: VehiculeType.defaultType
+  );
+
   factory VehiculeModel.fromJson(Map<String, dynamic> json) => _$VehiculeModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$VehiculeModelToJson(this);

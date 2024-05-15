@@ -9,9 +9,9 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:ulysse_app/core/errors/db_exception.dart';
 import 'package:ulysse_app/core/utilities/enum.dart';
 import 'package:ulysse_app/features/authentification/data/data_sources/remote/authentication_remote_data_source.dart';
+import 'package:ulysse_app/features/authentification/data/models/bank_account_model.dart';
 import 'package:ulysse_app/features/authentification/data/models/conductor_model.dart';
 import 'package:ulysse_app/features/authentification/data/models/security_model.dart';
-import 'package:ulysse_app/features/authentification/data/models/user_model.dart';
 import 'package:http/http.dart' as http;
 
 class AuthenticationRemoteDataSourceImplementation implements AuthenticationRemoteDataSource {
@@ -39,82 +39,74 @@ class AuthenticationRemoteDataSourceImplementation implements AuthenticationRemo
           return false;
       }
     } catch (e) {
+      debugPrint("====== current er: $e");
       throw DBException(message: e.toString());
     }
   }
 
   @override
-  Future<void> createUser(
-    String id,
-    String name,
-    String phone,
-    UserRole role, 
-    int workDuration, 
-    DateTime startAt, 
-    DateTime endAt
-  ) async {
+  Future<void> createConductor({required ConductorModel conductor}) async {
     try {
-      switch (role) {
-        case UserRole.conducteur:
-          debugPrint("======== Create conducteur");
-          // final ConductorModel conductor = user as ConductorModel;
-          await _firestore.collection(_kConductorsCollection).doc(id).set({
-            'name': name,
-            'phone': phone,
-            'role': 'conducteur',
-          });
-          break;
-        case UserRole.gardien:
-          debugPrint("======== Create conducteur");
-          // final SecurityModel securitiy = user as SecurityModel;
-          await _firestore.collection(_kSecuritiesCollection).doc(id).set({
-            'name': name,
-            'phone': phone,
-            'workDuration': workDuration,
-            'startAt': startAt,
-            'endAt': endAt,
-            'role': 'gardien',
-          });
-          break;
-        case UserRole.defaultRole:
-          debugPrint("========erreur si default role");
-
-          break;
-      }
+      await _firestore.collection(_kConductorsCollection).doc(conductor.uid).set({
+        'name': conductor.name,
+        'phone': conductor.phone,
+        'bank_accounts': []
+      });
+    } catch (e) {
+      debugPrint("====== Erreur lors de la creation du conducteur: ${e.toString()}");
+      throw DBException(message: e.toString());
+    }
+  }
+  
+  @override
+  Future<void> createSecurity({required SecurityModel security}) async {
+    try {
+      await _firestore.collection(_kSecuritiesCollection).doc(security.uid).set({
+        'name': security.name,
+        'phone': security.phone,
+      });
     } catch (e) {
       debugPrint("====== Erreur lors de la creation: ${e.toString()}");
       throw DBException(message: e.toString());
     }
   }
-
+  
   @override
-  Future<UserModel> getCurrentUser(String uid, UserRole role) async{
+  Future<ConductorModel> getConductor({required String id}) async {
     try {
-      switch (role) {
-        case UserRole.conducteur:
-          final doc = await _firestore.collection(_kConductorsCollection).doc(uid).get();
-          return ConductorModel.fromDocumentSnapshot(doc);
-        case UserRole.gardien:
-          final doc = await _firestore.collection(_kSecuritiesCollection).doc(uid).get();
-          return SecurityModel.fromDocumentSnapshot(doc);
-        case UserRole.defaultRole:
-          return const UserModel.empty();
-      }
+      final doc = await _firestore
+        .collection(_kConductorsCollection)
+        .doc(id)
+        .get();
+      return ConductorModel.fromDocumentSnapshot(doc);
     } catch (e) {
-      throw DBException(message: e.toString());
+      throw(DBException(message: e.toString()));
     }
   }
 
   @override
-  Future<UserModel> siginWithEmailAndPassword(String email, String password) async {
+  Future<SecurityModel> getSecurity({required String id}) async {
+    try {
+      final doc = await _firestore
+        .collection(_kSecuritiesCollection)
+        .doc(id)
+        .get();
+      return SecurityModel.fromDocumentSnapshot(doc);
+    } catch (e) {
+      throw(DBException(message: e.toString()));
+    }
+  }
+  
+  @override
+  Future<ConductorModel> siginWithEmailAndPassword(String email, String password) async {
     try {
       final UserCredential userCredential = await _auth.signInWithEmailAndPassword(email: email, password: password);
 
-      return UserModel(
-        uid: userCredential.user!.uid, 
-        name: userCredential.user!.displayName ?? '',
+      return ConductorModel(
+        uid: userCredential.user!.uid,
+        name: '',
         phone: '',
-        role: UserRole.defaultRole,
+        bankAccounts: const <BankAccountModel>[]
       );
     } catch (e) {
       throw DBException(message: e.toString());
@@ -122,7 +114,7 @@ class AuthenticationRemoteDataSourceImplementation implements AuthenticationRemo
   }
 
   @override
-  Future<UserModel> siginWithFacebook() async {
+  Future<ConductorModel> siginWithFacebook() async {
     final loginResult = await _facebookAuth.login();
 
     final response = await http.get(Uri.parse(
@@ -134,11 +126,11 @@ class AuthenticationRemoteDataSourceImplementation implements AuthenticationRemo
       if (loginResult.status == LoginStatus.success) {
         final oAuthCredential = FacebookAuthProvider.credential(loginResult.accessToken!.token);
         final userCredential = await _auth.signInWithCredential(oAuthCredential);
-        return UserModel(
+        return ConductorModel(
           uid: userCredential.user!.uid,
           name: userProfile['name'],
           phone: '',
-          role: UserRole.defaultRole, 
+          bankAccounts: const <BankAccountModel>[]
         );
       }
 
@@ -150,7 +142,7 @@ class AuthenticationRemoteDataSourceImplementation implements AuthenticationRemo
   }
 
   @override
-  Future<UserModel> siginWithGoogle() async {
+  Future<ConductorModel> siginWithGoogle() async {
     final GoogleSignInAccount? googleSignInAccount = await _googleSignIn.signIn();
 
     try {
@@ -163,11 +155,11 @@ class AuthenticationRemoteDataSourceImplementation implements AuthenticationRemo
       // signing to firebase user instance
       final User firebaseUser = (await _auth.signInWithCredential(credential)).user!;
 
-      return UserModel(
+      return ConductorModel(
         uid: firebaseUser.uid,
-        name: firebaseUser.displayName!, 
+        name: firebaseUser.displayName!,
         phone: '',
-        role: UserRole.defaultRole, 
+        bankAccounts: const <BankAccountModel>[]
       );
     } catch (e) {
       throw DBException(message: e.toString());
@@ -180,5 +172,5 @@ class AuthenticationRemoteDataSourceImplementation implements AuthenticationRemo
     _facebookAuth.logOut();
     _googleSignIn.signOut();
   }
-  
+
 }

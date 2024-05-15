@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:ulysse_app/core/constants/colors.dart';
 import 'package:ulysse_app/core/utilities/custom_widget.dart';
-import 'package:ulysse_app/features/authentification/data/models/user_model.dart';
+import 'package:ulysse_app/core/utilities/enum.dart';
+import 'package:ulysse_app/features/authentification/data/models/conductor_model.dart';
 import 'package:ulysse_app/features/authentification/presentation/app/bloc/authentication_bloc.dart';
 import 'package:ulysse_app/features/authentification/presentation/app/controller/user_controller.dart';
-import 'package:ulysse_app/features/authentification/presentation/vues/interface_complexion.dart';
+import 'package:ulysse_app/features/authentification/presentation/vues/home_page.dart';
+import 'package:ulysse_app/features/authentification/presentation/vues/interface_information.dart';
 
 class InterfaceLogin extends StatefulWidget {
   const InterfaceLogin({super.key});
@@ -17,6 +20,7 @@ class InterfaceLogin extends StatefulWidget {
 class _InterfaceLoginState extends State<InterfaceLogin> {
   @override
   Widget build(BuildContext context) {
+    UserController userController = Get.find();
     int largeurEcran = MediaQuery.of(context).size.width.floor();
     int longueurEcran = MediaQuery.of(context).size.height.floor();
 
@@ -25,12 +29,20 @@ class _InterfaceLoginState extends State<InterfaceLogin> {
         if (state is AuthLoadingState) {
           loadingDialog();
         }
-        else if(state is UserSignedInState) {
-          Get.find<UserController>().currentUser = state.user as UserModel;
+        else if(state is ConductorSignedInState) {
+          userController.currentConductor = state.conductor as ConductorModel;
           context.read<AuthenticationBloc>().add(SetUserLoggingStateEvent());
         }
         else if(state is UserLoggingStateModified) {
-          Get.offAll(() => const InterfaceComplexion());
+          context.read<AuthenticationBloc>().add(CheckIfUserExistsEvent(
+            uid: userController.currentConductor.uid,
+            role: UserRole.conducteur
+          ));
+        }
+        else if(state is UserExistenceCheckedState) {
+          state.exists ?
+            Get.offAll(() => const HomePage()) :
+            Get.offAll(() => const InterfaceInformation());
         }
       },
       child: Scaffold(
@@ -39,7 +51,7 @@ class _InterfaceLoginState extends State<InterfaceLogin> {
           width: double.maxFinite,
           height: double.maxFinite,
           decoration: const BoxDecoration(
-            color: Color(0xff14213D),
+            color: primary,
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
