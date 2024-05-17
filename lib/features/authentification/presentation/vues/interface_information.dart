@@ -1,30 +1,31 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:ulysse_app/core/utilities/custom_widget.dart';
-import 'package:ulysse_app/core/utilities/enum.dart';
+import 'package:ulysse_app/core/constants/colors.dart';
 import 'package:ulysse_app/features/authentification/presentation/app/bloc/authentication_bloc.dart';
 import 'package:ulysse_app/features/authentification/presentation/app/controller/user_controller.dart';
-import 'package:ulysse_app/features/authentification/presentation/vues/complement_gardien.dart';
 import 'package:ulysse_app/features/authentification/presentation/vues/home_page.dart';
 
 class InterfaceInformation extends StatefulWidget {
   const InterfaceInformation({super.key});
 
   @override
-  State<InterfaceInformation> createState() => _InterfaceInformation();
+  State<InterfaceInformation> createState() => _InterfaceInformationState();
 }
 
-class _InterfaceInformation extends State<InterfaceInformation> {
+class _InterfaceInformationState extends State<InterfaceInformation> {
   UserController userController = Get.find();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _name = TextEditingController();
   final TextEditingController _phone = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    _name.text = userController.currentUser.name;
-    _phone.text = userController.currentUser.phone;
+    _name.text = userController.currentConductor.name;
+    _phone.text = userController.currentConductor.phone;
   }
 
   @override
@@ -32,31 +33,23 @@ class _InterfaceInformation extends State<InterfaceInformation> {
     int largeurEcran = MediaQuery.of(context).size.width.floor();
     int longueurEcran = MediaQuery.of(context).size.height.floor();
 
-    return BlocListener<AuthenticationBloc, AuthenticationState>(
-      listener: (context, state) {
-        debugPrint("========= Current state: $state");
-        if(state is AuthLoadingState) {
-          loadingDialog();
-        }
-        else if(state is UserCreatedState) {
-          Get.off(() => const HomePage());
-        }
-      },
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: const Color(0xFFE5E5E5),
-          title: Text(
-            'Compléter mes informations',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: (longueurEcran / 25.67), // 24
-              fontWeight: FontWeight.bold,
-              fontFamily: 'Itim',
-            ),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color(0xFFE5E5E5),
+        title: Text(
+          'Compléter mes informations',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: (longueurEcran / 25.67), // 24
+            fontWeight: FontWeight.bold,
+            fontFamily: 'Itim',
           ),
-          centerTitle: true,
         ),
-        body: Center(
+        centerTitle: true,
+      ),
+      body: Center(
+        child: Form(
+          key: _formKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -66,7 +59,7 @@ class _InterfaceInformation extends State<InterfaceInformation> {
                 margin: EdgeInsets.symmetric(
                     vertical: (longueurEcran / 123.2),
                     horizontal: (largeurEcran / 45)), //5 //8
-                child: TextField(
+                child: TextFormField(
                   controller: _name,
                   decoration: InputDecoration(
                     hintText: 'Entrez votre nom complet',
@@ -88,18 +81,21 @@ class _InterfaceInformation extends State<InterfaceInformation> {
                       ),
                     ),
                   ),
+                  validator: (value) {
+                    return value!.isEmpty ? "Ce champ est requis" : null;
+                  },
                   onChanged: (value) {
                     _name.text = value;
                   },
                 ),
               ),
               SizedBox(height: (longueurEcran / 123.2)), //5
-
+          
               Container(
                 margin: EdgeInsets.symmetric(
                     vertical: (longueurEcran / 123.2),
                     horizontal: (largeurEcran / 45)), //5 //8
-                child: TextField(
+                child: TextFormField(
                   controller: _phone,
                   decoration: InputDecoration(
                     hintText: 'Entrez votre numéro de téléphone',
@@ -121,13 +117,16 @@ class _InterfaceInformation extends State<InterfaceInformation> {
                       ),
                     ),
                   ),
+                  validator: (value) {
+                    return value!.isEmpty ? "Ce champ est requis" : null;
+                  },
                   onChanged: (value) {
                     _phone.text = value;
                   },
                 ),
               ),
               SizedBox(height: (longueurEcran / 41.06)), //15
-
+          
               Container(
                 margin: EdgeInsets.symmetric(
                     vertical: (longueurEcran / 61.6),
@@ -135,40 +134,50 @@ class _InterfaceInformation extends State<InterfaceInformation> {
                 child: TextButton(
                   onPressed: () {
                     debugPrint("Boutton Continuer appuyé ");
-                    userController.currentUser = userController.currentUser
-                        .copyWith(name: _name.text, phone: _phone.text);
-                    debugPrint(
-                        "======== Nouvelles informations: ${userController.currentUser}");
-                    switch (userController.currentUser.role) {
-                      case UserRole.conducteur:
-                        context.read<AuthenticationBloc>().add(CreateUserEvent(
-                          id: userController.currentUser.uid,
-                          name: userController.currentUser.name,
-                          phone: userController.currentUser.phone,
-                          role: userController.currentUser.role,
-                        ));
-                        break;
-                      case UserRole.gardien:
-                        Get.to(() => const ComplementGardien());
-                        break;
-                      case UserRole.defaultRole:
-                        break;
+                    if(_formKey.currentState!.validate()) {
+                      userController.currentConductor = userController.currentConductor.copyWith(
+                        name: _name.text, 
+                        phone: _phone.text
+                      );
+                      debugPrint("======== Nouvelles informations: ${userController.currentConductor}");
+
+                      context.read<AuthenticationBloc>().add(CreateConductorEvent(
+                        conductor: userController.currentConductor
+                      ));
                     }
                   },
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                        const Color(0xFFFF7A00)),
+                    backgroundColor: MaterialStateProperty.all<Color>(secondary),
                     minimumSize: MaterialStateProperty.all<Size>(
                         Size(longueurEcran / 6, largeurEcran / 12.33)),
                   ),
-                  child: Text(
-                    'Valider',
-                    style: TextStyle(
-                      fontSize: (longueurEcran / 30.8), // 20
-                      fontFamily: 'Itim',
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
+                  child: BlocConsumer<AuthenticationBloc, AuthenticationState>(
+                    listener: (context, state) {
+                      if(state is UserCreatedState) {
+                        final conductorJson = userController.currentConductor.toJson();
+                        final conductorString = jsonEncode(conductorJson);
+                        context.read<AuthenticationBloc>().add(SaveCurrenUserToCacheEvent(user: conductorString));
+                      }
+                      if(state is UserSavedToCache) {
+                        Get.offAll(() => const HomePage());
+                      }
+                    },
+                    builder: (context, state) {
+                      if(state is AuthLoadingState) {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                      return Text(
+                        'Valider',
+                        style: TextStyle(
+                          fontSize: (longueurEcran / 30.8), // 20
+                          fontFamily: 'Itim',
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      );
+                    },
                   ),
                 ),
               ),

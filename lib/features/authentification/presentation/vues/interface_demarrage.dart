@@ -1,28 +1,29 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ulysse_app/core/constants/colors.dart';
+import 'package:ulysse_app/core/utilities/enum.dart';
 import 'package:ulysse_app/features/authentification/presentation/app/bloc/authentication_bloc.dart';
 import 'package:ulysse_app/features/authentification/presentation/app/controller/user_controller.dart';
 import 'package:get/get.dart';
 import 'package:ulysse_app/features/authentification/presentation/vues/home_page.dart';
-import 'package:ulysse_app/features/authentification/presentation/vues/interface_complexion.dart';
+import 'package:ulysse_app/features/authentification/presentation/vues/interface_information.dart';
 import 'package:ulysse_app/features/authentification/presentation/vues/interface_login.dart';
+import 'package:ulysse_app/features/authentification/presentation/vues/on_boarding.dart';
 
 class InterfaceDemarrage extends StatefulWidget {
   const InterfaceDemarrage({Key? key}) : super(key: key);
 
   @override
-  State<InterfaceDemarrage> createState() => _InterfaceDemarrage();
+  State<InterfaceDemarrage> createState() => _InterfaceDemarrageState();
 }
 
-class _InterfaceDemarrage extends State<InterfaceDemarrage> {
+class _InterfaceDemarrageState extends State<InterfaceDemarrage> {
   UserController userController = Get.put(UserController());
 
   @override
   void initState() {
     super.initState();
-    // context.read<AuthenticationBloc>().add(SignOutEvent());
-    // context.read<AuthenticationBloc>().add(SetUserLoggingStateEvent());
     context.read<AuthenticationBloc>().add(GetUserLoggingStateEvent());
   }
 
@@ -34,37 +35,69 @@ class _InterfaceDemarrage extends State<InterfaceDemarrage> {
     debugPrint("Longueur: $longueurEcran");
 
     return Scaffold(
-        backgroundColor: const Color(0xff14213D),
-        body: BlocConsumer<AuthenticationBloc, AuthenticationState>(
+        backgroundColor: primary,
+        body: BlocListener<AuthenticationBloc, AuthenticationState>(
           listener: (_, state) {
+            debugPrint("====== current state: $state");
             if(state is UserLoggingStateLoaded) {
               if(state.isLoggedIn) {
-                context.read<AuthenticationBloc>().add(CheckIfUserExistsEvent(
-                  uid: userController.currentUser.uid,
-                  role: userController.currentUser.role
-                ));
+                switch (userController.currentUserRole) {
+                  case UserRole.conducteur:
+                    Get.offAll(() => const HomePage());
+                    break;
+                  case UserRole.gardien:
+                  // Get.offAll(() => const HomePage());
+                    break;
+                  case UserRole.defaultRole: break;
+                }
+                // switch (userController.currentUserRole) {
+                //   case UserRole.conducteur:
+                //     context.read<AuthenticationBloc>().add(CheckIfUserExistsEvent(
+                //       uid: userController.currentConductor.uid,
+                //       role: UserRole.conducteur
+                //     ));
+                //     break;
+                //   case UserRole.gardien:
+                //     context.read<AuthenticationBloc>().add(CheckIfUserExistsEvent(
+                //       uid: userController.currentSecurity.uid,
+                //       role: UserRole.gardien
+                //     ));
+                //     break;
+                //   case UserRole.defaultRole: break;
+                // }
+              }
+              else if(userController.currentUserRole == UserRole.defaultRole) {
+                Get.offAll(() => const OnBoardingView());
               }
               else {
                 Get.offAll(() => const InterfaceLogin());
               }
             }
             else if(state is UserExistenceCheckedState) {
-              state.exists ? Get.offAll(() => const HomePage()) : Get.offAll(() => const InterfaceComplexion());
+              if(state.exists) {
+                switch (userController.currentUserRole) {
+                  case UserRole.conducteur:
+                    Get.offAll(() => const HomePage());
+                    break;
+                  case UserRole.gardien:
+                    // Get.offAll(() => const HomePage());
+                    break;
+                  case UserRole.defaultRole: break;
+                }
+                return;
+              }
+
+              Get.offAll(() => const InterfaceInformation());
             }
           },
-          builder: (_, state) {
-            if(State is AuthLoadingState) {
-              return Center(
-                child: Image.asset(
-                  'asset/icons/fav.ico',
-                  fit: BoxFit.cover, // Ajuster l'image pour couvrir la zone
-                  height: (longueurEcran/1.78),
-                  width: (largeurEcran/0.82),
-                ),
-              );
-            }
-            return const Center(child: Text("Une erreur s'est produite"),);
-          },
+          child: Center(
+            child: Image.asset(
+              'asset/icons/fav.ico',
+              fit: BoxFit.cover, // Ajuster l'image pour couvrir la zone
+              height: (longueurEcran/1.78),
+              width: (largeurEcran/0.82),
+            ),
+          )
         )
     );
   }

@@ -1,29 +1,34 @@
 
 import 'package:ulysse_app/core/utilities/enum.dart';
-import 'package:ulysse_app/features/authentification/data/models/user_model.dart';
+import 'package:ulysse_app/features/authentification/data/models/conductor_model.dart';
+import 'package:ulysse_app/features/authentification/data/models/security_model.dart';
 
 abstract class AuthenticationRemoteDataSource {
   const AuthenticationRemoteDataSource();
 
-  Future<void> createUser(
-    String id,
-    String name,
-    String phone,
-    UserRole role,
-    int workDuration,
-    DateTime startAt,
-    DateTime endAt
-  );
+  Future<void> createConductor({
+    required ConductorModel conductor
+  });
 
-  Future<UserModel> getCurrentUser(String uid, UserRole role);
+  Future<ConductorModel> getConductor({
+    required String id
+  });
+  
+  Future<SecurityModel> getSecurity({
+    required String id
+  });
+
+  Future<void> createSecurity({
+    required SecurityModel security
+  });
 
   Future<bool> checkIfUserExist(String uid, UserRole role);
 
-  Future<UserModel> siginWithFacebook();
+  Future<ConductorModel> siginWithFacebook();
 
-  Future<UserModel> siginWithGoogle();
+  Future<ConductorModel> siginWithGoogle();
 
-  Future<UserModel> siginWithEmailAndPassword(String email, String password);
+  Future<ConductorModel> siginWithEmailAndPassword(String email, String password);
 
   Future<void> signOut();
 }
