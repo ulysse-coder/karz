@@ -112,7 +112,247 @@ class _InterfacePaiementState extends State<InterfacePaiement> {
 
             SizedBox(height: longueurEcran / 66), // 10
 
+            Container(
+              child: Text(
+                'Nom et prénom du détenteur de la carte',
+              style: TextStyle(
+                fontSize: (longueurEcran/61.6), //10
+                color: Colors.grey,
+              ),
+            ),
+
+            SizedBox(height: longueurEcran / 660), // 1
+
+            Container(
+              margin: EdgeInsets.symmetric(vertical: longueurEcran / 330, horizontal: largeurEcran / 12.47), // 5, 30
+              child: TextField(
+                controller: _name,
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.symmetric(vertical: longueurEcran / 66, horizontal: largeurEcran / 37.5), // 15, 15
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(longueurEcran / 66.0), // 10
+                    borderSide: const BorderSide(
+                      color: Colors.black,
+                      width: 1,
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(longueurEcran / 66.0), // 10
+                    borderSide: const BorderSide(
+                      color: Colors.black,
+                      width: 1,
+                    ),
+                  ),
+                ),
+                onChanged: (value) {
+                  setState(() {});
+                },
+              ),
+            ),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    child: Text(
+                      'N° de carte',
+                      style: TextStyle(
+                        fontSize: (longueurEcran/61.6), //10
+                        color: Colors.grey,
+                      ),
+                    ),
+
+                    SizedBox(height: longueurEcran / 660), // 1
+
+                    Container(
+                      margin: EdgeInsets.symmetric(vertical: longueurEcran / 330, horizontal: largeurEcran / 12.47), // 5, 30
+                      child: TextField(
+                        controller: _name,
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.symmetric(vertical: longueurEcran / 66, horizontal: largeurEcran / 37.5), // 15, 15
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(longueurEcran / 66.0), // 10
+                            borderSide: const BorderSide(
+                              color: Colors.black,
+                              width: 1,
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(longueurEcran / 66.0), // 10
+                            borderSide: const BorderSide(
+                              color: Colors.black,
+                              width: 1,
+                            ),
+                          ),
+                        ),
+                        onChanged: (value) {
+                          setState(() {});
+                        },
+                      ),
+                    ),
+                    SizedBox(height: longueurEcran / 660),
+                      Container(
+                       child: Text(
+                          'CVC',
+                          style: TextStyle(
+                            fontSize: (longueurEcran/61.6), //10
+                            color: Colors.grey,
+                          ),
+                        ),
+                        child: Container(
+                          margin: EdgeInsets.symmetric(vertical: longueurEcran / 330, horizontal: largeurEcran / 12.47), // 5, 30
+                          child: TextField(
+                            controller: _name,
+                            decoration: InputDecoration(
+                          contentPadding: EdgeInsets.symmetric(vertical: longueurEcran / 66, horizontal: largeurEcran / 37.5), // 15, 15
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(longueurEcran / 66.0), // 10
+                            borderSide: const BorderSide(
+                              color: Colors.black,
+                              width: 1,
+                            ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(longueurEcran / 66.0), // 10
+                      borderSide: const BorderSide(
+                        color: Colors.black,
+                        width: 1,
+                      ),
+                    ),
+                  ),
+                  onChanged: (value) {
+                    setState(() {});
+                  },
+                ),
+              ),
+
+              )
+            ),
               ],
+            ),
+              SizedBox(height: longueurEcran / 660),
+
+              Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                    child: Text(
+                      'Date d''expiration',
+                      style: TextStyle(
+                        fontSize: (longueurEcran/61.6), //10
+                        color: Colors.grey,
+                      ),
+                    ),
+
+                    SizedBox(height: longueurEcran / 660), // 1
+
+                    Container(
+                      margin: EdgeInsets.symmetric(vertical: longueurEcran / 330, horizontal: largeurEcran / 12.47), // 5, 30
+                      child: TextField(
+                        controller: _name,
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.symmetric(vertical: longueurEcran / 66, horizontal: largeurEcran / 37.5), // 15, 15
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(longueurEcran / 66.0), // 10
+                            borderSide: const BorderSide(
+                              color: Colors.black,
+                              width: 1,
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(longueurEcran / 66.0), // 10
+                            borderSide: const BorderSide(
+                              color: Colors.black,
+                              width: 1,
+                            ),
+                          ),
+                        ),
+                        onChanged: (value) {
+                          setState(() {});
+                        },
+                      ),
+                    ),
+                    SizedBox(height: longueurEcran / 660),
+                    Container(
+
+                      child: Container(
+                        margin: EdgeInsets.symmetric(vertical: longueurEcran / 330, horizontal: largeurEcran / 12.47), // 5, 30
+                        child: TextField(
+                          controller: _name,
+                          decoration: InputDecoration(
+                            contentPadding: EdgeInsets.symmetric(vertical: longueurEcran / 66, horizontal: largeurEcran / 37.5), // 15, 15
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(longueurEcran / 66.0), // 10
+                              borderSide: const BorderSide(
+                                color: Colors.black,
+                                width: 1,
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(longueurEcran / 66.0), // 10
+                              borderSide: const BorderSide(
+                                color: Colors.black,
+                                width: 1,
+                              ),
+                            ),
+                          ),
+                          onChanged: (value) {
+                            setState(() {});
+                          },
+                        ),
+                      ),
+
+                    )
+                ),
+              ],
+            ),
+              SizedBox(height: longueurEcran / 660),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Checkbox(
+                    value: isChecked,
+                    onChanged: (bool? value) {
+                      setState(() {
+                        isChecked = value!;
+                      });
+                    },
+                  ),
+                  Text('Enregistrer ma carte'),
+                ],
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  // Action à effectuer lorsque le bouton est pressé
+                },
+                child:
+              ),
+              ],
+
+                SizedBox(height: longueurEcran / 660),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Checkbox(
+                  value: isChecked,
+                  onChanged: (bool? value) {
+                    setState(() {
+                      isChecked = value!;
+                    });
+                  },
+                ),
+                Text('Je déclare sur honneur que les informations saisies sont correctes, et conformes à notre politique de confidentialité des données'),
+              ],
+            ),
+            ElevatedButton(
+              onPressed: () {
+
+              },
+              child:
+            ),
+          ],
+
+            ),
             ),
       ),
     );
