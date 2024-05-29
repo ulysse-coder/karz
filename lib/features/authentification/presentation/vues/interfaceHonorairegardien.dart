@@ -1,8 +1,5 @@
+interface honoraire gardien
 import 'package:flutter/material.dart';
-
-void main() {
-  runApp(const MyApp());
-}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -10,19 +7,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const InterfaceInformation(),
+      home: const InterfaceHonoraire(),
     );
   }
 }
 
-class InterfaceInformation extends StatefulWidget {
-  const InterfaceInformation({super.key});
+class InterfaceHonoraire extends StatefulWidget {
+  const InterfaceHonoraire({super.key});
 
   @override
-  State<InterfaceInformation> createState() => _InterfaceInformationState();
+  State<InterfaceHonoraire> createState() => _InterfaceHonoraireState();
 }
 
-class _InterfaceInformationState extends State<InterfaceInformation> {
+class _InterfaceHonoraireState extends State<InterfaceHonoraire> {
+
   bool _isChecked = false;
   List<String> _selectedDays = [];
   final List<String> _daysOfWeek = [
