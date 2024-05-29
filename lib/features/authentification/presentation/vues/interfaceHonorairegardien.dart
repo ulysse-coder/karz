@@ -271,4 +271,3 @@ class _InterfaceHonoraireState extends State<InterfaceHonoraire> {
   }
 }
 
-//redonne le code complet en prenant en compte que si on coche je travaille du lundi au samedi, selectionnez vos jours de travail, devient inactif
