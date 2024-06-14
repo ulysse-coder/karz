@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:ulysse_app/core/services/dependencies_injections.dart';
 import 'package:ulysse_app/features/authentification/presentation/app/bloc/authentication_bloc.dart';
+import 'package:ulysse_app/features/authentification/presentation/vues/interfaceAbonnement.dart';
 import 'package:ulysse_app/features/authentification/presentation/vues/interface_demarrage.dart';
 import 'package:ulysse_app/firebase_options.dart';
 
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
               colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
               useMaterial3: true,
             ),
-            home: const InterfaceDemarrage()
+            home: const InterfaceAbonnement()
         )
     );
   }

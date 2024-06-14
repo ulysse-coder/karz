@@ -112,14 +112,13 @@ class _InterfacePaiementState extends State<InterfacePaiement> {
 
             SizedBox(height: longueurEcran / 66), // 10
 
-            Container(
-              child: Text(
-                'Nom et prénom du détenteur de la carte',
-              style: TextStyle(
-                fontSize: (longueurEcran/61.6), //10
-                color: Colors.grey,
-              ),
+            Text(
+              'Nom et prénom du détenteur de la carte',
+            style: TextStyle(
+              fontSize: (longueurEcran/61.6), //10
+              color: Colors.grey,
             ),
+                        ),
 
             SizedBox(height: longueurEcran / 660), // 1
 
@@ -153,14 +152,13 @@ class _InterfacePaiementState extends State<InterfacePaiement> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    child: Text(
-                      'N° de carte',
-                      style: TextStyle(
-                        fontSize: (longueurEcran/61.6), //10
-                        color: Colors.grey,
-                      ),
+                  Text(
+                    'N° de carte',
+                    style: TextStyle(
+                      fontSize: (longueurEcran/61.6), //10
+                      color: Colors.grey,
                     ),
+                  ),
 
                     SizedBox(height: longueurEcran / 660), // 1
 
@@ -191,15 +189,14 @@ class _InterfacePaiementState extends State<InterfacePaiement> {
                       ),
                     ),
                     SizedBox(height: longueurEcran / 660),
-                      Container(
-                       child: Text(
-                          'CVC',
-                          style: TextStyle(
-                            fontSize: (longueurEcran/61.6), //10
-                            color: Colors.grey,
-                          ),
-                        ),
-                        child: Container(
+                      Text(
+                         'CVC',
+                         style: TextStyle(
+                           fontSize: (longueurEcran/61.6), //10
+                           color: Colors.grey,
+                         ),
+                       ),
+        Container(
                           margin: EdgeInsets.symmetric(vertical: longueurEcran / 330, horizontal: largeurEcran / 12.47), // 5, 30
                           child: TextField(
                             controller: _name,
