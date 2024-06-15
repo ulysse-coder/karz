@@ -13,11 +13,9 @@ import 'package:ulysse_app/features/authentification/data/data_sources/remote/au
 import 'package:ulysse_app/features/authentification/data/repositories/authentication_repositries_implementation.dart';
 import 'package:ulysse_app/features/authentification/domain/repositories/authentication_repository.dart';
 import 'package:ulysse_app/features/authentification/domain/usecases/check_if_user_exist.dart';
-import 'package:ulysse_app/features/authentification/domain/usecases/create_conductor.dart';
-import 'package:ulysse_app/features/authentification/domain/usecases/create_security.dart';
-import 'package:ulysse_app/features/authentification/domain/usecases/get_conductor.dart';
+import 'package:ulysse_app/features/authentification/domain/usecases/create_user.dart';
+import 'package:ulysse_app/features/authentification/domain/usecases/get_current_user.dart';
 import 'package:ulysse_app/features/authentification/domain/usecases/get_current_user_from_cache.dart';
-import 'package:ulysse_app/features/authentification/domain/usecases/get_security.dart';
 import 'package:ulysse_app/features/authentification/domain/usecases/get_user_logging_state.dart';
 import 'package:ulysse_app/features/authentification/domain/usecases/save_current_user_to_cache.dart';
 import 'package:ulysse_app/features/authentification/domain/usecases/set_user_logging_state.dart';
@@ -61,10 +59,8 @@ Future<void> init() async {
   sl
     // app logic
     ..registerFactory(() => AuthenticationBloc(
-        createConductor: sl(),
-        createSecurity: sl(),
-        getConductor: sl(),
-        getSecurity: sl(),
+        createUser: sl(),
+        getCurrentUser: sl(),
         getUserLoggingState: sl(),
         setUserLoggingState: sl(),
         checkIfUserExists: sl(),
@@ -93,10 +89,8 @@ Future<void> init() async {
         cancelReservation: sl()))
 
     // auth use cases
-    ..registerLazySingleton(() => CreateConductor(sl()))
-    ..registerLazySingleton(() => CreateSecurity(sl()))
-    ..registerLazySingleton(() => GetConductor(sl()))
-    ..registerLazySingleton(() => GetSecurity(sl()))
+    ..registerLazySingleton(() => CreateUser(sl()))
+    ..registerLazySingleton(() => GetCurrentUser(sl()))
     ..registerLazySingleton(() => GetUserLoggingState(sl()))
     ..registerLazySingleton(() => SetUserLoggingState(sl()))
     ..registerLazySingleton(() => CheckIfUserExist(sl()))

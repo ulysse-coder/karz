@@ -2,15 +2,12 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:ulysse_app/core/utilities/auth_params.dart';
 import 'package:ulysse_app/core/utilities/enum.dart';
-import 'package:ulysse_app/features/authentification/domain/entities/conductor_entity.dart';
-import 'package:ulysse_app/features/authentification/domain/entities/security_entity.dart';
 import 'package:ulysse_app/features/authentification/domain/entities/user_entity.dart';
 import 'package:ulysse_app/features/authentification/domain/usecases/check_if_user_exist.dart';
-import 'package:ulysse_app/features/authentification/domain/usecases/create_conductor.dart';
-import 'package:ulysse_app/features/authentification/domain/usecases/create_security.dart';
-import 'package:ulysse_app/features/authentification/domain/usecases/get_conductor.dart';
+import 'package:ulysse_app/features/authentification/domain/usecases/create_user.dart';
+import 'package:ulysse_app/features/authentification/domain/usecases/create_user.dart';
+import 'package:ulysse_app/features/authentification/domain/usecases/get_current_user.dart';
 import 'package:ulysse_app/features/authentification/domain/usecases/get_current_user_from_cache.dart';
-import 'package:ulysse_app/features/authentification/domain/usecases/get_security.dart';
 import 'package:ulysse_app/features/authentification/domain/usecases/get_user_logging_state.dart';
 import 'package:ulysse_app/features/authentification/domain/usecases/save_current_user_to_cache.dart';
 import 'package:ulysse_app/features/authentification/domain/usecases/set_user_logging_state.dart';
@@ -24,10 +21,8 @@ part 'authentication_state.dart';
 
 class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> {
   AuthenticationBloc({
-    required CreateConductor createConductor,
-    required CreateSecurity createSecurity,
-    required GetConductor getConductor,
-    required GetSecurity getSecurity,
+    required CreateUser createUser,
+    required GetCurrentUser getCurrentUser,
     required SetUserLoggingState setUserLoggingState,
     required GetUserLoggingState getUserLoggingState,
     required CheckIfUserExist checkIfUserExists,
@@ -39,10 +34,8 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
     required GetCurrentUserFromCache getCurrentUserFromCache
   }) : 
   
-  _createConductor = createConductor,
-  _createSecurity = createSecurity,
-  _getConductor = getConductor,
-  _getSecurity = getSecurity,
+  _createUser = createUser,
+  _getCurrentUser = getCurrentUser,
   _getUserLoggingState = getUserLoggingState,
   _setUserLoggingState = setUserLoggingState,
   _checkIfUserExists = checkIfUserExists,
@@ -53,45 +46,48 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
   _saveCurrenUserToCache = saveCurrentUserToCache,
   _getCurrentUserFromCache = getCurrentUserFromCache,
   super(AuthenticationInitial()) {
-    on<CreateConductorEvent>((event, emit) async {
+    on<CreateUserEvent>((event, emit) async {
       emit(AuthLoadingState());
 
-      final result = await _createConductor(event.conductor);
+      final result = await _createUser(CreateUserParams(
+        id: event.id,
+        name: event.name,
+        phone: event.phone,
+        role: event.role,
+        workDuration: event.workDuration??0,
+        startAt: event.startAt ?? DateTime.now(),
+        endAt: event.endAt ?? DateTime.now()
+      ));
 
-      result.fold((l) => null, (r) => emit(UserCreatedState()));
-    });
-    on<CreateSecurityEvent>((event, emit) async {
-      emit(AuthLoadingState());
-
-      final result = await _createSecurity(event.security);
-
-      result.fold((l) => null, (r) => emit(UserCreatedState()));
-    });
-    on<GetConductorEvent>((event, emit) async {
-      emit(AuthLoadingState());
-
-      final result = await _getConductor(event.id);
-
-      result.fold((l) => null, (conductor) => emit(ConductorLoaded(conductor: conductor)));
-    });
-    on<GetSecurityEvent>((event, emit) async {
-      emit(AuthLoadingState());
-
-      final result = await _getSecurity(event.id);
-
-      result.fold((l) => null, (security) => emit(SecurityLoaded(security: security)));
+      result.fold(
+        (l) => null, 
+        (_) => emit(UserCreatedState())
+      );
     });
     on<SaveCurrenUserToCacheEvent>((event, emit) async {
       final result = await _saveCurrenUserToCache(event.user);
 
-      result.fold((l) => null, (r) => emit(UserSavedToCache()));
+      result.fold((l) => null, (r) => emit(UserCreatedState()));
+    });
+    on<GetCurrentUserEvent>((event, emit) async {
+      emit(AuthLoadingState());
+
+      final result = await _getCurrentUser(UserURParams(
+        uid: event.uid, 
+        role: event.role
+      ));
+      
+      result.fold(
+        (l) => null, 
+        (user) => emit(UserLoadedState(user: user))
+      );
     });
     on<GetCurrentUserFromCacheEvent>((event, emit) async {
       emit(AuthLoadingState());
 
       final result = await _getCurrentUserFromCache();
 
-      result.fold((l) => null, (conductor) => emit(ConductorLoaded(conductor: conductor)));
+      result.fold((l) => null, (user) => emit(UserLoadedState(user: user)));
     });
     on<CheckIfUserExistsEvent>((event, emit) async {
       emit(AuthLoadingState());
@@ -116,7 +112,7 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
 
       result.fold(
         (l) => null, 
-        (conductor) => emit(ConductorSignedInState(conductor: conductor))
+        (user) => emit(UserSignedInState(user: user))
       );
     });
     on<SiginWithFacebookEvent>((event, emit) async {
@@ -126,7 +122,7 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
 
       result.fold(
         (l) => null, 
-        (conductor) => emit(ConductorSignedInState(conductor: conductor))
+        (user) => emit(UserSignedInState(user: user))
       );
     });
     on<SiginWithGoogleEvent>((event, emit) async {
@@ -136,7 +132,7 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
 
       result.fold(
         (l) => null, 
-        (conductor) => emit(ConductorSignedInState(conductor: conductor))
+        (user) => emit(UserSignedInState(user: user))
       );
     });
     on<SignOutEvent>((event, emit) async {
@@ -163,10 +159,8 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
     });
   }
 
-  final CreateConductor _createConductor;
-  final CreateSecurity _createSecurity;
-  final GetConductor _getConductor;
-  final GetSecurity _getSecurity;
+  final CreateUser _createUser;
+  final GetCurrentUser _getCurrentUser;
   final SetUserLoggingState _setUserLoggingState;
   final GetUserLoggingState _getUserLoggingState;
   final CheckIfUserExist _checkIfUserExists;

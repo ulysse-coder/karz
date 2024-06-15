@@ -18,9 +18,8 @@ ReservationModel _$ReservationModelFromJson(Map<String, dynamic> json) =>
       place: json['place'] == null
           ? ''
           : json['place'] as String,
-      date: json['date'] as String,
-      startTime: json['start_time'] as String,
-      endTime: json['end_time'] as String,
+      startTime: DateTime.parse(json['start_time'] as String),
+      endTime: DateTime.parse(json['end_time'] as String),
       status: $enumDecode(_$ReservationStatusEnumMap, json['status']),
     );
 
@@ -33,9 +32,8 @@ Map<String, dynamic> _$ReservationModelToJson(ReservationModel instance) =>
       'parking_id': instance.parkingId,
       'parking_address': instance.parkingAddress,
       'place': instance.place,
-      'date': instance.date,
-      'start_time': instance.startTime,
-      'end_time': instance.endTime,
+      'start_time': instance.startTime.toIso8601String(),
+      'end_time': instance.endTime.toIso8601String(),
       'status': _$ReservationStatusEnumMap[instance.status],
     };
 

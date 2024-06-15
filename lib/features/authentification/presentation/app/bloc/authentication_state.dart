@@ -20,24 +20,6 @@ final class UserLoadedState extends AuthenticationState {
   List<Object> get props => [user];
 }
 
-final class ConductorLoaded extends AuthenticationState {
-  const ConductorLoaded({required this.conductor});
-
-  final ConductorEntity conductor;
-
-  @override
-  List<Object> get props => [conductor];
-}
-
-final class SecurityLoaded extends AuthenticationState {
-  const SecurityLoaded({required this.security});
-
-  final SecurityEntity security;
-
-  @override
-  List<Object> get props => [security];
-}
-
 final class UserLoggingStateLoaded extends AuthenticationState {
   const UserLoggingStateLoaded({
     required this.isLoggedIn
@@ -52,15 +34,14 @@ final class UserLoggingStateLoaded extends AuthenticationState {
 final class UserLoggingStateModified extends AuthenticationState {}
 
 final class UserCreatedState extends AuthenticationState {}
-final class UserSavedToCache extends AuthenticationState {}
 
-final class ConductorSignedInState extends AuthenticationState {
-  const ConductorSignedInState({required this.conductor});
+final class UserSignedInState extends AuthenticationState {
+  const UserSignedInState({required this.user});
 
-  final ConductorEntity conductor;
+  final UserEntity user;
 
   @override
-  List<Object> get props => [conductor];
+  List<Object> get props => [user];
 }
 
 final class UserSignedOutState extends AuthenticationState {}
