@@ -3,6 +3,11 @@ import 'package:ulysse_app/core/constants/colors.dart';
 import 'package:ulysse_app/core/constants/dimensions.dart';
 import 'package:ulysse_app/core/widgets/standard_text.dart';
 import 'package:ulysse_app/features/authentification/data/models/conductor_model.dart';
+import 'package:ulysse_app/features/authentification/presentation/vues/myprofile.dart';
+import 'package:ulysse_app/features/reservation/presentation/vues/historique.dart';
+import 'interfaceAbonnement.dart';
+import 'interfaceHonorairegardien.dart';
+import 'interfaceParrainage.dart';
 
 class Sidebar extends StatelessWidget {
   const Sidebar({
@@ -28,20 +33,30 @@ class Sidebar extends StatelessWidget {
               )
             ),
             accountEmail: StandardText(text: "conductor.phone", fontWeight: FontWeight.bold,),
-            currentAccountPicture: CircleAvatar(
-              radius: 50,
-              backgroundColor: primary,
-              child: ClipOval(
-                child: Text(
-                  "C"/*onductor.name[0].toUpperCase()*/,
-                  style: TextStyle(
-                    fontFamily: 'Itim',
-                    fontSize: font24*3,
-                    color: secondary
+            currentAccountPicture: Center(
+              child: CircleAvatar(
+                  radius: 50,
+                  backgroundColor: primary,
+                  child:Stack(
+                    children: [
+                      Align(
+                        alignment: Alignment.center,
+                        child: ClipOval(
+                            child: Center(child:
+                            Text(
+                                "C"/*onductor.name[0].toUpperCase()*/,
+                                style: TextStyle(
+                                    fontFamily: 'Itim',
+                                    fontSize: font24*3,
+                                    color: secondary
+                                )
+                            ),)
+                        ),
+                      )
+                    ],
                   )
-                )
-              )
-            ),
+              ),
+            )
           ),
           ListTile(
             leading: Icon(
@@ -55,7 +70,14 @@ class Sidebar extends StatelessWidget {
                 fontSize: font24
               )
             ),
-            onTap: () => debugPrint('Mes informations'),
+            onTap: () {
+              // Navigation vers la nouvelle interface
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Myprofile()),
+              );
+            },
+            //onTap: () => debugPrint('Mes informations'),
           ),
           ListTile(
             leading: Icon(
@@ -69,7 +91,14 @@ class Sidebar extends StatelessWidget {
                 fontSize: font24
               )
             ),
-            onTap: () => debugPrint('Mes réservations'),
+            onTap: () {
+              // Navigation vers la nouvelle interface
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => History()),
+              );
+            },
+            //onTap: () => debugPrint('Mes réservations'),
           ),
           const Divider( // Ligne pleine
             height: 3, // Hauteur de la ligne
@@ -88,7 +117,12 @@ class Sidebar extends StatelessWidget {
                 fontSize: font24
               )
             ),
-            onTap: () => debugPrint('Parrainez vos amis'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => InterfaceParrainage()),
+              );
+            }
           ),
           ListTile(
             leading: Icon(
@@ -102,7 +136,12 @@ class Sidebar extends StatelessWidget {
                 fontSize: font24
               )
             ),
-            onTap: () => debugPrint('Mon code promo'),
+            onTap: () {
+    Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => InterfaceHonoraire()),
+    );
+    }
           ),
           ListTile(
             leading: Icon( 
@@ -118,8 +157,12 @@ class Sidebar extends StatelessWidget {
                 color: Colors.orange
               )
             ),
-            onTap: () => debugPrint('Premium'),
-          ),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => InterfaceAbonnement()),
+              );
+            }),
           const Spacer(),
           Container(
             margin: EdgeInsets.symmetric(vertical: marginH24),

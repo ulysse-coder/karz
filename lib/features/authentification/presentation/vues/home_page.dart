@@ -30,10 +30,11 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomInset: true,
       drawer: Sidebar(conductor: userController.currentConductor),
-      appBar: AppBar(
-        title: Text("Titre"),
-      ),
+       appBar: AppBar(
+         title: Text("Titre"),
+       ),
       body: Stack(
         children: [
           Image.asset(
@@ -102,20 +103,28 @@ class _HomePageState extends State<HomePage> {
                       labelStyle: TextStyle(
                           fontSize: font14 + 2,
                           fontWeight: FontWeight.bold,
-                          color: const Color(0xFFB3B3B3)
+                          color: secondary
                       ),
                       hintStyle: TextStyle(
                           fontSize: font14 + 2, //16
-                          fontWeight: FontWeight.bold
+                          fontWeight: FontWeight.bold,
+                          color: const Color(0xFFB3B3B3)
                       ),
                       focusedBorder: const OutlineInputBorder(
                         borderSide: BorderSide(color: primary),
                       ),
                     ),
+                    style: TextStyle(
+                      color: Colors.deepOrange, // Définit la couleur du texte saisi
+                      fontSize: 16, // Optionnel : taille de la police
+                      fontWeight: FontWeight.bold, // Optionnel : poids de la police
+                    ),
                   ),
                   SizedBox(height: height24,),
                   DropdownButtonFormField<VehiculeType>(
                     value: _selectedType.value,
+                      //style: TextStyle(color: Colors.blueAccent),
+                      dropdownColor: primary,
                     items: List.generate(
                       _type.length,
                       (index) => DropdownMenuItem(
@@ -129,7 +138,7 @@ class _HomePageState extends State<HomePage> {
                         },
                         child: Heading2(
                           text: _type[index],
-                          color: Colors.white,
+                          color: secondary,
                         )
                       )
                     ),
