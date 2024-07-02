@@ -1,27 +1,21 @@
 
 import 'package:ulysse_app/core/typedef/typedef.dart';
 import 'package:ulysse_app/core/utilities/enum.dart';
-import 'package:ulysse_app/features/authentification/domain/entities/conductor_entity.dart';
-import 'package:ulysse_app/features/authentification/domain/entities/security_entity.dart';
 import 'package:ulysse_app/features/authentification/domain/entities/user_entity.dart';
 
 abstract class AuthenticationRepository {
 
-  ResultVoid createConductor({
-    required ConductorEntity conductor
-  });
+  ResultVoid createUser(
+    String id,
+    String name,
+    String phone,
+    UserRole role,
+    int workDuration,
+    DateTime startAt,
+    DateTime endAt
+  );
 
-  ResultFuture<ConductorEntity> getConductor({
-    required String id
-  });
-
-  ResultVoid createSecurity({
-    required SecurityEntity security
-  });
-
-  ResultFuture<SecurityEntity> getSecurity({
-    required String id
-  });
+  ResultFuture<UserEntity> getCurrentUser(String uid, UserRole role);
 
   ResultBool checkIfUserExist(String uid, UserRole role);
 
@@ -29,16 +23,16 @@ abstract class AuthenticationRepository {
 
   ResultVoid setUserLoggingState();
 
-  ResultFuture<ConductorEntity> siginWithFacebook();
+  ResultFuture<UserEntity> siginWithFacebook();
 
-  ResultFuture<ConductorEntity> siginWithGoogle();
+  ResultFuture<UserEntity> siginWithGoogle();
 
-  ResultFuture<ConductorEntity> siginWithEmailAndPassword(String email, String password);
+  ResultFuture<UserEntity> siginWithEmailAndPassword(String email, String password);
 
   ResultVoid signOut();
 
-  ResultVoid saveCurrentUserToCache(String user);
+  ResultVoid saveCurrentUserToCache(UserEntity user);
 
-  ResultFuture<ConductorEntity> getCurrentUserFromCache();
+  ResultFuture<UserEntity> getCurrentUserFromCache();
 
 }

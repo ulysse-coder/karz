@@ -1,7 +1,6 @@
 
 import 'package:equatable/equatable.dart';
 import 'package:ulysse_app/core/utilities/enum.dart';
-import 'package:ulysse_app/features/parking/data/models/address_model.dart';
 
 class ParkingEntity extends Equatable {
   const ParkingEntity({
@@ -23,9 +22,9 @@ class ParkingEntity extends Equatable {
   final int freePlaces;
   final double reservationPrice;
   final ParkingType type;
-  final AddressModel address;
+  final String address;
   final String registeredBy;
-  final String registeredAt;
+  final DateTime registeredAt;
   final List<VehiculeType> acceptedVehiculeType;
   final double? rate;
   final int? reviewsNumber;

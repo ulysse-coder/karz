@@ -7,48 +7,17 @@ sealed class AuthenticationEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class GetConductorEvent extends AuthenticationEvent {
-  const GetConductorEvent({
-    required this.id,
+class GetCurrentUserEvent extends AuthenticationEvent {
+  const GetCurrentUserEvent({
+    required this.uid,
+    required this.role
   });
 
-  final String id;
+  final String uid;
+  final UserRole role;
 
   @override
-  List<Object> get props => [id];
-}
-
-class GetSecurityEvent extends AuthenticationEvent {
-  const GetSecurityEvent({
-    required this.id,
-  });
-
-  final String id;
-
-  @override
-  List<Object> get props => [id];
-}
-
-class CreateConductorEvent extends AuthenticationEvent {
-  const CreateConductorEvent({
-    required this.conductor
-  });
-
-  final ConductorEntity conductor;
-
-  @override
-  List<Object> get props => [conductor];
-}
-
-class CreateSecurityEvent extends AuthenticationEvent {
-  const CreateSecurityEvent({
-    required this.security
-  });
-
-  final SecurityEntity security;
-
-  @override
-  List<Object> get props => [security];
+  List<Object> get props => [uid, role];
 }
 
 class GetUserLoggingStateEvent extends AuthenticationEvent {}
@@ -57,12 +26,35 @@ class SetUserLoggingStateEvent extends AuthenticationEvent {}
 
 class GetCurrentUserFromCacheEvent extends AuthenticationEvent {}
 
+class CreateUserEvent extends AuthenticationEvent {
+  const CreateUserEvent({
+    required this.id,
+    required this.name,
+    required this.phone,
+    required this.role, 
+    this.workDuration, 
+    this.startAt, 
+    this.endAt 
+  });
+
+  final String id;
+  final String name;
+  final String phone;
+  final UserRole role; 
+  final int? workDuration; 
+  final DateTime? startAt; 
+  final DateTime? endAt;
+  
+  @override
+  List<Object> get props => [id, name, phone, role, workDuration!, startAt!, endAt!];
+}
+
 class SaveCurrenUserToCacheEvent extends AuthenticationEvent {
   const SaveCurrenUserToCacheEvent({
     required this.user
   });
 
-  final String user;
+  final UserEntity user;
 
   @override
   List<Object> get props => [user];

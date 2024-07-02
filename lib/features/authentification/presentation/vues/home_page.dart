@@ -1,13 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:ulysse_app/core/constants/colors.dart';
-import 'package:ulysse_app/core/constants/dimensions.dart';
-import 'package:ulysse_app/core/utilities/enum.dart';
-import 'package:ulysse_app/core/widgets/heading2.dart';
 import 'package:ulysse_app/features/authentification/presentation/app/controller/user_controller.dart';
 import 'package:get/get.dart';
-import 'package:ulysse_app/features/authentification/presentation/vues/sidebar.dart';
-import 'package:ulysse_app/features/reservation/presentation/vues/interaface_reservation.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -18,14 +12,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   UserController userController = Get.find();
-  final TextEditingController _address = TextEditingController();
-
-  final Rx<VehiculeType> _selectedType = VehiculeType.voiture.obs;
-  final _type = <dynamic>[
-    "Voiture",
-    "Deux roues (moto, etc...)",
-    "Mini bus / Van"
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -56,15 +42,13 @@ class _HomePageState extends State<HomePage> {
                   color: secondary,
                   size: font24*2,
                 ),
-              ),
-              Text(
-                "Karz",
-                textAlign: TextAlign.right,
-                style: TextStyle(
-                    fontFamily: "Itim",
-                    color: secondary,
-                    fontWeight: FontWeight.bold,
-                    fontSize: font24*2
+                child: const Text(
+                  'Deconnexion',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontFamily: 'Itim'
+                  ),
                 ),
               ),
             ],

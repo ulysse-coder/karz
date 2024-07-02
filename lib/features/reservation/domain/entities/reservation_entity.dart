@@ -13,7 +13,6 @@ class ReservationEntity extends Equatable {
     required this.parkingId,
     required this.parkingAddress,
     this.place,
-    required this.date,
     required this.startTime,
     required this.endTime,
     required this.status,
@@ -27,12 +26,11 @@ class ReservationEntity extends Equatable {
   final String parkingId;
   final String parkingAddress;
   final String? place;
-  final String date;
-  final String startTime;
-  final String endTime;
+  final DateTime startTime;
+  final DateTime endTime;
   final ReservationStatus status;
 
   @override
-  List<Object> get props => [id, conductorId, conductorName, conductorPhone, vehicule, parkingId, parkingAddress, place!, date, startTime, endTime, status];
+  List<Object> get props => [id, conductorId, conductorName, conductorPhone, vehicule, parkingId, parkingAddress, place!, startTime, endTime, status];
 
 }

@@ -1,48 +1,29 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:ulysse_app/features/authentification/data/models/bank_account_model.dart';
-import 'package:ulysse_app/features/authentification/domain/entities/conductor_entity.dart';
+import 'package:ulysse_app/core/utilities/enum.dart';
+import 'package:ulysse_app/features/authentification/data/models/user_model.dart';
 
 part 'conductor_model.g.dart';
 
-@JsonSerializable(explicitToJson: true)
-class ConductorModel extends ConductorEntity {
+@JsonSerializable()
+class ConductorModel extends UserModel {
   const ConductorModel({
     required super.uid,
     required super.name,
     required super.phone,
-    required super.bankAccounts
+    required super.role,
   });
 
   ConductorModel.fromDocumentSnapshot(DocumentSnapshot doc) : this(
     uid: doc.id,
     name: doc['name'],
     phone: doc['phone'],
-    bankAccounts: (doc['banck_accounts'] as List<dynamic>)
-      .map((bank) => BankAccountModel.fromJson(bank as Map<String, dynamic>))
-      .toList()
-  );
-
-  ConductorModel.empty() : this(
-    uid: '',
-    name: '',
-    phone: '',
-    bankAccounts: <BankAccountModel>[]
-  );
-
-  ConductorModel copyWith({
-    String? name,
-    String? phone,
-    List<BankAccountModel>? bankAccounts
-  }) => ConductorModel(
-    uid: uid, 
-    name: name ?? this.name, 
-    phone: phone ?? this.phone,
-    bankAccounts: bankAccounts ?? this.bankAccounts, 
+    role: UserRole.conducteur,
   );
 
   factory ConductorModel.fromJson(Map<String, dynamic> json) => _$ConductorModelFromJson(json);
 
+  @override
   Map<String, dynamic> toJson() => _$ConductorModelToJson(this);
 }
