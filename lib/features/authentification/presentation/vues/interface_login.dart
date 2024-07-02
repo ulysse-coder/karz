@@ -22,6 +22,7 @@ class _InterfaceLoginState extends State<InterfaceLogin> {
 
     return BlocListener<AuthenticationBloc, AuthenticationState>(
       listener: (context, state) {
+        debugPrint("============= CURRENT STATE: $state");
         if (state is AuthLoadingState) {
           loadingDialog();
         }
