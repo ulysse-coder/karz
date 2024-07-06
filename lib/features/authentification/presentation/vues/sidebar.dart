@@ -5,9 +5,9 @@ import 'package:ulysse_app/core/widgets/standard_text.dart';
 import 'package:ulysse_app/features/authentification/data/models/conductor_model.dart';
 import 'package:ulysse_app/features/authentification/presentation/vues/myprofile.dart';
 import 'package:ulysse_app/features/reservation/presentation/vues/historique.dart';
-import 'interfaceAbonnement.dart';
-import 'interfaceHonorairegardien.dart';
-import 'interfaceParrainage.dart';
+import 'interface_abonnement.dart';
+import 'interfaceh_honoraire_gardien.dart';
+import 'interface_parrainage.dart';
 
 class Sidebar extends StatelessWidget {
   const Sidebar({

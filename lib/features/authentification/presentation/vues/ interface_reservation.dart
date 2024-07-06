@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:ulysse_app/features/authentification/presentation/app/bloc/authentication_bloc.dart';
 import 'package:ulysse_app/features/authentification/presentation/app/controller/user_controller.dart';
-import 'package:ulysse_app/features/authentification/presentation/vues/home_page.dart';
-
-import '../../../../core/utilities/enum.dart';
 
 class InterfaceReservation extends StatefulWidget {
   const InterfaceReservation({Key? key}) : super(key: key);
 
   @override
-  _InterfaceReservationState createState() => _InterfaceReservationState();
+  State<InterfaceReservation> createState() => _InterfaceReservationState();
 }
 
 class _InterfaceReservationState extends State<InterfaceReservation> {

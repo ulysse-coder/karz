@@ -6,7 +6,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ulysse_app/core/errors/db_exception.dart';
 import 'package:ulysse_app/features/authentification/data/data_sources/local/authentication_local_data_source.dart';
 import 'package:ulysse_app/features/authentification/data/models/conductor_model.dart';
-import 'package:ulysse_app/features/authentification/data/models/user_model.dart';
 
 class AuthenticationLocalDataSourceImplementation implements AuthenticationLocalDataSource {
   const AuthenticationLocalDataSourceImplementation(this._auth, this._sharedPreferences);

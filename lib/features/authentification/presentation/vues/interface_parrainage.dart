@@ -31,7 +31,7 @@ class _InterfaceParrainageState extends State<InterfaceParrainage> {
         ),
         centerTitle: true,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios_new),
+          icon: const Icon(Icons.arrow_back_ios_new),
           onPressed: () {
             Navigator.pop(context); // Revenir à la page précédente
             //print("Icône de l'AppBar cliquée");
@@ -51,7 +51,7 @@ class _InterfaceParrainageState extends State<InterfaceParrainage> {
               height: (longueurEcran / 5), //250
             ),
 
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
 
             Text(
               'Invitez vos amis et gagnez des crédits',
@@ -71,7 +71,7 @@ class _InterfaceParrainageState extends State<InterfaceParrainage> {
               ),
             ),
 
-            SizedBox(height: 200),
+            const SizedBox(height: 200),
 
             Text(
               'Partager votre code dinvitation',
@@ -82,9 +82,9 @@ class _InterfaceParrainageState extends State<InterfaceParrainage> {
               ),
             ),
 
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.orange),
                 borderRadius: BorderRadius.circular(8.0),
@@ -98,7 +98,7 @@ class _InterfaceParrainageState extends State<InterfaceParrainage> {
                 ),
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
 
             Center(
               child: ElevatedButton(

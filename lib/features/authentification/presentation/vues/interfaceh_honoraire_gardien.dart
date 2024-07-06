@@ -34,7 +34,7 @@ class _InterfaceHonoraireState extends State<InterfaceHonoraire> {
       appBar: AppBar(
         backgroundColor: const Color(0xFFE5E5E5),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios_new),
+          icon: const Icon(Icons.arrow_back_ios_new),
           onPressed: () {
             Navigator.pop(context); // Revenir à la page précédente
             //print("Icône de l'AppBar cliquée");
@@ -70,7 +70,7 @@ class _InterfaceHonoraireState extends State<InterfaceHonoraire> {
             GestureDetector(
               onTap: () => _selectDays(context),
               child: Container(
-                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey),
                   borderRadius: BorderRadius.circular(5),
@@ -189,11 +189,11 @@ class _InterfaceHonoraireState extends State<InterfaceHonoraire> {
   Widget _buildTimeField(String initialValue) {
     return Container(
       width: 50,
-      margin: EdgeInsets.symmetric(horizontal: 5),
+      margin: const EdgeInsets.symmetric(horizontal: 5),
       child: TextField(
         textAlign: TextAlign.center,
         decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(vertical: 10),
+          contentPadding: const EdgeInsets.symmetric(vertical: 10),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
           ),

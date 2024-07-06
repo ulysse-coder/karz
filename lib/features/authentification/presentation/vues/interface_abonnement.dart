@@ -21,13 +21,13 @@ class _InterfaceAbonnementState extends State<InterfaceAbonnement> {
       appBar: AppBar(
         backgroundColor: const Color(0xFFD3D3D3),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios_new),
+          icon: const Icon(Icons.arrow_back_ios_new),
           onPressed: () {
             Navigator.pop(context); // Revenir à la page précédente
             //print("Icône de l'AppBar cliquée");
           },
         ),
-        title: Text(
+        title: const Text(
           'Abonnement Premium',
           textAlign: TextAlign.center,
           style: TextStyle(
@@ -57,7 +57,7 @@ class _InterfaceAbonnementState extends State<InterfaceAbonnement> {
                   ),
                 ],
               ),
-              child: Center(
+              child: const Center(
                 child: Text(
                   'Premium',
                   style: TextStyle(
@@ -93,7 +93,7 @@ class _InterfaceAbonnementState extends State<InterfaceAbonnement> {
                       color: const Color(0xFF14213D), // Updated color
                       borderRadius: BorderRadius.circular(5.0),
                     ),
-                    child: Center(
+                    child: const Center(
                       child: Text(
                         'Mensuel',
                         style: TextStyle(
@@ -106,7 +106,7 @@ class _InterfaceAbonnementState extends State<InterfaceAbonnement> {
                     ),
                   ),
                   const SizedBox(height: 7),
-                  Text(
+                  const Text(
                     'Avantage\nAvantage\nAvantage\nAvantage',
                     style: TextStyle(
                       fontSize: 15,
@@ -124,7 +124,7 @@ class _InterfaceAbonnementState extends State<InterfaceAbonnement> {
                         color: const Color(0xFF14213D), // Updated color
                         borderRadius: BorderRadius.circular(5.0),
                       ),
-                      child: Text(
+                      child: const Text(
                         'Tarif',
                         style: TextStyle(
                           fontSize: 14,
@@ -161,7 +161,7 @@ class _InterfaceAbonnementState extends State<InterfaceAbonnement> {
                       color: Colors.orange,
                       borderRadius: BorderRadius.circular(5.0),
                     ),
-                    child: Center(
+                    child: const Center(
                       child: Text(
                         'Annuel',
                         style: TextStyle(
@@ -174,7 +174,7 @@ class _InterfaceAbonnementState extends State<InterfaceAbonnement> {
                     ),
                   ),
                   const SizedBox(height: 7),
-                  Text(
+                  const Text(
                     'Avantage\nAvantage\nAvantage\nAvantage',
                     style: TextStyle(
                       fontSize: 15,
@@ -192,7 +192,7 @@ class _InterfaceAbonnementState extends State<InterfaceAbonnement> {
                         color: Colors.orange,
                         borderRadius: BorderRadius.circular(5.0),
                       ),
-                      child: Text(
+                      child: const Text(
                         'Tarif',
                         style: TextStyle(
                           fontSize: 14,

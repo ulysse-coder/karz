@@ -9,7 +9,6 @@ import 'package:ulysse_app/features/authentification/data/models/conductor_model
 import 'package:ulysse_app/features/authentification/data/models/security_model.dart';
 import 'package:ulysse_app/features/authentification/domain/entities/conductor_entity.dart';
 import 'package:ulysse_app/features/authentification/domain/entities/security_entity.dart';
-import 'package:ulysse_app/features/authentification/domain/entities/user_entity.dart';
 import 'package:ulysse_app/features/authentification/domain/repositories/authentication_repository.dart';
 
 class AuthenticationRepositoryImplementation implements AuthenticationRepository {

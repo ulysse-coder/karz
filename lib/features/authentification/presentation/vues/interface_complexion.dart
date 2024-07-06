@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ulysse_app/core/utilities/enum.dart';
 import 'package:ulysse_app/features/authentification/presentation/app/controller/user_controller.dart';
 import 'package:ulysse_app/features/authentification/presentation/vues/interface_information.dart';
 
@@ -65,8 +64,8 @@ class _InterfaceComplexionState extends State<InterfaceComplexion> {
                   InkWell(
                     onTap: () {
                       debugPrint('Bouton Conducteur appuyé');
-                      userController.currentUser = userController.currentUser.copyWith(role: UserRole.conducteur);
-                      debugPrint("========== Nouveau role: ${userController.currentUser.role}");
+                      // userController.currentConductor = userController.currentConductor.copyWith(role: UserRole.conducteur);
+                      // debugPrint("========== Nouveau role: ${userController.currentConductor.role}");
                       Get.to(() => const InterfaceInformation());
                     },
                     child: Container(
@@ -87,13 +86,13 @@ class _InterfaceComplexionState extends State<InterfaceComplexion> {
                   InkWell(
                       onTap: () {
                         debugPrint('Bouton Gardien appuyé');
-                        userController.currentUser = userController.currentUser.copyWith(role: UserRole.gardien);
-                        debugPrint("========== Nouveau role: ${userController.currentUser.role}");
+                        // userController.currentUser = userController.currentUser.copyWith(role: UserRole.gardien);
+                        // debugPrint("========== Nouveau role: ${userController.currentUser.role}");
                         Get.to(() => const InterfaceInformation());
                       },
                       child: Container(
                         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                             color: Colors.white,
                             //borderRadius: BorderRadius.circular(30)
                         ),
