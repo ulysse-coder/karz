@@ -32,9 +32,9 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
         resizeToAvoidBottomInset: true,
       drawer: Sidebar(conductor: userController.currentConductor),
-       appBar: AppBar(
-         title: Text("Titre"),
-       ),
+      appBar: AppBar(
+        title: Text("Titre"),
+      ),
       body: Stack(
         children: [
           Image.asset(
@@ -173,111 +173,6 @@ class _HomePageState extends State<HomePage> {
         ],
       )
 
-     /* CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            clipBehavior: Clip.none,
-            leading: IconButton(
-              onPressed:() => Scaffold.of(context).openDrawer(),
-              icon: Icon(
-                Icons.menu,
-                color: secondary,
-                size: font24*2,
-              ),
-            ),
-            title: Text(
-              "Karz",
-              textAlign: TextAlign.right,
-              style: TextStyle(
-                fontFamily: "Itim",
-                color: secondary,
-                fontWeight: FontWeight.bold,
-                fontSize: font24*2
-              ),
-            ),
-            expandedHeight: height220 + height100,
-            flexibleSpace: FlexibleSpaceBar(
-              background: Image.asset(
-                "asset/images/localisation.jpg",
-                width: double.maxFinite,
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: SizedBox(
-              height: double.maxFinite,
-              child: Stack(
-                children: [
-                  Positioned(
-                    top: -50,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    child: Container(
-                      width: double.maxFinite,
-                      padding: EdgeInsets.symmetric(
-                          vertical: paddingH24,
-                          horizontal: paddingW16
-                      ),
-                      decoration: BoxDecoration(
-                          color: secondary,
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(radius30),
-                              topRight: Radius.circular(radius30)
-                          )
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          TextFormField(
-                            controller: _address,
-                            keyboardType: TextInputType.streetAddress,
-                            decoration: InputDecoration(
-                              fillColor: Colors.white,
-                              labelText: "Où Allez vous?",
-                              hintText: "Ex: 13, rue Abdellah, Rabat",
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(radius15),
-                                borderSide: const BorderSide(color: Colors.white),
-                              ),
-                              labelStyle: TextStyle(
-                                  fontSize: font14 + 2,
-                                  fontWeight: FontWeight.bold,
-                                  color: const Color(0xFFB3B3B3)
-                              ),
-                              hintStyle: TextStyle(
-                                  fontSize: font14 + 2, //16
-                                  fontWeight: FontWeight.bold
-                              ),
-                              focusedBorder: const OutlineInputBorder(
-                                borderSide: BorderSide(color: primary),
-                              ),
-                            ),
-                          ),
-                          SizedBox(height: height16,),
-                          InkWell(
-                            onTap: () {},
-                            child: Container(
-                              width: double.maxFinite,
-                              padding: EdgeInsets.symmetric(vertical: paddingH10),
-                              decoration: BoxDecoration(
-                                color: secondary,
-                                borderRadius: BorderRadius.circular(radius15)
-                              ),
-                              child: const Heading2(text: "Valider", color: Colors.white, textAlign: TextAlign.center,),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-          )
-        ],
-      )*/
     );
   }
 }

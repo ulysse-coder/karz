@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class InterfaceParrainage extends StatefulWidget {
   const InterfaceParrainage({super.key});
 

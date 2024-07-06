@@ -50,7 +50,6 @@ class _InterfaceHonoraireState extends State<InterfaceHonoraire> {
           ),
         ),
         centerTitle: true,
-
       ),
       body: Padding(
         padding: EdgeInsets.all(largeurEcran / 25),

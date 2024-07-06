@@ -38,7 +38,6 @@ class _InterfaceAbonnementState extends State<InterfaceAbonnement> {
           ),
         ),
         centerTitle: true,
-
       ),
       body: Padding(
         padding: const EdgeInsets.all(10),
