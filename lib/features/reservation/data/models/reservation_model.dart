@@ -2,6 +2,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:ulysse_app/core/utilities/enum.dart';
+import 'package:ulysse_app/features/parking/data/models/place_model.dart';
 import 'package:ulysse_app/features/reservation/data/models/vehicule_model.dart';
 import 'package:ulysse_app/features/reservation/domain/entities/reservation_entity.dart';
 
@@ -17,7 +18,7 @@ class ReservationModel extends ReservationEntity {
     required super.vehicule,
     required super.parkingId,
     required super.parkingAddress,
-    super.place,
+    required super.place,
     required super.date,
     required super.startTime,
     required super.endTime,
@@ -32,7 +33,7 @@ class ReservationModel extends ReservationEntity {
     vehicule: VehiculeModel.fromJson(doc['vehicule']),
     parkingId: doc['parking_id'],
     parkingAddress: doc['parking_address'],
-    place: doc['place'] ?? '',
+    place: PlaceModel.fromJson(doc['place']),
     date: doc['date'],
     startTime: doc['start_time'],
     endTime: doc['end_time'].toDate(),
@@ -44,10 +45,10 @@ class ReservationModel extends ReservationEntity {
     conductorId: '',
     conductorName: '',
     conductorPhone: '',
-    vehicule: VehiculeModel.empty(),
+    vehicule: const VehiculeModel.empty(),
     parkingId: '',
     parkingAddress: '',
-    place: '',
+    place: PlaceModel.empty(),
     date: '',
     startTime: '',
     endTime: '' ,
@@ -70,7 +71,8 @@ class ReservationModel extends ReservationEntity {
     date: date ?? this.date,
     startTime: startTime ?? this.startTime,
     endTime: endTime ?? this.endTime,
-    status: status ?? this.status
+    status: status ?? this.status, 
+    place: place
 );
 
   Map<String, dynamic> toJson() => _$ReservationModelToJson(this);

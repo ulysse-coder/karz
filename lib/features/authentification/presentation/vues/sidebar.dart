@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:ulysse_app/core/constants/colors.dart';
 import 'package:ulysse_app/core/constants/dimensions.dart';
 import 'package:ulysse_app/core/widgets/standard_text.dart';
 import 'package:ulysse_app/features/authentification/data/models/conductor_model.dart';
+import 'package:ulysse_app/features/authentification/presentation/app/bloc/authentication_bloc.dart';
+import 'package:ulysse_app/features/authentification/presentation/vues/interface_login.dart';
 import 'package:ulysse_app/features/authentification/presentation/vues/myprofile.dart';
 import 'package:ulysse_app/features/reservation/presentation/vues/historique.dart';
 import 'interface_abonnement.dart';
@@ -29,25 +33,25 @@ class Sidebar extends StatelessWidget {
               conductor.name,
               style: TextStyle(
                 fontFamily: 'Itim',
-                fontSize: font24
+                fontSize: font20
               )
             ),
-            accountEmail: StandardText(text: "conductor.phone", fontWeight: FontWeight.bold,),
+            accountEmail: StandardText(text: conductor.phone, fontWeight: FontWeight.bold,),
             currentAccountPicture: Center(
               child: CircleAvatar(
-                  radius: 50,
+                  radius: 30,
                   backgroundColor: primary,
-                  child:Stack(
+                  child: Stack(
                     children: [
                       Align(
                         alignment: Alignment.center,
                         child: ClipOval(
                             child: Center(child:
                             Text(
-                                "C"/*onductor.name[0].toUpperCase()*/,
+                                conductor.name[0].toUpperCase(),
                                 style: TextStyle(
                                     fontFamily: 'Itim',
-                                    fontSize: font24*3,
+                                    fontSize: font24,
                                     color: secondary
                                 )
                             ),)
@@ -74,7 +78,7 @@ class Sidebar extends StatelessWidget {
               // Navigation vers la nouvelle interface
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Myprofile()),
+                MaterialPageRoute(builder: (context) => const Myprofile()),
               );
             },
             //onTap: () => debugPrint('Mes informations'),
@@ -120,7 +124,7 @@ class Sidebar extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => InterfaceParrainage()),
+                MaterialPageRoute(builder: (context) => const InterfaceParrainage()),
               );
             }
           ),
@@ -139,7 +143,7 @@ class Sidebar extends StatelessWidget {
             onTap: () {
     Navigator.push(
     context,
-    MaterialPageRoute(builder: (context) => InterfaceHonoraire()),
+    MaterialPageRoute(builder: (context) => const InterfaceHonoraire()),
     );
     }
           ),
@@ -160,25 +164,35 @@ class Sidebar extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => InterfaceAbonnement()),
+                MaterialPageRoute(builder: (context) => const InterfaceAbonnement()),
               );
             }),
           const Spacer(),
-          Container(
-            margin: EdgeInsets.symmetric(vertical: marginH24),
-            child: ListTile(
-              leading: Icon( 
-                size: font24 + 6,
-                Icons.power_settings_new
+          BlocListener<AuthenticationBloc, AuthenticationState>(
+            listener: (context, state) {
+              if(state is UserSignedOutState) {
+                context.read<AuthenticationBloc>().add(SetUserLoggingStateEvent());
+              }
+              else if(state is UserLoggingStateModified) {
+                Get.offAll(() => const InterfaceLogin());
+              }
+            },
+            child: Container(
+              margin: EdgeInsets.symmetric(vertical: marginH24),
+              child: ListTile(
+                leading: Icon(
+                    size: font24 + 6,
+                    Icons.power_settings_new
+                ),
+                title: Text(
+                    'Deconnexion',
+                    style: TextStyle(
+                        fontFamily: 'Itim',
+                        fontSize: font24
+                    )
+                ),
+                onTap: () => context.read<AuthenticationBloc>().add(SignOutEvent()),
               ),
-              title: Text(
-                'Deconnexion', 
-                style: TextStyle(
-                  fontFamily: 'Itim', 
-                  fontSize: font24
-                )
-              ),
-              onTap: () => debugPrint('Deconnexion'),
             ),
           ),
         ],

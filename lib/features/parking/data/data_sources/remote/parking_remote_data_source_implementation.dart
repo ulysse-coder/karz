@@ -16,7 +16,7 @@ class ParkingRemoteDataSourceImplementation implements ParkingRemoteDataSource {
   final FirebaseStorage _firebaseStorage;
   final ImagePicker _imagePicker;
 
-  static const _kParkingCollection = 'parking';
+  static const _kParkingCollection = 'parkings';
   static const _kPlaceCollection = 'places';
 
   @override

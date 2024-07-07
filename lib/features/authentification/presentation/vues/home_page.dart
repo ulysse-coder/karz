@@ -7,6 +7,7 @@ import 'package:ulysse_app/core/widgets/heading2.dart';
 import 'package:ulysse_app/features/authentification/presentation/app/controller/user_controller.dart';
 import 'package:get/get.dart';
 import 'package:ulysse_app/features/authentification/presentation/vues/sidebar.dart';
+import 'package:ulysse_app/features/reservation/presentation/app/bloc/controllers/reservation_controller.dart';
 import 'package:ulysse_app/features/reservation/presentation/vues/interaface_reservation.dart';
 
 class HomePage extends StatefulWidget {
@@ -18,6 +19,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   UserController userController = Get.find();
+  ReservationController reservationController = Get.find();
   final TextEditingController _address = TextEditingController();
 
   final Rx<VehiculeType> _selectedType = VehiculeType.voiture.obs;
@@ -28,12 +30,18 @@ class _HomePageState extends State<HomePage> {
   ];
 
   @override
+  void initState() {
+    debugPrint("========== USER: ${userController.currentConductor}");
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: true,
       drawer: Sidebar(conductor: userController.currentConductor),
       appBar: AppBar(
-        title: Text("Titre"),
+        title: const Text("Titre"),
       ),
       body: Stack(
         children: [
@@ -49,14 +57,14 @@ class _HomePageState extends State<HomePage> {
             child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              IconButton(
+              /* IconButton(
                 onPressed:() => Scaffold.of(context).openDrawer(),
                 icon: Icon(
                   Icons.menu,
                   color: secondary,
                   size: font24*2,
                 ),
-              ),
+              ), */
               Text(
                 "Karz",
                 textAlign: TextAlign.right,
@@ -74,7 +82,7 @@ class _HomePageState extends State<HomePage> {
             alignment: Alignment.bottomCenter,
             child: Container(
               width: double.maxFinite,
-              margin: EdgeInsets.only(top: height220 * 2),
+              margin: EdgeInsets.only(top: height220 * 1.25),
               padding: EdgeInsets.symmetric(
                   vertical: paddingH24 * 3,
                   horizontal: paddingW20
@@ -114,7 +122,7 @@ class _HomePageState extends State<HomePage> {
                         borderSide: BorderSide(color: primary),
                       ),
                     ),
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.deepOrange, // Définit la couleur du texte saisi
                       fontSize: 16, // Optionnel : taille de la police
                       fontWeight: FontWeight.bold, // Optionnel : poids de la police
@@ -150,7 +158,10 @@ class _HomePageState extends State<HomePage> {
                   ),
                   SizedBox(height: height24,),
                   InkWell(
-                    onTap: () => Get.to(const InterfaceReservation()),
+                    onTap: () {
+                      reservationController.currentVehicule = reservationController.currentVehicule.copyWith(type: _selectedType.value);
+                      Get.to(const InterfaceReservation());
+                    },
                     child: Container(
                       width: double.maxFinite,
                       padding: EdgeInsets.symmetric(vertical: paddingH16),

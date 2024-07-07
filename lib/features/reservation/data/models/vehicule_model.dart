@@ -12,9 +12,17 @@ class VehiculeModel extends VehiculeEntity {
     required super.type
   });
 
-  VehiculeModel.empty() : this(
+  const VehiculeModel.empty() : this(
     matricule: '',
     type: VehiculeType.defaultType
+  );
+
+  VehiculeModel copyWith({
+    String? matricule,
+    VehiculeType? type
+  }) => VehiculeModel(
+    matricule: matricule ?? this.matricule, 
+    type: type ?? this.type
   );
 
   factory VehiculeModel.fromJson(Map<String, dynamic> json) => _$VehiculeModelFromJson(json);

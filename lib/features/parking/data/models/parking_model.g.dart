@@ -19,7 +19,7 @@ ParkingModel _$ParkingModelFromJson(Map<String, dynamic> json) => ParkingModel(
           .toList(),
       address: AddressModel.fromJson(json['address'] as Map<String, dynamic>),
       rate: (json['rate'] as num?)?.toDouble() ?? 0,
-      reviewsNumber: json['reviewsNumber'] as int? ?? 0,
+      reviewsNumber: json['reviews_number'] as int? ?? 0,
     );
 
 Map<String, dynamic> _$ParkingModelToJson(ParkingModel instance) =>
@@ -36,7 +36,7 @@ Map<String, dynamic> _$ParkingModelToJson(ParkingModel instance) =>
           .map((e) => _$VehiculeTypeEnumMap[e]!)
           .toList(),
       'rate': instance.rate,
-      'reviewsNumber': instance.reviewsNumber,
+      'reviews_number': instance.reviewsNumber,
     };
 
 const _$ParkingTypeEnumMap = {

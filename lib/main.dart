@@ -40,7 +40,6 @@ class MyApp extends StatelessWidget {
         child: GetMaterialApp(
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
-              colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
               useMaterial3: true,
             ),
             home: const InterfaceDemarrage()

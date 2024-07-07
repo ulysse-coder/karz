@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ulysse_app/core/constants/colors.dart';
 import 'package:ulysse_app/core/utilities/enum.dart';
+import 'package:ulysse_app/features/authentification/data/models/conductor_model.dart';
 import 'package:ulysse_app/features/authentification/presentation/app/bloc/authentication_bloc.dart';
 import 'package:ulysse_app/features/authentification/presentation/app/controller/user_controller.dart';
 import 'package:get/get.dart';
@@ -43,28 +44,13 @@ class _InterfaceDemarrageState extends State<InterfaceDemarrage> {
               if(state.isLoggedIn) {
                 switch (userController.currentUserRole) {
                   case UserRole.conducteur:
-                    Get.offAll(() => const HomePage());
+                    context.read<AuthenticationBloc>().add(GetCurrentUserFromCacheEvent());
                     break;
                   case UserRole.gardien:
                   // Get.offAll(() => const HomePage());
                     break;
                   case UserRole.defaultRole: break;
                 }
-                // switch (userController.currentUserRole) {
-                //   case UserRole.conducteur:
-                //     context.read<AuthenticationBloc>().add(CheckIfUserExistsEvent(
-                //       uid: userController.currentConductor.uid,
-                //       role: UserRole.conducteur
-                //     ));
-                //     break;
-                //   case UserRole.gardien:
-                //     context.read<AuthenticationBloc>().add(CheckIfUserExistsEvent(
-                //       uid: userController.currentSecurity.uid,
-                //       role: UserRole.gardien
-                //     ));
-                //     break;
-                //   case UserRole.defaultRole: break;
-                // }
               }
               else if(userController.currentUserRole == UserRole.defaultRole) {
                 Get.offAll(() => const OnBoardingView());
@@ -73,21 +59,10 @@ class _InterfaceDemarrageState extends State<InterfaceDemarrage> {
                 Get.offAll(() => const InterfaceLogin());
               }
             }
-            else if(state is UserExistenceCheckedState) {
-              if(state.exists) {
-                switch (userController.currentUserRole) {
-                  case UserRole.conducteur:
-                    Get.offAll(() => const HomePage());
-                    break;
-                  case UserRole.gardien:
-                    // Get.offAll(() => const HomePage());
-                    break;
-                  case UserRole.defaultRole: break;
-                }
-                return;
-              }
-
-              Get.offAll(() => const InterfaceInformation());
+            else if(state is ConductorLoaded) {
+              userController.currentConductor = state.conductor as ConductorModel;
+              debugPrint("========== USER: ${userController.currentConductor}");
+              Get.offAll(() => const HomePage());
             }
           },
           child: Center(

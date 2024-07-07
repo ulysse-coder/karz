@@ -1,25 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:ulysse_app/core/constants/colors.dart';
+import 'package:ulysse_app/features/authentification/presentation/app/controller/user_controller.dart';
 //import 'package:ulysse_app/core/widgets/standard_text.dart';
 
 class Myprofile extends StatefulWidget{
+  const Myprofile({super.key});
+
   @override
   State<Myprofile> createState() => _MyprofileState();
 }
 
 class _MyprofileState extends State<Myprofile>{
+  UserController userController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
             leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios_new), // Changer cette icône à ce que vous voulez
+          icon: const Icon(Icons.arrow_back_ios_new), // Changer cette icône à ce que vous voulez
           onPressed: () {
             Navigator.pop(context); // Revenir à la page précédente
             //print("Icône de l'AppBar cliquée");
           },
         ),
-        title: Row(
+        title: const Row(
           children: [
             Text('Mes informations', style: TextStyle(fontFamily: 'Itim'),),
           ],
@@ -46,12 +51,12 @@ class _MyprofileState extends State<Myprofile>{
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Nom' , style: TextStyle(fontFamily: 'Itim', fontSize: 18, fontWeight: FontWeight.bold, color: secondary),),
+                          const Text('Nom' , style: TextStyle(fontFamily: 'Itim', fontSize: 18, fontWeight: FontWeight.bold, color: secondary),),
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('Nom_utilisateur' , style: TextStyle(fontFamily: 'Itim', fontSize: 16, color: primary),),
+                              Text(userController.currentConductor.name , style: TextStyle(fontFamily: 'Itim', fontSize: 16, color: primary),),
                             ],
                           ),
                         ],
@@ -64,11 +69,11 @@ class _MyprofileState extends State<Myprofile>{
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Prénoms' , style: TextStyle(fontFamily: 'Itim', fontSize: 18, fontWeight: FontWeight.bold, color: secondary),),
+                      const Text('Prénoms' , style: TextStyle(fontFamily: 'Itim', fontSize: 18, fontWeight: FontWeight.bold, color: secondary),),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Prénom_utilisateur' , style: TextStyle(fontFamily: 'Itim', fontSize: 16, color: primary),),
+                          Text(userController.currentConductor.name , style: TextStyle(fontFamily: 'Itim', fontSize: 16, color: primary),),
                         ],
                       ),],
                   ),
@@ -77,7 +82,7 @@ class _MyprofileState extends State<Myprofile>{
                         thickness: 1, // Épaisseur de la ligne
                         color: Color(0xFFE9DEDE), // Couleur de la ligne
                       ),
-                  Column(
+                  const Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text('Mail' , style: TextStyle(fontFamily: 'Itim', fontSize: 18, fontWeight: FontWeight.bold, color: secondary),),
@@ -96,11 +101,11 @@ class _MyprofileState extends State<Myprofile>{
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Numéro de téléphone' , style: TextStyle(fontFamily: 'Itim', fontSize: 18, fontWeight: FontWeight.bold, color: secondary),),
+                      const Text('Numéro de téléphone' , style: TextStyle(fontFamily: 'Itim', fontSize: 18, fontWeight: FontWeight.bold, color: secondary),),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('+212 (0) 123456789' , style: TextStyle(fontFamily: 'Itim', fontSize: 16, color: primary),),
+                          Text(userController.currentConductor.phone , style: TextStyle(fontFamily: 'Itim', fontSize: 16, color: primary),),
                         ],
                       )],
                   ),

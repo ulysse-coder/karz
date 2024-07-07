@@ -54,7 +54,7 @@ class HowAppIsUsedView extends StatelessWidget {
                 subtitle: "Cliquez ici pour enregistrer votre établissement et rejoindre notre réseau de restaurants partenaires.", 
                 leadingIcon: Icons.man_2_outlined, 
                 callback: () {
-                  userController.currentUserRole = UserRole.conducteur;
+                  userController.currentUserRole = UserRole.gardien;
                   userController.saveCurrentUserRole();
                   // Get.offAll(() => const InterfaceLogin());
                 }

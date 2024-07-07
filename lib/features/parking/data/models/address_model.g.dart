@@ -9,12 +9,12 @@ part of 'address_model.dart';
 AddressModel _$AddressModelFromJson(Map<String, dynamic> json) => AddressModel(
       latitude: (json['latitude'] as num).toDouble(),
       longitude: (json['longitude'] as num).toDouble(),
-      fullAddress: json['fullAddress'] as String,
+      fullAddress: json['full_address'] as String,
     );
 
 Map<String, dynamic> _$AddressModelToJson(AddressModel instance) =>
     <String, dynamic>{
       'latitude': instance.latitude,
       'longitude': instance.longitude,
-      'fullAddress': instance.fullAddress,
+      'full_address': instance.fullAddress,
     };

@@ -26,6 +26,7 @@ class _InterfaceLoginState extends State<InterfaceLogin> {
 
     return BlocListener<AuthenticationBloc, AuthenticationState>(
       listener: (context, state) {
+        debugPrint("======= state: $state");
         if (state is AuthLoadingState) {
           loadingDialog();
         }
@@ -40,9 +41,16 @@ class _InterfaceLoginState extends State<InterfaceLogin> {
           ));
         }
         else if(state is UserExistenceCheckedState) {
-          state.exists ?
-            Get.offAll(() => const HomePage()) :
+          if(state.exists) {
+            context.read<AuthenticationBloc>().add(GetConductorEvent(id: userController.currentConductor.uid));
+          }
+          else {
             Get.offAll(() => const InterfaceInformation());
+          }
+        }
+        else if(state is ConductorLoaded) {
+          userController.currentConductor = state.conductor as ConductorModel;
+          Get.offAll(() => const HomePage());
         }
       },
       child: Scaffold(

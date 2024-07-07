@@ -15,9 +15,7 @@ ReservationModel _$ReservationModelFromJson(Map<String, dynamic> json) =>
       vehicule: VehiculeModel.fromJson(json['vehicule'] as Map<String, dynamic>),
       parkingId: json['parking_id'] as String,
       parkingAddress: json['parking_address'] as String,
-      place: json['place'] == null
-          ? ''
-          : json['place'] as String,
+      place: PlaceModel.fromJson(json['place']),
       date: json['date'] as String,
       startTime: json['start_time'] as String,
       endTime: json['end_time'] as String,
@@ -32,7 +30,7 @@ Map<String, dynamic> _$ReservationModelToJson(ReservationModel instance) =>
       'vehicule': instance.vehicule.toJson(),
       'parking_id': instance.parkingId,
       'parking_address': instance.parkingAddress,
-      'place': instance.place,
+      'place': instance.place.toJson(),
       'date': instance.date,
       'start_time': instance.startTime,
       'end_time': instance.endTime,

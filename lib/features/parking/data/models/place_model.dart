@@ -20,6 +20,11 @@ class PlaceModel extends PlaceEntity {
     status: _$PlaceStatusEnumMap.keys.toList()[_$PlaceStatusEnumMap.values.toList().indexOf(doc['status'])],
   );
 
+  PlaceModel copyWith({
+    String? name,
+    PlaceStatus? status
+  }) => PlaceModel(id: id, name: name ?? this.name, status: status ?? this.status);
+
   factory PlaceModel.fromJson(Map<String, dynamic> json) => _$PlaceModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$PlaceModelToJson(this);
