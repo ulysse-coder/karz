@@ -19,8 +19,8 @@ class ParkingEntity extends Equatable {
   });
 
   final String id;
-  final int capacity;
-  final int freePlaces;
+  final double capacity;
+  final double freePlaces;
   final double reservationPrice;
   final ParkingType type;
   final AddressModel address;
@@ -28,7 +28,7 @@ class ParkingEntity extends Equatable {
   final String registeredAt;
   final List<VehiculeType> acceptedVehiculeType;
   final double? rate;
-  final int? reviewsNumber;
+  final double? reviewsNumber;
 
   @override
   List<Object?> get props => [

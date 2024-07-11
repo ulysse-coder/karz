@@ -18,6 +18,8 @@ abstract class ParkingRemoteDataSource {
 
   Future<void> uploadParkingImage(String parkingId, XFile file);
 
+  Future<List<ParkingModel>> getAllParkings();
+
   Future<List<Reference>?> getParkingImages(String parkingId);
 
   Future<List<PlaceModel>> getPlacesByParking(String parkingId);

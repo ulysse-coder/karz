@@ -1,6 +1,7 @@
 
 import 'package:dartz/dartz.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:ulysse_app/core/errors/db_exception.dart';
 import 'package:ulysse_app/core/typedef/typedef.dart';
@@ -121,6 +122,17 @@ class ParkingRepositoryImplemetation extends ParkingRepository {
     try {
       await _remoteDataSource.updatePlace(parkingId, place as PlaceModel);
       return const Right(null);
+    } catch (e) {
+      return Left(DBException(message: e.toString()));
+    }
+  }
+  
+  @override
+  ResultFuture<List<ParkingEntity>> getAllParkings() async {
+    try {
+      final result = await _remoteDataSource.getAllParkings();
+
+      return Right(result);
     } catch (e) {
       return Left(DBException(message: e.toString()));
     }

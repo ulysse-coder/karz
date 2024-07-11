@@ -33,6 +33,7 @@ import 'package:ulysse_app/features/parking/domain/repositories/parking_reposito
 import 'package:ulysse_app/features/parking/domain/usecases/add_parking.dart';
 import 'package:ulysse_app/features/parking/domain/usecases/add_place.dart';
 import 'package:ulysse_app/features/parking/domain/usecases/delete_place.dart';
+import 'package:ulysse_app/features/parking/domain/usecases/get_all_parkings.dart';
 import 'package:ulysse_app/features/parking/domain/usecases/get_parking.dart';
 import 'package:ulysse_app/features/parking/domain/usecases/get_parking_images.dart';
 import 'package:ulysse_app/features/parking/domain/usecases/get_places_by_parking.dart';
@@ -83,7 +84,8 @@ Future<void> init() async {
         getPlacesByParking: sl(),
         addPlace: sl(),
         updatePlace: sl(),
-        deletePlace: sl()))
+        deletePlace: sl(), 
+        getAllParkings: sl()))
     ..registerFactory(() => ReservationBloc(
         getReservation: sl(),
         getReservationsByParking: sl(),
@@ -112,6 +114,7 @@ Future<void> init() async {
     ..registerLazySingleton(() => SelectImageFromGallery(sl()))
     ..registerLazySingleton(() => UploadParkingImage(sl()))
     ..registerLazySingleton(() => GetParking(sl()))
+    ..registerLazySingleton(() => GetAllParkings(sl()))
     ..registerLazySingleton(() => GetParkingImages(sl()))
     ..registerLazySingleton(() => GetPlacesByParking(sl()))
     ..registerLazySingleton(() => AddPlace(sl()))

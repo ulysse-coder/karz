@@ -58,6 +58,15 @@ final class ParkingImagesLoadedState extends ParkingState {
   List<Object?> get props => [images];
 }
 
+final class AllParkingsLoaded extends ParkingState {
+  const AllParkingsLoaded({ required this.parkings});
+
+  final List<ParkingEntity> parkings;
+
+  @override
+  List<Object?> get props => [parkings];
+}
+
 final class ParkingImagesUploadedState extends ParkingState {
   @override
   List<Object?> get props => [];

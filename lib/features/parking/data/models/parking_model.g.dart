@@ -8,8 +8,8 @@ part of 'parking_model.dart';
 
 ParkingModel _$ParkingModelFromJson(Map<String, dynamic> json) => ParkingModel(
       id: json['id'] as String,
-      capacity: json['capacity'] as int,
-      freePlaces: json['free_places'] as int,
+      capacity: (json['capacity'] as num).toDouble(),
+      freePlaces: (json['free_places'] as num).toDouble(),
       reservationPrice: (json['reservation_price'] as num).toDouble(),
       type: $enumDecode(_$ParkingTypeEnumMap, json['type']),
       registeredBy: json['registered_by'] as String,
@@ -19,7 +19,7 @@ ParkingModel _$ParkingModelFromJson(Map<String, dynamic> json) => ParkingModel(
           .toList(),
       address: AddressModel.fromJson(json['address'] as Map<String, dynamic>),
       rate: (json['rate'] as num?)?.toDouble() ?? 0,
-      reviewsNumber: json['reviews_number'] as int? ?? 0,
+      reviewsNumber: (json['reviews_number'] as num?)?.toDouble() ?? 0,
     );
 
 Map<String, dynamic> _$ParkingModelToJson(ParkingModel instance) =>

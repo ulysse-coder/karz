@@ -9,6 +9,7 @@ import 'package:ulysse_app/features/parking/domain/entities/place_entity.dart';
 import 'package:ulysse_app/features/parking/domain/usecases/add_parking.dart';
 import 'package:ulysse_app/features/parking/domain/usecases/add_place.dart';
 import 'package:ulysse_app/features/parking/domain/usecases/delete_place.dart';
+import 'package:ulysse_app/features/parking/domain/usecases/get_all_parkings.dart';
 import 'package:ulysse_app/features/parking/domain/usecases/get_parking.dart';
 import 'package:ulysse_app/features/parking/domain/usecases/get_parking_images.dart';
 import 'package:ulysse_app/features/parking/domain/usecases/get_places_by_parking.dart';
@@ -24,6 +25,7 @@ class ParkingBloc extends Bloc<ParkingEvent, ParkingState> {
     required AddParking addParking,
     required SelectImageFromGallery selectImageFromGallery,
     required UploadParkingImage uploadParkingImage,
+    required GetAllParkings getAllParkings,
     required GetParking getParking,
     required GetParkingImages getParkingImages,
     required GetPlacesByParking getPlacesByParking,
@@ -36,6 +38,7 @@ class ParkingBloc extends Bloc<ParkingEvent, ParkingState> {
   _selectImageFromGallery = selectImageFromGallery,
   _uploadParkingImage = uploadParkingImage,
   _getParking = getParking,
+  _getAllParkings = getAllParkings,
   _getParkingImages = getParkingImages,
   _getPlacesByParking = getPlacesByParking,
   _addPlace = addPlace,
@@ -70,7 +73,7 @@ class ParkingBloc extends Bloc<ParkingEvent, ParkingState> {
         (_) => emit(ParkingImagesUploadedState())
       );
     });
-    /* on<GetParkingImagesEvent>((event, emit) async {
+    on<GetParkingImagesEvent>((event, emit) async {
       emit(ParkingLoadingState());
 
       final result = await _getParkingImages(event.parkingId);
@@ -79,7 +82,7 @@ class ParkingBloc extends Bloc<ParkingEvent, ParkingState> {
         (l) => null, 
         (images) => emit(ParkingImagesLoadedState(images: images))
       );
-    }); */
+    });
     on<GetParkingEvent>((event, emit) async {
       emit(ParkingLoadingState());
 
@@ -90,7 +93,17 @@ class ParkingBloc extends Bloc<ParkingEvent, ParkingState> {
         (parking) => emit(ParkingLoadedState(parking: parking))
       );
     });
-    /* on<GetPlacesByParkingEvent>((event, emit) async {
+    on<GetAllParkingsEvent>((event, emit) async {
+      emit(ParkingLoadingState());
+
+      final result = await _getAllParkings();
+
+      result.fold(
+        (l) => null, 
+        (parkings) => emit(AllParkingsLoaded(parkings: parkings))
+      );
+    });
+    on<GetPlacesByParkingEvent>((event, emit) async {
       emit(PlaceLoadingState());
 
       final result = await _getPlacesByParking(event.parkingId);
@@ -100,7 +113,7 @@ class ParkingBloc extends Bloc<ParkingEvent, ParkingState> {
         (places) => emit(PlacesLoadedState(places: places))
       );
 
-    }); */
+    });
     on<AddPlaceEvent>((event, emit) async {
       final result = await _addPlace(PlaceCRUDParams(parkingId: event.parkingId, place: event.place));
 
@@ -138,35 +151,36 @@ class ParkingBloc extends Bloc<ParkingEvent, ParkingState> {
   }
 
   // @override
-  Stream<ParkingState> mapEventToState(ParkingEvent event) async* {
-    if (event is GetPlacesByParkingEvent) {
-      yield ParkingLoadingState();
+  // Stream<ParkingState> mapEventToState(ParkingEvent event) async* {
+  //   if (event is GetPlacesByParkingEvent) {
+  //     yield ParkingLoadingState();
 
-      final result = await _getPlacesByParking(event.parkingId);
+  //     final result = await _getPlacesByParking(event.parkingId);
 
-      result.fold(
-        (l) => null, 
-        (places) async* {
-          yield PlacesLoadedState(places: places);
-        }
-      );
-    }
-    else if (event is GetParkingImagesEvent) {
-      yield ParkingLoadingState();
+  //     result.fold(
+  //       (l) => null, 
+  //       (places) async* {
+  //         yield PlacesLoadedState(places: places);
+  //       }
+  //     );
+  //   }
+  //   else if (event is GetParkingImagesEvent) {
+  //     yield ParkingLoadingState();
 
-      final result = await _getParkingImages(event.parkingId);
+  //     final result = await _getParkingImages(event.parkingId);
 
-      result.fold(
-        (l) => null, 
-        (images) async* {
-          yield ParkingImagesLoadedState(images: images);
-        });
-    }
-  }
+  //     result.fold(
+  //       (l) => null, 
+  //       (images) async* {
+  //         yield ParkingImagesLoadedState(images: images);
+  //       });
+  //   }
+  // }
 
   final AddParking _addParking;
   final SelectImageFromGallery _selectImageFromGallery;
   final UploadParkingImage _uploadParkingImage;
+  final GetAllParkings _getAllParkings;
   final GetParking _getParking;
   final GetParkingImages _getParkingImages;
   final GetPlacesByParking _getPlacesByParking;

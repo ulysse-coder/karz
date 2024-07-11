@@ -8,7 +8,6 @@ import 'package:ulysse_app/features/authentification/presentation/app/bloc/authe
 import 'package:ulysse_app/features/authentification/presentation/app/controller/user_controller.dart';
 import 'package:get/get.dart';
 import 'package:ulysse_app/features/authentification/presentation/vues/home_page.dart';
-import 'package:ulysse_app/features/authentification/presentation/vues/interface_information.dart';
 import 'package:ulysse_app/features/authentification/presentation/vues/interface_login.dart';
 import 'package:ulysse_app/features/authentification/presentation/vues/on_boarding.dart';
 

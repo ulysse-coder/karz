@@ -7,7 +7,7 @@ part of 'place_model.dart';
 // **************************************************************************
 
 PlaceModel _$PlaceModelFromJson(Map<String, dynamic> json) => PlaceModel(
-      id: json['id'] as String,
+      id: json['id'] ?? '',
       name: json['name'] as String,
       status: $enumDecode(_$PlaceStatusEnumMap, json['status']),
     );

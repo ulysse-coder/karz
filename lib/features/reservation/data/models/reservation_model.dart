@@ -27,17 +27,17 @@ class ReservationModel extends ReservationEntity {
 
   ReservationModel.fromDocumentSnapshot(DocumentSnapshot doc) : this(
     id: doc.id,
-    conductorId: doc['conductor_id'],
-    conductorName: doc['conductor_name'],
-    conductorPhone: doc['conductor_phone'],
-    vehicule: VehiculeModel.fromJson(doc['vehicule']),
-    parkingId: doc['parking_id'],
-    parkingAddress: doc['parking_address'],
+    conductorId: doc['conductor_id'] as String,
+    conductorName: doc['conductor_name'] as String,
+    conductorPhone: doc['conductor_phone'] as String,
+    vehicule: VehiculeModel.fromJson(doc['vehicule'] as Map<String, dynamic>),
+    parkingId: doc['parking_id'] as String,
+    parkingAddress: doc['parking_address'] as String,
     place: PlaceModel.fromJson(doc['place']),
-    date: doc['date'],
-    startTime: doc['start_time'],
-    endTime: doc['end_time'].toDate(),
-    status: _$ReservationStatusEnumMap.keys.toList()[_$ReservationStatusEnumMap.values.toList().indexOf(doc['status'])],
+    date: doc['date'] as String,
+    startTime: doc['start_time'] as String,
+    endTime: doc['end_time'] as String,
+    status: $enumDecode(_$ReservationStatusEnumMap, doc['status']),
   );
 
   ReservationModel.empty() : this(

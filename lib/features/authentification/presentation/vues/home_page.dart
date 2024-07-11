@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:ulysse_app/core/constants/colors.dart';
 import 'package:ulysse_app/core/constants/dimensions.dart';
 import 'package:ulysse_app/core/utilities/enum.dart';
+import 'package:ulysse_app/core/widgets/heading1.dart';
 import 'package:ulysse_app/core/widgets/heading2.dart';
 import 'package:ulysse_app/features/authentification/presentation/app/controller/user_controller.dart';
 import 'package:get/get.dart';
 import 'package:ulysse_app/features/authentification/presentation/vues/sidebar.dart';
+import 'package:ulysse_app/features/parking/presentation/vues/parklist.dart';
 import 'package:ulysse_app/features/reservation/presentation/app/bloc/controllers/reservation_controller.dart';
-import 'package:ulysse_app/features/reservation/presentation/vues/interaface_reservation.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -41,7 +42,8 @@ class _HomePageState extends State<HomePage> {
         resizeToAvoidBottomInset: true,
       drawer: Sidebar(conductor: userController.currentConductor),
       appBar: AppBar(
-        title: const Text("Titre"),
+        centerTitle: true,
+        title: const Heading1(text: "Karz"),
       ),
       body: Stack(
         children: [
@@ -50,21 +52,21 @@ class _HomePageState extends State<HomePage> {
             width: double.maxFinite,
             fit: BoxFit.cover,
           ),
-          Positioned(
+          /*Positioned(
             top: marginH32,
             left: 0,
             right: 0,
             child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              /* IconButton(
+              *//* IconButton(
                 onPressed:() => Scaffold.of(context).openDrawer(),
                 icon: Icon(
                   Icons.menu,
                   color: secondary,
                   size: font24*2,
                 ),
-              ), */
+              ), *//*
               Text(
                 "Karz",
                 textAlign: TextAlign.right,
@@ -77,7 +79,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ],
           ),
-          ),
+          ),*/
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
@@ -160,7 +162,7 @@ class _HomePageState extends State<HomePage> {
                   InkWell(
                     onTap: () {
                       reservationController.currentVehicule = reservationController.currentVehicule.copyWith(type: _selectedType.value);
-                      Get.to(const InterfaceReservation());
+                      Get.to(() => const ParkList());
                     },
                     child: Container(
                       width: double.maxFinite,

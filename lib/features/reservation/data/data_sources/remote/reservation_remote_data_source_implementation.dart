@@ -1,5 +1,6 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:ulysse_app/core/errors/db_exception.dart';
 import 'package:ulysse_app/features/reservation/data/data_sources/remote/reservation_remote_data_source.dart';
 import 'package:ulysse_app/features/reservation/data/models/reservation_model.dart';
@@ -64,16 +65,13 @@ class ReservationRemoteDataSourceImplementation implements ReservationRemoteData
         return <ReservationModel>[];
       }
 
-      final reservationsByParking = query.docs
-        .map((doc) => ReservationModel.fromDocumentSnapshot(doc))
-        .where((reservation) => reservation.parkingId == parkingId)
-        .toList();
+      final reservations = query.docs.where((doc) => doc['parking_id'] == parkingId);
 
-      if (reservationsByParking.isEmpty) {
+      if(reservations.isEmpty) {
         return <ReservationModel>[];
       }
 
-      return reservationsByParking;
+      return reservations.map((doc) => ReservationModel.fromDocumentSnapshot(doc)).toList();
 
     } catch (e) {
       throw(DBException(message: e.toString()));
@@ -83,23 +81,25 @@ class ReservationRemoteDataSourceImplementation implements ReservationRemoteData
   @override
   Future<List<ReservationModel>> getReservationsByUser(String userId) async {
     try {
+      debugPrint("======= User id: $userId");
       final query = await _firestore.collection(_kReservationCollection).get();
 
       if (query.docs.isEmpty) {
+        debugPrint("======= Collection vide ======");
         return <ReservationModel>[];
       }
 
-      final reservationsByUser = query.docs
-        .map((doc) => ReservationModel.fromDocumentSnapshot(doc))
-        .where((reservation) => reservation.conductorId == userId)
-        .toList();
+      debugPrint("======= Collection pas vide ======");
+      final reservations = query.docs.where((doc) => doc['conductor_id'] == userId);
+      debugPrint("${ReservationModel.fromDocumentSnapshot(reservations.first)}");
 
-      if (reservationsByUser.isEmpty) {
+      if(reservations.isEmpty) {
         return <ReservationModel>[];
       }
 
-      return reservationsByUser;
+      return reservations.map((doc) => ReservationModel.fromDocumentSnapshot(doc)).toList();
     } catch (e) {
+      debugPrint("===== error: $e");
       throw(DBException(message: e.toString()));
     }
   }

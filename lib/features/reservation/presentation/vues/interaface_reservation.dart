@@ -13,6 +13,10 @@ import 'package:ulysse_app/features/reservation/data/models/reservation_model.da
 import 'package:ulysse_app/features/reservation/presentation/app/bloc/bloc/reservation_bloc.dart';
 import 'package:ulysse_app/features/reservation/presentation/app/bloc/controllers/reservation_controller.dart';
 
+import '../../../../core/widgets/heading1.dart';
+import '../../../../core/widgets/heading2.dart';
+import '../../../../core/widgets/standard_text.dart';
+
 class InterfaceReservation extends StatefulWidget {
   const InterfaceReservation({Key? key}) : super(key: key);
 
@@ -34,6 +38,11 @@ class _InterfaceReservationState extends State<InterfaceReservation> {
   final TextEditingController _endTime = TextEditingController();
   final RxBool _isEndTimeFieldEnabled = false.obs;
   final Rx<PlaceModel> _selectedPlace = PlaceModel.empty().obs;
+  final _placeColors = {
+    PlaceStatus.reserved: Colors.redAccent,
+    PlaceStatus.free: Colors.green,
+    PlaceStatus.occupied: Colors.deepOrange
+  };
 
   @override
   void initState() {
@@ -93,29 +102,65 @@ class _InterfaceReservationState extends State<InterfaceReservation> {
                     crossAxisSpacing: paddingH10,
                     crossAxisCount: 6,
                     children: List.generate(
-                      parkingController.places.length, (index) => InkWell(
-                        onTap: () {
-                          _selectedPlace.value = parkingController.places[index];
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: switch (parkingController.places[index].status) {
-                              PlaceStatus.reserved => Colors.redAccent,
-                              PlaceStatus.occupied => null,
-                              PlaceStatus.free => Colors.greenAccent,
+                      parkingController.places.length, (index) {
+                        PlaceModel place = parkingController.places[index];
+                        return InkWell(
+                          onTap: () {
+                            if(place.status != PlaceStatus.free) {
+                              Get.dialog(
+                                barrierDismissible: false,
+                                AlertDialog(
+                                  title: Heading1(text: "Attention"),
+                                  surfaceTintColor: Colors.white,
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      style: ButtonStyle(
+                                        backgroundColor: MaterialStateColor.resolveWith((states) => primary),
+                                        padding: MaterialStateProperty.resolveWith((states) =>
+                                          EdgeInsets.symmetric(
+                                            horizontal: paddingW20,
+                                            vertical: paddingH10
+                                          )
+                                        ),
+                                        shape: MaterialStateProperty.resolveWith((states) =>
+                                        RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(radius15)))
+                                      )
+                                    ),
+                                      child: const Heading2(
+                                        text: "OK",
+                                        color: Colors.white,
+                                      )
+                                    )
+                                  ],
+                                  content: StandardText(text: "Cette place est déjà reservée", color: primary, fontSize: font14 + 2,),
+                                )
+                              );
+
+                              return;
                             }
-                          ),
-                          child: Center(
-                            child:  Text(
-                              parkingController.places[index].name,
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white
+
+                            _selectedPlace.value = place;
+                          },
+                          child: Obx(() => Container(
+                              decoration: BoxDecoration(
+                                  color: place == _selectedPlace.value ? Colors.greenAccent : _placeColors[place.status]
                               ),
-                            ),
-                          )
-                        ),
-                      )),
+                              child: Center(
+                                child:  Text(
+                                  parkingController.places[index].name,
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white
+                                  ),
+                                ),
+                              )
+                          )),
+                        );
+                      } 
+                    ),
                   )
                 ),
                 SliverPadding(

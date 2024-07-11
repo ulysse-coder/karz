@@ -18,6 +18,8 @@ class AddParkingEvent extends ParkingEvent {
   List<Object> get props => [parking];
 }
 
+class GetAllParkingsEvent extends ParkingEvent {}
+
 class SelectImageFromGalleryEvent extends ParkingEvent {}
 
 class UploadParkingImageEvent extends ParkingEvent {

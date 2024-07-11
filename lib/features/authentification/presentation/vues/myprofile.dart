@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ulysse_app/core/constants/colors.dart';
+import 'package:ulysse_app/core/widgets/heading1.dart';
+import 'package:ulysse_app/core/widgets/heading2.dart';
 import 'package:ulysse_app/features/authentification/presentation/app/controller/user_controller.dart';
 //import 'package:ulysse_app/core/widgets/standard_text.dart';
 
@@ -17,19 +19,15 @@ class _MyprofileState extends State<Myprofile>{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-            leading: IconButton(
+        centerTitle: true,
+        leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new), // Changer cette icône à ce que vous voulez
           onPressed: () {
             Navigator.pop(context); // Revenir à la page précédente
             //print("Icône de l'AppBar cliquée");
           },
         ),
-        title: const Row(
-          children: [
-            Text('Mes informations', style: TextStyle(fontFamily: 'Itim'),),
-          ],
-        ),
-        backgroundColor: Colors.grey,
+        title: const Heading1(text: 'Mes informations'),
       ),
       body: Container(
           padding: const EdgeInsets.only(left: 20, top: 0.0, right: 0.0, bottom: 20),

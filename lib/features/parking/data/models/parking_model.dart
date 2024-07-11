@@ -1,4 +1,6 @@
 
+import 'dart:ffi';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:ulysse_app/core/utilities/enum.dart';
@@ -25,18 +27,18 @@ class ParkingModel extends ParkingEntity {
 
   ParkingModel.fromDocumentSnapshot(DocumentSnapshot doc) : this(
     id: doc.id,
-    capacity: doc['capacity'],
-    freePlaces: doc['free_places'],
-    reservationPrice: doc['reservation_price'],
-    type: _$ParkingTypeEnumMap.keys.toList()[_$ParkingTypeEnumMap.values.toList().indexOf(doc['type'])],
-    registeredBy: doc['registered_by'],
-    registeredAt: doc['registered_at'].toDate(),
-    acceptedVehiculeType: doc['accepted_vehicule_type']
-      .map((type) => _$VehiculeTypeEnumMap.keys.toList()[_$VehiculeTypeEnumMap.values.toList().indexOf(type)])
-      .toList(),
-    address: doc['address'],
-    rate: doc['rate'],
-    reviewsNumber: doc['reviews_number']
+    capacity: (doc['capacity'] as num).toDouble(),
+    freePlaces: (doc['free_places'] as num).toDouble(),
+    reservationPrice: (doc['reservation_price'] as num).toDouble(),
+    type: $enumDecode(_$ParkingTypeEnumMap, doc['type']),
+    registeredBy: doc['registered_by'] as String,
+    registeredAt: doc['registered_at'] as String,
+    acceptedVehiculeType: (doc['accepted_vehicule_type'] as List<dynamic>)
+        .map((e) => $enumDecode(_$VehiculeTypeEnumMap, e))
+        .toList(),
+    address: AddressModel.fromJson(doc['address'] as Map<String, dynamic>),
+    rate: (doc['rate'] as num?)?.toDouble() ?? 0,
+    reviewsNumber: (doc['reviews_number'] as num?)?.toDouble() ?? 0,
   );
 
   ParkingModel.empty() : this(

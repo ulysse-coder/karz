@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:ulysse_app/core/errors/db_exception.dart';
 import 'package:ulysse_app/features/parking/data/data_sources/remote/parking_remote_data_source.dart';
@@ -158,6 +159,23 @@ class ParkingRemoteDataSourceImplementation implements ParkingRemoteDataSource {
         .update(place.toJson());
 
     } catch (e) {
+      throw(DBException(message: e.toString()));
+    }
+  }
+  
+  @override
+  Future<List<ParkingModel>> getAllParkings() async {
+    try {
+      debugPrint("======= IN GET ALL PARKING =======");
+      final snap = await _firestore.collection(_kParkingCollection).get();
+
+      if (snap.docs.isEmpty) {
+        return <ParkingModel>[];
+      }
+
+      return snap.docs.map((doc) => ParkingModel.fromDocumentSnapshot(doc)).toList();
+    } catch (e) {
+      debugPrint("========== error: $e");
       throw(DBException(message: e.toString()));
     }
   }

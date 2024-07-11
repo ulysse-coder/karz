@@ -128,7 +128,7 @@ class Sidebar extends StatelessWidget {
               );
             }
           ),
-          ListTile(
+          /*ListTile(
             leading: Icon(
               size: font24 + 6,
               Icons.local_offer_outlined
@@ -146,8 +146,8 @@ class Sidebar extends StatelessWidget {
     MaterialPageRoute(builder: (context) => const InterfaceHonoraire()),
     );
     }
-          ),
-          ListTile(
+          ),*/
+          /*ListTile(
             leading: Icon( 
               size: font24 + 6,
               Icons.workspace_premium_sharp,
@@ -166,8 +166,7 @@ class Sidebar extends StatelessWidget {
                 context,
                 MaterialPageRoute(builder: (context) => const InterfaceAbonnement()),
               );
-            }),
-          const Spacer(),
+            }),*/
           BlocListener<AuthenticationBloc, AuthenticationState>(
             listener: (context, state) {
               if(state is UserSignedOutState) {

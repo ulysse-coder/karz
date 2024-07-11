@@ -19,6 +19,8 @@ abstract class ParkingRepository {
 
   ResultVoid uploadParkingImage(String parkingId, XFile file);
 
+  ResultFuture<List<ParkingEntity>> getAllParkings();
+
   ResultFuture<List<Reference>?> getParkingImages(String parkingId);
 
   ResultFuture<List<PlaceEntity>> getPlacesByParking(String parkingId);
