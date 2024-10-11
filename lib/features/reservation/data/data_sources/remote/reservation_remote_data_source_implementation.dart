@@ -1,9 +1,9 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:ulysse_app/core/errors/db_exception.dart';
-import 'package:ulysse_app/features/reservation/data/data_sources/remote/reservation_remote_data_source.dart';
-import 'package:ulysse_app/features/reservation/data/models/reservation_model.dart';
+import 'package:karz/core/errors/db_exception.dart';
+import 'package:karz/features/reservation/data/data_sources/remote/reservation_remote_data_source.dart';
+import 'package:karz/features/reservation/data/models/reservation_model.dart';
 
 class ReservationRemoteDataSourceImplementation implements ReservationRemoteDataSource {
   const ReservationRemoteDataSourceImplementation(this._firestore);

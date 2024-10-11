@@ -1,7 +1,7 @@
 
 import 'package:get/get.dart';
-import 'package:ulysse_app/features/reservation/data/models/reservation_model.dart';
-import 'package:ulysse_app/features/reservation/data/models/vehicule_model.dart';
+import 'package:karz/features/reservation/data/models/reservation_model.dart';
+import 'package:karz/features/reservation/data/models/vehicule_model.dart';
 
 class ReservationController extends GetxController {
   final _reservations = <ReservationModel>[].obs;

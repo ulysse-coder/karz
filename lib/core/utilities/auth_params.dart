@@ -1,7 +1,7 @@
 
 import 'package:equatable/equatable.dart';
-import 'package:ulysse_app/core/utilities/enum.dart';
-import 'package:ulysse_app/features/authentification/domain/entities/user_entity.dart';
+import 'package:karz/core/utilities/enum.dart';
+import 'package:karz/features/authentification/domain/entities/user_entity.dart';
 
 class AuthParams extends Equatable {
   const AuthParams({

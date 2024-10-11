@@ -5,10 +5,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:ulysse_app/core/errors/db_exception.dart';
-import 'package:ulysse_app/features/parking/data/data_sources/remote/parking_remote_data_source.dart';
-import 'package:ulysse_app/features/parking/data/models/parking_model.dart';
-import 'package:ulysse_app/features/parking/data/models/place_model.dart';
+import 'package:karz/core/errors/db_exception.dart';
+import 'package:karz/features/parking/data/data_sources/remote/parking_remote_data_source.dart';
+import 'package:karz/features/parking/data/models/parking_model.dart';
+import 'package:karz/features/parking/data/models/place_model.dart';
 
 class ParkingRemoteDataSourceImplementation implements ParkingRemoteDataSource {
   const ParkingRemoteDataSourceImplementation(this._firestore, this._firebaseStorage, this._imagePicker);

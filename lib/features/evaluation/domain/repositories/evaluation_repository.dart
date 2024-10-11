@@ -1,6 +1,6 @@
 
-import 'package:ulysse_app/core/typedef/typedef.dart';
-import 'package:ulysse_app/features/evaluation/domain/entities/evaluation_entity.dart';
+import 'package:karz/core/typedef/typedef.dart';
+import 'package:karz/features/evaluation/domain/entities/evaluation_entity.dart';
 
 abstract class EvaluationRepositoy {
 

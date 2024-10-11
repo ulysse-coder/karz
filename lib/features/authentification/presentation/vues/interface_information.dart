@@ -3,10 +3,10 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:ulysse_app/core/constants/colors.dart';
-import 'package:ulysse_app/features/authentification/presentation/app/bloc/authentication_bloc.dart';
-import 'package:ulysse_app/features/authentification/presentation/app/controller/user_controller.dart';
-import 'package:ulysse_app/features/authentification/presentation/vues/home_page.dart';
+import 'package:karz/core/constants/colors.dart';
+import 'package:karz/features/authentification/presentation/app/bloc/authentication_bloc.dart';
+import 'package:karz/features/authentification/presentation/app/controller/user_controller.dart';
+import 'package:karz/features/authentification/presentation/vues/home_page.dart';
 
 class InterfaceInformation extends StatefulWidget {
   const InterfaceInformation({super.key});

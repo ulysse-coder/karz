@@ -1,11 +1,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ulysse_app/core/constants/dimensions.dart';
-import 'package:ulysse_app/core/utilities/enum.dart';
-import 'package:ulysse_app/core/widgets/heading2.dart';
-import 'package:ulysse_app/core/widgets/standard_text.dart';
-import 'package:ulysse_app/features/reservation/data/models/reservation_model.dart';
+import 'package:karz/core/constants/dimensions.dart';
+import 'package:karz/core/utilities/enum.dart';
+import 'package:karz/core/widgets/heading2.dart';
+import 'package:karz/core/widgets/standard_text.dart';
+import 'package:karz/features/reservation/data/models/reservation_model.dart';
 
 import '../../../../core/constants/colors.dart';
 import '../../../authentification/presentation/vues/home_page.dart';

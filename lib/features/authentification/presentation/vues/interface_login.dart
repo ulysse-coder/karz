@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:ulysse_app/core/constants/colors.dart';
-import 'package:ulysse_app/core/utilities/custom_widget.dart';
-import 'package:ulysse_app/core/utilities/enum.dart';
-import 'package:ulysse_app/features/authentification/data/models/conductor_model.dart';
-import 'package:ulysse_app/features/authentification/presentation/app/bloc/authentication_bloc.dart';
-import 'package:ulysse_app/features/authentification/presentation/app/controller/user_controller.dart';
-import 'package:ulysse_app/features/authentification/presentation/vues/home_page.dart';
-import 'package:ulysse_app/features/authentification/presentation/vues/interface_information.dart';
+import 'package:karz/core/constants/colors.dart';
+import 'package:karz/core/utilities/custom_widget.dart';
+import 'package:karz/core/utilities/enum.dart';
+import 'package:karz/features/authentification/data/models/conductor_model.dart';
+import 'package:karz/features/authentification/presentation/app/bloc/authentication_bloc.dart';
+import 'package:karz/features/authentification/presentation/app/controller/user_controller.dart';
+import 'package:karz/features/authentification/presentation/vues/home_page.dart';
+import 'package:karz/features/authentification/presentation/vues/interface_information.dart';
 
 class InterfaceLogin extends StatefulWidget {
   const InterfaceLogin({super.key});

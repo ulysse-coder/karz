@@ -1,8 +1,8 @@
 
-import 'package:ulysse_app/core/typedef/typedef.dart';
-import 'package:ulysse_app/core/usecases/usecases.dart';
-import 'package:ulysse_app/features/parking/domain/entities/place_entity.dart';
-import 'package:ulysse_app/features/parking/domain/repositories/parking_repository.dart';
+import 'package:karz/core/typedef/typedef.dart';
+import 'package:karz/core/usecases/usecases.dart';
+import 'package:karz/features/parking/domain/entities/place_entity.dart';
+import 'package:karz/features/parking/domain/repositories/parking_repository.dart';
 
 class GetPlacesByParking extends UseCaseWithParameters<List<PlaceEntity>, String> {
   const GetPlacesByParking(this._repository);

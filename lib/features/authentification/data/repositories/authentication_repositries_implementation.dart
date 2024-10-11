@@ -1,15 +1,15 @@
 
 import 'package:dartz/dartz.dart';
-import 'package:ulysse_app/core/errors/db_exception.dart';
-import 'package:ulysse_app/core/typedef/typedef.dart';
-import 'package:ulysse_app/core/utilities/enum.dart';
-import 'package:ulysse_app/features/authentification/data/data_sources/local/authentication_local_data_source.dart';
-import 'package:ulysse_app/features/authentification/data/data_sources/remote/authentication_remote_data_source.dart';
-import 'package:ulysse_app/features/authentification/data/models/conductor_model.dart';
-import 'package:ulysse_app/features/authentification/data/models/security_model.dart';
-import 'package:ulysse_app/features/authentification/domain/entities/conductor_entity.dart';
-import 'package:ulysse_app/features/authentification/domain/entities/security_entity.dart';
-import 'package:ulysse_app/features/authentification/domain/repositories/authentication_repository.dart';
+import 'package:karz/core/errors/db_exception.dart';
+import 'package:karz/core/typedef/typedef.dart';
+import 'package:karz/core/utilities/enum.dart';
+import 'package:karz/features/authentification/data/data_sources/local/authentication_local_data_source.dart';
+import 'package:karz/features/authentification/data/data_sources/remote/authentication_remote_data_source.dart';
+import 'package:karz/features/authentification/data/models/conductor_model.dart';
+import 'package:karz/features/authentification/data/models/security_model.dart';
+import 'package:karz/features/authentification/domain/entities/conductor_entity.dart';
+import 'package:karz/features/authentification/domain/entities/security_entity.dart';
+import 'package:karz/features/authentification/domain/repositories/authentication_repository.dart';
 
 class AuthenticationRepositoryImplementation implements AuthenticationRepository {
   const AuthenticationRepositoryImplementation(this._remoteDataSource, this._localDataSource);

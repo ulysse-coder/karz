@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:ulysse_app/core/widgets/heading1.dart';
-import 'package:ulysse_app/features/parking/data/models/parking_model.dart';
-import 'package:ulysse_app/features/parking/presentation/app/bloc/parking_bloc.dart';
-import 'package:ulysse_app/features/parking/presentation/app/controllers/parking_controller.dart';
-import 'package:ulysse_app/features/parking/presentation/vues/parking_list_item.dart';
+import 'package:karz/core/widgets/heading1.dart';
+import 'package:karz/features/parking/data/models/parking_model.dart';
+import 'package:karz/features/parking/presentation/app/bloc/parking_bloc.dart';
+import 'package:karz/features/parking/presentation/app/controllers/parking_controller.dart';
+import 'package:karz/features/parking/presentation/vues/parking_list_item.dart';
 
 class ParkList extends StatefulWidget {
   const ParkList({super.key});

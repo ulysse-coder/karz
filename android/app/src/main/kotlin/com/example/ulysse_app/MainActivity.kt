@@ -1,4 +1,4 @@
-package com.example.ulysse_app
+package com.example.karz
 
 import io.flutter.embedding.android.FlutterActivity
 

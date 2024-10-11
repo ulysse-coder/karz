@@ -1,7 +1,7 @@
 
 import 'package:equatable/equatable.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:ulysse_app/features/parking/domain/entities/place_entity.dart';
+import 'package:karz/features/parking/domain/entities/place_entity.dart';
 
 class UploadImageParams extends Equatable {
   const UploadImageParams({

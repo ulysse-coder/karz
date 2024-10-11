@@ -1,11 +1,11 @@
 
 import 'package:dartz/dartz.dart';
-import 'package:ulysse_app/core/errors/db_exception.dart';
-import 'package:ulysse_app/core/typedef/typedef.dart';
-import 'package:ulysse_app/features/reservation/data/data_sources/remote/reservation_remote_data_source.dart';
-import 'package:ulysse_app/features/reservation/data/models/reservation_model.dart';
-import 'package:ulysse_app/features/reservation/domain/entities/reservation_entity.dart';
-import 'package:ulysse_app/features/reservation/domain/repositories/reservation_repository.dart';
+import 'package:karz/core/errors/db_exception.dart';
+import 'package:karz/core/typedef/typedef.dart';
+import 'package:karz/features/reservation/data/data_sources/remote/reservation_remote_data_source.dart';
+import 'package:karz/features/reservation/data/models/reservation_model.dart';
+import 'package:karz/features/reservation/domain/entities/reservation_entity.dart';
+import 'package:karz/features/reservation/domain/repositories/reservation_repository.dart';
 
 class ReservationRespositoryImplementation implements ReservationRepository {
   const ReservationRespositoryImplementation(this._remoteDataSource);

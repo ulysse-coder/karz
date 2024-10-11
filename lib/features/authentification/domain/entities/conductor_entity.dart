@@ -1,6 +1,6 @@
 
 import 'package:equatable/equatable.dart';
-import 'package:ulysse_app/features/authentification/data/models/bank_account_model.dart';
+import 'package:karz/features/authentification/data/models/bank_account_model.dart';
 
 class ConductorEntity extends Equatable {
   const ConductorEntity({

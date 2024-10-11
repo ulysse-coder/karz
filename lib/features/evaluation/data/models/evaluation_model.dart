@@ -1,7 +1,7 @@
 
 import 'package:json_annotation/json_annotation.dart';
-import 'package:ulysse_app/core/utilities/enum.dart';
-import 'package:ulysse_app/features/evaluation/domain/entities/evaluation_entity.dart';
+import 'package:karz/core/utilities/enum.dart';
+import 'package:karz/features/evaluation/domain/entities/evaluation_entity.dart';
 
 part 'evaluation_model.g.dart';
 

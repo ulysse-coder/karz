@@ -1,5 +1,5 @@
 
-import 'package:ulysse_app/features/reservation/data/models/reservation_model.dart';
+import 'package:karz/features/reservation/data/models/reservation_model.dart';
 
 abstract class ReservationRemoteDataSource {
 

@@ -1,6 +1,6 @@
 
 import 'package:equatable/equatable.dart';
-import 'package:ulysse_app/core/utilities/enum.dart';
+import 'package:karz/core/utilities/enum.dart';
 
 class VehiculeEntity extends Equatable {
   const VehiculeEntity({

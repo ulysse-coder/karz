@@ -1,5 +1,5 @@
 
-import 'package:ulysse_app/core/typedef/typedef.dart';
+import 'package:karz/core/typedef/typedef.dart';
 
 abstract class UseCaseWithParameters<T, ParamsType> {
   const UseCaseWithParameters();

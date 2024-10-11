@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ulysse_app/features/authentification/presentation/app/controller/user_controller.dart';
+import 'package:karz/features/authentification/presentation/app/controller/user_controller.dart';
 
 class InterfacePaiement extends StatefulWidget {
   const InterfacePaiement({Key? key}) : super(key: key);

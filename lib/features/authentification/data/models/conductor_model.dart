@@ -1,8 +1,8 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:ulysse_app/features/authentification/data/models/bank_account_model.dart';
-import 'package:ulysse_app/features/authentification/domain/entities/conductor_entity.dart';
+import 'package:karz/features/authentification/data/models/bank_account_model.dart';
+import 'package:karz/features/authentification/domain/entities/conductor_entity.dart';
 
 part 'conductor_model.g.dart';
 

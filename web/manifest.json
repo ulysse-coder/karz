@@ -1,6 +1,6 @@
 {
-    "name": "ulysse_app",
-    "short_name": "ulysse_app",
+    "name": "karz",
+    "short_name": "karz",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#hexcode",

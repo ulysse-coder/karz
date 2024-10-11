@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:282323374084:android:a479b4d0795b6d5f73e551",
         "android_client_info": {
-          "package_name": "com.example.ulysse_app"
+          "package_name": "com.example.karz"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "282323374084-s5538g7t9dfdjm1qnngg9nrqt03oqgiu.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.ulysse_app",
+            "package_name": "com.example.karz",
             "certificate_hash": "1718cfb6dbfb80e3d15f380a8460dc712dccfbfb"
           }
         },

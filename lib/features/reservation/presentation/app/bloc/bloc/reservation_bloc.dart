@@ -1,12 +1,12 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:ulysse_app/features/reservation/domain/entities/reservation_entity.dart';
-import 'package:ulysse_app/features/reservation/domain/usecases/create_reservation.dart';
-import 'package:ulysse_app/features/reservation/domain/usecases/delete_reservation.dart';
-import 'package:ulysse_app/features/reservation/domain/usecases/get_reservation.dart';
-import 'package:ulysse_app/features/reservation/domain/usecases/get_reservations_by_parking.dart';
-import 'package:ulysse_app/features/reservation/domain/usecases/get_reservations_by_user.dart';
-import 'package:ulysse_app/features/reservation/domain/usecases/update_reservation.dart';
+import 'package:karz/features/reservation/domain/entities/reservation_entity.dart';
+import 'package:karz/features/reservation/domain/usecases/create_reservation.dart';
+import 'package:karz/features/reservation/domain/usecases/delete_reservation.dart';
+import 'package:karz/features/reservation/domain/usecases/get_reservation.dart';
+import 'package:karz/features/reservation/domain/usecases/get_reservations_by_parking.dart';
+import 'package:karz/features/reservation/domain/usecases/get_reservations_by_user.dart';
+import 'package:karz/features/reservation/domain/usecases/update_reservation.dart';
 
 part 'reservation_event.dart';
 part 'reservation_state.dart';

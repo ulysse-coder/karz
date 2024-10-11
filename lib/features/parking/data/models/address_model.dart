@@ -1,6 +1,6 @@
 
 import 'package:json_annotation/json_annotation.dart';
-import 'package:ulysse_app/features/parking/domain/entities/address_entity.dart';
+import 'package:karz/features/parking/domain/entities/address_entity.dart';
 
 part 'address_model.g.dart';
 

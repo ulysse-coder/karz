@@ -6,12 +6,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:ulysse_app/core/errors/db_exception.dart';
-import 'package:ulysse_app/core/utilities/enum.dart';
-import 'package:ulysse_app/features/authentification/data/data_sources/remote/authentication_remote_data_source.dart';
-import 'package:ulysse_app/features/authentification/data/models/bank_account_model.dart';
-import 'package:ulysse_app/features/authentification/data/models/conductor_model.dart';
-import 'package:ulysse_app/features/authentification/data/models/security_model.dart';
+import 'package:karz/core/errors/db_exception.dart';
+import 'package:karz/core/utilities/enum.dart';
+import 'package:karz/features/authentification/data/data_sources/remote/authentication_remote_data_source.dart';
+import 'package:karz/features/authentification/data/models/bank_account_model.dart';
+import 'package:karz/features/authentification/data/models/conductor_model.dart';
+import 'package:karz/features/authentification/data/models/security_model.dart';
 import 'package:http/http.dart' as http;
 
 class AuthenticationRemoteDataSourceImplementation implements AuthenticationRemoteDataSource {

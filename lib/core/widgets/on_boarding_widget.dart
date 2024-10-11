@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:ulysse_app/core/constants/colors.dart';
-import 'package:ulysse_app/core/constants/dimensions.dart';
-import 'package:ulysse_app/core/widgets/heading1.dart';
-import 'package:ulysse_app/core/widgets/standard_text.dart';
+import 'package:karz/core/constants/colors.dart';
+import 'package:karz/core/constants/dimensions.dart';
+import 'package:karz/core/widgets/heading1.dart';
+import 'package:karz/core/widgets/standard_text.dart';
 
 class OnBoardingWidget extends StatelessWidget {
   const OnBoardingWidget({

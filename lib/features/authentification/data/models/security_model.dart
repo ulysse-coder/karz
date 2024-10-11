@@ -1,8 +1,8 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:ulysse_app/core/utilities/enum.dart';
-import 'package:ulysse_app/features/authentification/domain/entities/security_entity.dart';
+import 'package:karz/core/utilities/enum.dart';
+import 'package:karz/features/authentification/domain/entities/security_entity.dart';
 
 part 'security_model.g.dart';
 

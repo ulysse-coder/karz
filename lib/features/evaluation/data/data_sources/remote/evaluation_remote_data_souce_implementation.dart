@@ -1,8 +1,8 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ulysse_app/core/errors/db_exception.dart';
-import 'package:ulysse_app/features/evaluation/data/data_sources/remote/evaluation_remote_data_source.dart';
-import 'package:ulysse_app/features/evaluation/data/models/evaluation_model.dart';
+import 'package:karz/core/errors/db_exception.dart';
+import 'package:karz/features/evaluation/data/data_sources/remote/evaluation_remote_data_source.dart';
+import 'package:karz/features/evaluation/data/models/evaluation_model.dart';
 
 class EvaluationRemoteDataSourceImplementation implements EvaluationRemoteDataSource {
   const EvaluationRemoteDataSourceImplementation(this._firestore);

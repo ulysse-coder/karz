@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:ulysse_app/core/widgets/heading1.dart';
-import 'package:ulysse_app/features/authentification/presentation/app/controller/user_controller.dart';
-import 'package:ulysse_app/features/reservation/data/models/reservation_model.dart';
-import 'package:ulysse_app/features/reservation/presentation/app/bloc/bloc/reservation_bloc.dart';
-import 'package:ulysse_app/features/reservation/presentation/app/bloc/controllers/reservation_controller.dart';
-import 'package:ulysse_app/features/reservation/presentation/vues/reservation_historic_item.dart';
+import 'package:karz/core/widgets/heading1.dart';
+import 'package:karz/features/authentification/presentation/app/controller/user_controller.dart';
+import 'package:karz/features/reservation/data/models/reservation_model.dart';
+import 'package:karz/features/reservation/presentation/app/bloc/bloc/reservation_bloc.dart';
+import 'package:karz/features/reservation/presentation/app/bloc/controllers/reservation_controller.dart';
+import 'package:karz/features/reservation/presentation/vues/reservation_historic_item.dart';
 
 class History extends StatefulWidget{
   const History({super.key});

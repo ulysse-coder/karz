@@ -1,9 +1,9 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ulysse_app/core/constants/colors.dart';
-import 'package:ulysse_app/core/widgets/on_boarding_widget.dart';
-import 'package:ulysse_app/features/authentification/presentation/vues/how_app_is_used_view.dart';
+import 'package:karz/core/constants/colors.dart';
+import 'package:karz/core/widgets/on_boarding_widget.dart';
+import 'package:karz/features/authentification/presentation/vues/how_app_is_used_view.dart';
 
 class OnBoardingView extends StatefulWidget {
   const OnBoardingView({super.key});

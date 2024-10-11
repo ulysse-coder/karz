@@ -1,7 +1,7 @@
 
-import 'package:ulysse_app/core/typedef/typedef.dart';
-import 'package:ulysse_app/core/usecases/usecases.dart';
-import 'package:ulysse_app/features/reservation/domain/repositories/reservation_repository.dart';
+import 'package:karz/core/typedef/typedef.dart';
+import 'package:karz/core/usecases/usecases.dart';
+import 'package:karz/features/reservation/domain/repositories/reservation_repository.dart';
 
 class CancelReservation extends UseCaseWithParameters<void, String> {
   CancelReservation(this.repository);

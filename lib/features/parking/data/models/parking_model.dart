@@ -3,9 +3,9 @@ import 'dart:ffi';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:ulysse_app/core/utilities/enum.dart';
-import 'package:ulysse_app/features/parking/data/models/address_model.dart';
-import 'package:ulysse_app/features/parking/domain/entities/parking_entity.dart';
+import 'package:karz/core/utilities/enum.dart';
+import 'package:karz/features/parking/data/models/address_model.dart';
+import 'package:karz/features/parking/domain/entities/parking_entity.dart';
 
 part 'parking_model.g.dart';
 

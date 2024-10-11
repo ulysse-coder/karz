@@ -1,8 +1,8 @@
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:ulysse_app/features/parking/data/models/parking_model.dart';
-import 'package:ulysse_app/features/parking/data/models/place_model.dart';
+import 'package:karz/features/parking/data/models/parking_model.dart';
+import 'package:karz/features/parking/data/models/place_model.dart';
 
 abstract class ParkingRemoteDataSource {
 

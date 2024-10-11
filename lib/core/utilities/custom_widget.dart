@@ -1,8 +1,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ulysse_app/core/constants/colors.dart';
-import 'package:ulysse_app/core/constants/dimensions.dart';
+import 'package:karz/core/constants/colors.dart';
+import 'package:karz/core/constants/dimensions.dart';
 
 void loadingDialog() {
   Get.dialog(

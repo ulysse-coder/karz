@@ -1,7 +1,7 @@
 
 import 'package:equatable/equatable.dart';
-import 'package:ulysse_app/core/utilities/enum.dart';
-import 'package:ulysse_app/features/parking/data/models/address_model.dart';
+import 'package:karz/core/utilities/enum.dart';
+import 'package:karz/features/parking/data/models/address_model.dart';
 
 class ParkingEntity extends Equatable {
   const ParkingEntity({

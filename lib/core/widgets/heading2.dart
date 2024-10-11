@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ulysse_app/core/constants/dimensions.dart';
+import 'package:karz/core/constants/dimensions.dart';
 
 class Heading2 extends StatelessWidget {
   final String text;

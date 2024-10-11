@@ -1,7 +1,7 @@
 
 import 'package:get/get.dart';
-import 'package:ulysse_app/features/parking/data/models/parking_model.dart';
-import 'package:ulysse_app/features/parking/data/models/place_model.dart';
+import 'package:karz/features/parking/data/models/parking_model.dart';
+import 'package:karz/features/parking/data/models/place_model.dart';
 
 class ParkingController extends GetxController {
   final _parkings = <ParkingModel>[].obs;

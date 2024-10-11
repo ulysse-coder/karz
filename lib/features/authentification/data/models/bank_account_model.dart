@@ -1,6 +1,6 @@
 
 import 'package:json_annotation/json_annotation.dart';
-import 'package:ulysse_app/features/authentification/domain/entities/bank_account_entity.dart';
+import 'package:karz/features/authentification/domain/entities/bank_account_entity.dart';
 
 part 'bank_account_model.g.dart';
 

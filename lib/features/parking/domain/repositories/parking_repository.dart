@@ -1,9 +1,9 @@
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:ulysse_app/core/typedef/typedef.dart';
-import 'package:ulysse_app/features/parking/domain/entities/parking_entity.dart';
-import 'package:ulysse_app/features/parking/domain/entities/place_entity.dart';
+import 'package:karz/core/typedef/typedef.dart';
+import 'package:karz/features/parking/domain/entities/parking_entity.dart';
+import 'package:karz/features/parking/domain/entities/place_entity.dart';
 
 abstract class ParkingRepository {
 

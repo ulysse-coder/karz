@@ -2,9 +2,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:ulysse_app/core/utilities/enum.dart';
-import 'package:ulysse_app/features/authentification/data/models/conductor_model.dart';
-import 'package:ulysse_app/features/authentification/data/models/security_model.dart';
+import 'package:karz/core/utilities/enum.dart';
+import 'package:karz/features/authentification/data/models/conductor_model.dart';
+import 'package:karz/features/authentification/data/models/security_model.dart';
 
 class UserController extends GetxController {
 

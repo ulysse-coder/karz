@@ -1,5 +1,5 @@
 
-import 'package:ulysse_app/features/authentification/data/models/conductor_model.dart';
+import 'package:karz/features/authentification/data/models/conductor_model.dart';
 
 abstract class AuthenticationLocalDataSource {
 

@@ -1,7 +1,7 @@
 
 import 'package:json_annotation/json_annotation.dart';
-import 'package:ulysse_app/core/utilities/enum.dart';
-import 'package:ulysse_app/features/reservation/domain/entities/vehicule_entity.dart';
+import 'package:karz/core/utilities/enum.dart';
+import 'package:karz/features/reservation/domain/entities/vehicule_entity.dart';
 
 part 'vehicule_model.g.dart';
 

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ulysse_app/core/constants/colors.dart';
-import 'package:ulysse_app/core/constants/dimensions.dart';
-import 'package:ulysse_app/core/widgets/heading2.dart';
-import 'package:ulysse_app/core/widgets/standard_text.dart';
-import 'package:ulysse_app/features/parking/data/models/parking_model.dart';
-import 'package:ulysse_app/features/parking/presentation/vues/parkinfo.dart';
+import 'package:karz/core/constants/colors.dart';
+import 'package:karz/core/constants/dimensions.dart';
+import 'package:karz/core/widgets/heading2.dart';
+import 'package:karz/core/widgets/standard_text.dart';
+import 'package:karz/features/parking/data/models/parking_model.dart';
+import 'package:karz/features/parking/presentation/vues/parkinfo.dart';
 
 class ParkingListItem extends StatelessWidget {
   const ParkingListItem({super.key, required this.parking});

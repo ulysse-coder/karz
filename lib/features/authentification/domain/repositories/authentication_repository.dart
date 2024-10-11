@@ -1,8 +1,8 @@
 
-import 'package:ulysse_app/core/typedef/typedef.dart';
-import 'package:ulysse_app/core/utilities/enum.dart';
-import 'package:ulysse_app/features/authentification/domain/entities/conductor_entity.dart';
-import 'package:ulysse_app/features/authentification/domain/entities/security_entity.dart';
+import 'package:karz/core/typedef/typedef.dart';
+import 'package:karz/core/utilities/enum.dart';
+import 'package:karz/features/authentification/domain/entities/conductor_entity.dart';
+import 'package:karz/features/authentification/domain/entities/security_entity.dart';
 
 abstract class AuthenticationRepository {
 
